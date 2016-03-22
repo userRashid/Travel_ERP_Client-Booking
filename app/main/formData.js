@@ -101,29 +101,29 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
     function addBookingData(){
       var addBookingData = [{
             label : 'Package Name'
-            ,name : 'erp_package_name'
+            ,name : 'erp_bookingName'
             ,type : 'erpText'
           },{
             label : 'Code'
-            ,name : 'erp_code'
+            ,name : 'erp_packageCode'
             ,type : 'erpText'
           },{
             label : 'Sales Person'
-            ,name : 'erp_sales_person'
+            ,name : 'erp_salesPersonId'
             ,type : 'erpSelect'
             ,values : GlobalData.getAllEmployee()
           },{
             label : 'Rooms'
-            ,name : 'erp_rooms'
+            ,name : 'erp_roomCount'
             ,type : 'erpAddMore'
             //,values : GlobalData.getNight()
           },{
             label : 'Pick Up'
-            ,name : 'erp_pickup'
+            ,name : 'erp_pickupLocation'
             ,type : 'erpText'
           },{
             label : 'Drop'
-            ,name : 'erp_drop'
+            ,name : 'erp_dropLocation'
             ,type : 'erpText'
           },{
             label : 'Vehicle'
@@ -131,36 +131,36 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
             ,type : 'erpText'
           },{
             label : 'Vehicle Cost'
-            ,name : 'erp_vehicle_cost'
+            ,name : 'erp_vehicleCost'
             ,type : 'erpText'
           },{
             label : 'Hotel Name'
-            ,name : 'erp_hotel_name'
+            ,name : 'erp_hotelBookings'
             ,type : 'erpHotel'
-          },{
+          }/*,{
             label : 'Hotel Cost'
             ,name : 'erp_hotel_cost'
             ,type : 'erpText'
-          },{
+          }*/,{
             label : 'Total Cost'
             ,name : 'erp_total_cost'
             ,type : 'erpText'
           },{
             label : 'Total Sold Cost'
-            ,name : 'erp_sold_total_cost'
+            ,name : 'erp_proposedPackageCost'
             ,type : 'erpText'
           },{
             label : 'Velvo/Aerteted/Train'
-            ,name : 'erp_train'
+            ,name : 'erp_vehicle'
             ,type : 'erpSelect'
             ,values : GlobalData.getTransportType()
-          },{
+          }/*,{
             label : 'Cost'
-            ,name : 'erp_cost'
+            ,name : 'erp_vehicleCost'
             ,type : 'erpText'
-          },{
+          }*/,{
             label : 'Status'
-            ,name : 'erp_status'
+            ,name : 'erp_bookingStatus'
             ,type : 'erpText'
           },{
             name : 'erp_name'

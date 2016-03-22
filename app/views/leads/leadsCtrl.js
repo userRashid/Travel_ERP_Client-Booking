@@ -44,11 +44,11 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
       };
 
     $scope.changeStatus = function(){
-        /*if($scope.LeadStatus.model == 'New'){
+        if($scope.LeadStatus.model == 'New'){
             $scope.open('lg');
-        } else {*/
+        } else {
             LeadsServices.saveLead($scope.leadId,$scope.LeadStatus)
-       // }
+        }
     }
     function addNew(id,leadId,noteType,message){
         var temp = {};

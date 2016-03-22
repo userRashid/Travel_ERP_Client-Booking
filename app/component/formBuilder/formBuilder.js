@@ -54,6 +54,7 @@ angular.module('sbAdminApp').directive('formBuilder',function($compile){
             html +='<div      ng-switch-when="erpAddMore"   data-erp-add-more="item.model"></div>';
             html +='<div      ng-switch-when="erpCalender"  data-erp-calender="item"></div>';
             html +='<div      ng-switch-when="erpMultiSelect" data-erp-multi-select="item"></div>';
+            html +='<div      ng-switch-when="erpHotel"     data-erp-hotel="item"></div>';
             html +='<div      ng-switch-when="erpTextEditor" text-angular="text-angular" ng-model="item.model" ta-disabled="false"></div>';
             html +='<div      ng-switch-default style="border: 1px solid #c9302c;">{{item.type}}</div>';
             html +='<div class="separator"></div>';
