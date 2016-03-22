@@ -1,0 +1,100 @@
+<div class="panel-body">
+    <ul class="timeline">
+        <li class="timeline-inverted" ng-repeat="item in timeline">
+            <div class="timeline-badge" ng-class="getStyleBG(item.erp_source)"><i class="fa" ng-class="getStyle(item.erp_source)"></i>
+            </div>
+            <div class="timeline-panel">
+                <div ng-if="!item.showItem">
+                    <button type="button" ng-click="editTimeLine(item)" class="btn btn-default btn-circle timeline-heading-edit">
+                        <i class="fa fa-pencil-square-o"></i>
+                    </button>
+                    <!--<div class="timeline-heading">
+                        <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                    </div>-->
+                    <p class="timeline-body">
+                        {{item.erp_notes}}
+                    </p>
+                    <p class="m0"><small class="text-muted"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;<b>Added on : </b>{{timeAgo(item.erp_updateTimestamp)}}&nbsp;&nbsp;[{{showTime(item.erp_updateTimestamp)}}]</small></p>
+                </div>
+                <div ng-if="item.showItem">
+                    <div class="row" data-erp-note="item.Note"></div>
+                    <button ng-click="updateNode(item)">Update</button>
+                    <button ng-click="cancelEdit(item)">Cancel</button>
+                </div>
+            </div>
+        </li>
+        <!--<li class="timeline-inverted">
+            <div class="timeline-badge warning"><i class="fa fa-envelope-o"></i>
+            </div>
+            <div class="timeline-panel">
+                <button type="button" class="btn btn-default btn-circle timeline-heading-edit">
+                    <i class="fa fa-pencil-square-o"></i>
+                </button>
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                </div>
+                <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem quibusdam, tenetur commodi provident cumque magni voluptatem libero, quis rerum. Fugiat esse debitis optio, tempore. Animi officiis alias, officia repellendus.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.</p>
+                </div>
+            </div>
+        </li>
+        <li class="timeline-inverted">
+            <div class="timeline-badge danger"><i class="fa fa-phone"></i>
+            </div>
+            <div class="timeline-panel">
+                <button type="button" class="btn btn-default btn-circle timeline-heading-edit">
+                    <i class="fa fa-pencil-square-o"></i>
+                </button>
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                </div>
+                <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.</p>
+                </div>
+            </div>
+        </li>
+        <li class="timeline-inverted">
+            <div class="timeline-badge info"><i class="fa fa-paperclip"></i>
+            </div>
+            <div class="timeline-panel">
+                <button type="button" class="btn btn-default btn-circle timeline-heading-edit">
+                    <i class="fa fa-pencil-square-o"></i>
+                </button>
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                </div>
+                <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
+                    <hr>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-gear"></i>  <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><i class="fa fa-trash"></i>&nbsp;Remove Attachment</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-plus-square-o"></i>&nbsp;Add New</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="timeline-inverted">
+            <div class="timeline-badge success"><i class="fa fa-bell-o"></i>
+            </div>
+            <div class="timeline-panel">
+                <button type="button" class="btn btn-default btn-circle timeline-heading-edit">
+                    <i class="fa fa-pencil-square-o"></i>
+                </button>
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                </div>
+                <div class="timeline-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
+                </div>
+            </div>
+        </li>-->
+    </ul>
+</div>

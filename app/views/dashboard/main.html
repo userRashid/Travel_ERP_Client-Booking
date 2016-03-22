@@ -1,0 +1,9 @@
+<div id="wrapper" ng-controller="RootCtrl">
+    <div ng-if="!Authenticate.isLogin()" ng-controller="Login" ng-include="'views/login/login.html'"></div>
+    <div ng-if="Authenticate.isLogin()">
+        <header></header>
+        <div id="page-wrapper" style="min-height: 561px;">
+            <div ui-view></div>
+        </div>
+    </div>
+</div>

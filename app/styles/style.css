@@ -1,0 +1,74 @@
+.right-inner-addon{position: relative;}
+.right-inner-addon i{   position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+.m0{margin:0px}
+.timeline-panel{
+    position:relative;
+}
+.timeline-panel:hover .timeline-heading-edit{
+    visibility : visible;
+}
+.timeline-heading-edit{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    visibility : hidden;
+    padding: 3px 0 3px 3px;
+    font-size:18px;
+}
+.timeline-heading{
+    margin-right: 30px;
+}
+.dashboard-link{ cursor:pointer}
+.add-leads{
+    background:#eee;
+}
+.cursor-p{ cursor:pointer}
+.edit-lead{ visibility:hidden}
+.leads:hover .edit-lead{ visibility:visible}
+.m-t20{margin-top:20px;}
+.m-t25{margin-top:25px;}
+.m-b25{margin-bottom:25px;}
+.f30{ font-size:30px}
+.buttonM{ margin:20px 30px}
+.md-button.md-primary.md-raised{ background:#5cb85c}
+.addMore{}
+.addMore > button{ border-radius : 50%;
+                      border: none;
+                      cursor: pointer;
+                      float: left;
+                      font-size: 22px;
+                      height: 30px;
+                      margin: 2px 0 0;
+                      padding: 0;
+                      width:30px;}
+.addMore > input{width: 50px;
+                     float: left;
+                     margin: 0 10px;
+                     font-weight: bold;
+                     font-size: 19px;
+                     text-align: center;}
+.p10{ padding:10px;}
+.b0{border:0px}
+.st-sort-ascent:before {
+    content: '\25B2';
+}
+
+.st-sort-descent:before {
+    content: '\25BC';
+}
+
+.lr-drop-target-before{
+  border-left: 2px solid orange;
+}
+
+.lr-drop-target-after{
+  border-right: 2px solid orange;
+}
+#page-wrapper{ margin-top:50px;}
+body{background:#fff;}
+.sidebar{height:650px;border-right: 1px solid #ccc;}
+#page-wrapper{ border:0px;}

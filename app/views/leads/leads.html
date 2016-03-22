@@ -1,0 +1,99 @@
+
+
+<!--<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Booking Detail</h3>
+    </div>
+    <div class="modal-body">
+        <div data-form-builder="BookingDetail" mode="half" class="clearfix"></div>
+    </div>
+    <div class="text-center modal-body">
+        <button class="btn btn-icon btn-success buttonBg" ng-click="addBooking();">
+            <h2 class="f30 buttonM"><i></i>Submit</h2>
+        </button>
+    </div>
+</script>-->
+
+
+<div class="row">
+    <div class="col-lg-8">
+        <h1 class="page-header">Lead Id : {{leadId}}</h1>
+    </div>
+    <div class="col-lg-4">
+        <div class="page-header b0 col-sm-9" data-erp-select="LeadStatus"></div>
+        <div class="page-header b0 col-sm-3">
+            <button ng-click="changeStatus()" class="btn btn-success">Go</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="row">
+        <div class="col-lg-5">
+            <div data-lead="Customer"></div>
+            <div data-lead="Lead"></div>
+            <!--<chat></chat>-->
+            <!--<div class="text-left col-lg-12">
+                <a class="cursor-p"><i class="fa fa-trash"></i> Delete Lead</a>
+            </div>-->
+        </div>
+        <div class="col-lg-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-clock-o fa-fw"></i> Activities Timeline
+                </div>
+                <div style="padding-bottom: 0px;" class="panel-body text-center">
+                    <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('meeting')">
+                        <h3 class="m0"><i class="fa fa-file-o"></i>&nbsp;&nbsp;Note</h3>
+                    </button>
+                    <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('email')">
+                        <h3 class="m0"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Email</h3>
+                    </button>
+                    <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('phone')">
+                        <h3 class="m0"><i class="fa fa-phone"></i>&nbsp;&nbsp;Call</h3>
+                    </button>
+                    <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('attach')">
+                        <h3 class="m0"><i class="fa fa-paperclip"></i>&nbsp;&nbsp;Attach</h3>
+                    </button>
+                    <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('alert')">
+                        <h3 class="m0"><i class="fa fa-bell-o"></i>&nbsp;&nbsp;Alert</h3>
+                    </button>
+                </div>
+                <div style="padding:0 18px;">
+                    <div ng-if="item.meeting" style="border:1px solid #ccc; margin-top:10px;">
+                        <div data-erp-note="Note"></div>
+                        <div style="margin:0 18px 20px;">
+                            <button class="btn btn-success" ng-click="addNote()">Add Note</button>
+                        </div>
+                    </div>
+                    <div ng-if="item.email" style="border:1px solid #ccc; margin-top:10px;">
+                        <div data-erp-note="Note"></div>
+                        <div style="margin:0 18px 20px;">
+                            <button class="btn btn-success" ng-click="addNote()">Add Email</button>
+                        </div>
+                    </div>
+                    <div ng-if="item.phone" style="border:1px solid #ccc; margin-top:10px;">
+                        <div data-erp-note="Note"></div>
+                        <div style="margin:0 18px 20px;">
+                            <button class="btn btn-success" ng-click="addNote()">Add Call</button>
+                        </div>
+                    </div>
+                    <div ng-if="item.attach" style="border:1px solid #ccc; margin-top:10px;">
+                        <div data-erp-attach="Attach"></div>
+                        <div style="margin:0 18px 20px;">
+                            <button class="btn btn-success" ng-click="addAttach()">Add Attach</button>
+                        </div>
+                    </div>
+                    <div ng-if="item.alert" style="border:1px solid #ccc; margin-top:10px;">
+                        <div data-erp-note="Alert"></div>
+                        <div style="margin:0 18px 20px;">
+                            <button class="btn btn-success" ng-click="addAlert">Add Alert</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div data-erp-timeline="Timeline"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
