@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$stateParams,Notify,Session,$state,Actions,$q,LeadsServices,$uibModal){
+angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$stateParams,Notify,Session,$state,Actions,$q,LeadsServices,$uibModal,Authenticate){
     $scope.Lead     = {};
     $scope.Customer = {};
     $scope.Note     = {};
@@ -21,12 +21,27 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     });
 
     $scope.open = function (size) {
-
-        var modalInstance = $uibModal.open({
+          var leadId    =  $scope.leadId,
+          modalInstance = $uibModal.open({
           animation  : $scope.animationsEnabled,
           templateUrl: 'myModalContent.html',
-          controller : function($scope,ErpNodeServices,FormData){
+          controller : function($scope,ErpNodeServices,FormData,$uibModalInstance){
              $scope.BookingDetail = ErpNodeServices.createForm(FormData.addBookingData());
+             $scope.addBooking = function(){
+                $scope.BookingDetail.then(function(data){
+                    $scope.Model = data.getModel();
+                    $scope.Model.erp_createdById = Authenticate.user().id;
+                    $scope.Model.erp_leadId = leadId;
+                    if($scope.Model.erp_taxIncluded) $scope.Model.erp_taxIncluded = true;
+                    if($scope.Model.erp_salesPersonId) $scope.Model.erp_salesPersonId = 10;
+                    API.post('booking',$scope.Model).then(function(response){
+                       Notify.add('success','Success',response.data.message);
+                       $uibModalInstance.dismiss('cancel');
+                    },function(error){
+                       console.log('******* error ',error);
+                    });
+                });
+             }
           },
           size: size,
           resolve: {

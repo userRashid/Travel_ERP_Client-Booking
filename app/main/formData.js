@@ -132,7 +132,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
           },{
             label : 'Vehicle Cost'
             ,name : 'erp_vehicleCost'
-            ,type : 'erpText'
+            ,type : 'erpNumber'
           },{
             label : 'Hotel Name'
             ,name : 'erp_hotelBookings'
@@ -141,19 +141,23 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
             label : 'Hotel Cost'
             ,name : 'erp_hotel_cost'
             ,type : 'erpText'
-          }*/,{
+          },{
             label : 'Total Cost'
             ,name : 'erp_total_cost'
             ,type : 'erpText'
-          },{
+          }*/,{
             label : 'Total Sold Cost'
             ,name : 'erp_proposedPackageCost'
-            ,type : 'erpText'
+            ,type : 'erpNumber'
           },{
             label : 'Velvo/Aerteted/Train'
             ,name : 'erp_vehicle'
             ,type : 'erpSelect'
             ,values : GlobalData.getTransportType()
+          },{
+            label : 'Travel Bookings'
+            ,name : 'erp_travelBookings'
+            ,type : 'erpTravelBookings'
           }/*,{
             label : 'Cost'
             ,name : 'erp_vehicleCost'
@@ -163,7 +167,15 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
             ,name : 'erp_bookingStatus'
             ,type : 'erpText'
           },{
-            name : 'erp_name'
+                label : 'Inclusions'
+                ,name : 'erp_inclusions'
+                ,type : 'erpText'
+          },{
+                label : 'Exclusions'
+                ,name : 'erp_exclusions'
+                ,type : 'erpText'
+          },{
+            name : 'erp_taxIncluded'
             ,type : 'erpCheckbox'
             ,values : GlobalData.getTaxType()
           }];

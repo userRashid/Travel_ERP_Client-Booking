@@ -72,9 +72,10 @@
 body{background:#fff;}
 .sidebar{height:650px;border-right: 1px solid #ccc;}
 #page-wrapper{ border:0px;}
-.add-hotel{background: #ccc;
-               padding: 10px;}
+.add-hotel{border:1px solid #ccc}
 .add-hotel label{font-weight:normal !important; font-size:12px}
 .add-hotel input,.add-hotel select{padding: 2px 5px;
      height: 25px;}
 .add-hotel .form-group{ margin-bottom:10px;}
+.pos-r{ position:relative}
+.add-hotel-btn{ position: absolute; bottom:10px;right: 30px;}

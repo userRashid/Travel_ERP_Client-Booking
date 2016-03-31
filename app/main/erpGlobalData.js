@@ -75,7 +75,7 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API){
     return $q.when(social);
   }
   function getTaxType(){
-    var social = [{label : 'Tax Included',value:'tax_included'},{label : 'Inclusion',value:'tax_inclusion'},{label : 'Exclusion',value:'tax_exclusion'}];
-    return $q.when(social);
+    var taxType = [{label : 'Tax Included',value:'tax_included'}];
+    return $q.when(taxType);
   }
 });

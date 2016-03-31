@@ -9,9 +9,12 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
   }
 
   function controller($scope){
+    var hotelData = [{}];
     $scope.addMore = function(){
-
+        $scope.hotelData.push({});
     }
+    $scope.hotelData = hotelData;
+    $scope.data.model = $scope.hotelData;
   }
   function link($scope,element,attr){
     element.html('').append($compile(renderHTML())($scope));
@@ -19,19 +22,42 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
   function renderHTML(){
     var html = '';
         html += '<div class="add-hotel">' +
-                    '<div class="row">' +
-                        '<div class="form-group col-sm-6"><label>Name</label><input class="form-control" type="text" /></div>' +
-                        '<div class="form-group col-sm-6"><label>Room Type</label>' +
-                            '<select class="form-control"><option>1</option></select>' +
-                        '</div><div class="form-group col-sm-4"><label>Room Cost</label><input class="form-control" type="text" /></div>' +
-                        '<div class="form-group col-sm-4"><label>Room Count</label>' +
-                            '<select class="form-control"><option>1</option></select>' +
-                        '</div><div class="form-group col-sm-4"><label>Nights Of Stay</label>' +
-                            '<select class="form-control"><option>1</option></select>' +
+                    '<div class="pos-r clearfix" ng-repeat="item in hotelData">' +
+                        '<div class="col-sm-11 row">' +
+                            '<div class="form-group col-sm-6"><label>Name</label><input class="form-control" ng-model="item.erp_hotelName" type="text" /></div>' +
+                            '<div class="form-group col-sm-6"><label>Room Type</label>' +
+                                '<select class="form-control" ng-model="item.erp_roomType"><option>1</option></select>' +
+                            '</div><div class="form-group col-sm-4"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
+                            '<div class="form-group col-sm-4"><label>Room Count</label>' +
+                                '<select class="form-control" ng-model="item.erp_roomCount"><option>1</option></select>' +
+                            '</div><div class="form-group col-sm-4"><label>Nights Of Stay</label>' +
+                                '<select class="form-control" ng-model="item.erp_nightsOfStay"><option>1</option></select>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="col-sm-1 add-hotel-btn">' +
+                            '<button ng-if="!$last" class="btn btn-danger" ng-click="remove()"><i class="fa fa-minus"></i></button>' +
+                            '<button ng-if="$last" class="btn btn-success" ng-click="addMore()"><i class="fa fa-plus"></i></button>' +
                         '</div>' +
                     '</div>' +
-                    '<div><button class="btn btn-success" ng-click="addMore()">Add More</button></div>' +
                 '</div>';
     return html;
   }
-});
+}).directive('numberConverter', function() {
+    return {
+      priority: 1,
+      restrict: 'A',
+      require: 'ngModel',
+      link: function(scope, element, attr, ngModel) {
+        function toModel(value) {
+          return "" + value; // convert to string
+        }
+
+        function toView(value) {
+          return parseInt(value); // convert to number
+        }
+
+        ngModel.$formatters.push(toView);
+        //ngModel.$parsers.push(toModel);
+      }
+    };
+  });;
