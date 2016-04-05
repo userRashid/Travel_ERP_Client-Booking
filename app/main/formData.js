@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
+angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authenticate){
     return {
         addLeadData     :   addLeadData
         ,customer       :   customer
@@ -104,7 +104,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
             ,name : 'erp_bookingName'
             ,type : 'erpText'
           },{
-            label : 'Code'
+            label : 'Package Code'
             ,name : 'erp_packageCode'
             ,type : 'erpText'
           },{
@@ -112,6 +112,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
             ,name : 'erp_salesPersonId'
             ,type : 'erpSelect'
             ,values : GlobalData.getAllEmployee()
+            ,model : Authenticate.user().name
           },{
             label : 'Rooms'
             ,name : 'erp_roomCount'
@@ -126,15 +127,15 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
             ,name : 'erp_dropLocation'
             ,type : 'erpText'
           },{
-            label : 'Vehicle'
+            label : 'Transport/Vehicle Given (optional)'
             ,name : 'erp_vehicle'
             ,type : 'erpText'
           },{
-            label : 'Vehicle Cost'
+            label : 'Total Transport/Vehicle Cost'
             ,name : 'erp_vehicleCost'
             ,type : 'erpNumber'
           },{
-            label : 'Hotel Name'
+            label : 'Hotel Details'
             ,name : 'erp_hotelBookings'
             ,type : 'erpHotel'
           }/*,{
@@ -145,17 +146,13 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
             label : 'Total Cost'
             ,name : 'erp_total_cost'
             ,type : 'erpText'
-          }*/,{
-            label : 'Total Sold Cost'
-            ,name : 'erp_proposedPackageCost'
-            ,type : 'erpNumber'
           },{
-            label : 'Velvo/Aerteted/Train'
+            label : 'Volvo/Airticket/Train'
             ,name : 'erp_vehicle'
             ,type : 'erpSelect'
             ,values : GlobalData.getTransportType()
-          },{
-            label : 'Travel Bookings'
+          },*/,{
+            label : 'Ticketing Details'
             ,name : 'erp_travelBookings'
             ,type : 'erpTravelBookings'
           }/*,{
@@ -163,22 +160,28 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData){
             ,name : 'erp_vehicleCost'
             ,type : 'erpText'
           }*/,{
-            label : 'Status'
-            ,name : 'erp_bookingStatus'
-            ,type : 'erpText'
-          },{
                 label : 'Inclusions'
                 ,name : 'erp_inclusions'
-                ,type : 'erpText'
+                ,type : 'erpTextarea'
           },{
                 label : 'Exclusions'
                 ,name : 'erp_exclusions'
-                ,type : 'erpText'
+                ,type : 'erpTextarea'
           },{
             name : 'erp_taxIncluded'
             ,type : 'erpCheckbox'
             ,values : GlobalData.getTaxType()
-          }];
+          },{
+            label : 'Total Sold Cost'
+            ,name : 'erp_proposedPackageCost'
+            ,type : 'erpNumber'
+          },{
+           label : 'Status'
+           ,name : 'erp_bookingStatus'
+           ,type : 'erpSelect'
+           ,values : GlobalData.getBookingStatus()
+           ,model : 'Confirmed by Traveler'
+         }];
         return addBookingData;
     }
     function addNote(){

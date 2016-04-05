@@ -30,7 +30,7 @@ angular.module('sbAdminApp').directive('erpCheckbox',function($compile){
   function renderHTML(){
     var html = '';
     html +='<div class="clearfix">';
-      html +='<div class="col-lg-3" ng-repeat="item in Data">';
+      html +='<div class="col-lg-4" ng-repeat="item in Data">';
         html +='<label class="checkbox"><div class="checker">';
         html +='<span><input type="checkbox" ng-model="item.model" class="checkbox" value="{{item.value}}"></span></div>';
         html += '{{item.label}}';

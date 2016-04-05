@@ -10,12 +10,17 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API){
     ,getDateFormat  :   getDateFormat
     ,getAllEmployee    :   getAllEmployee
     ,getTransportType  :    getTransportType
+    ,getBookingStatus   :   getBookingStatus
   };
   function getDateFormat(){
     return 'dd/MM/yyyy';
   }
   function getNoteType(){
     var data = ["Email","Phone","Meeting"];
+    return $q.when(data);
+  }
+  function getBookingStatus(){
+    var data = ["Confirmed by Traveler","Token Amount Received","Total Amount Received"];
     return $q.when(data);
   }
   function getLeadSource(){

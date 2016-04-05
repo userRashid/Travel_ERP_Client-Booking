@@ -37,8 +37,9 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
                     API.post('booking',$scope.Model).then(function(response){
                        Notify.add('success','Success',response.data.message);
                        $uibModalInstance.dismiss('cancel');
+                       $state.go('booking.list');
                     },function(error){
-                       console.log('******* error ',error);
+                        Notify.add('error','Error',error.data.errorMessgae);
                     });
                 });
              }

@@ -26,9 +26,9 @@ angular.module('sbAdminApp').directive('erpAddMore',function($compile,ErpNodeSer
   function renderHTML(){
     var html = '';
     html = '<div class="addMore">' +
-                '<button ng-click="add()" class="fa fa-plus btn-success"></button>' +
-                '<input class="form-control" type="input" ng-model="options" />' +
                 '<button ng-click="remove()" ng-disabled="options == 0" class="fa fa-minus btn-info"></button>' +
+                '<input class="form-control" type="input" ng-model="options" />' +
+                '<button ng-click="add()" class="fa fa-plus btn-success"></button>' +
             '</div>';
     return html;
   }
