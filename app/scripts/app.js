@@ -77,6 +77,7 @@ angular
         url:'/conversions'
     }).state('booking.list',{
         templateUrl:'views/booking/booking.html',
+        controller: 'BookingCtrl',
         url:'/list'
     }).state('leads.x',{
         templateUrl:'views/ui-elements/grid.html',

@@ -79,3 +79,14 @@ body{background:#fff;}
 .add-hotel .form-group{ margin-bottom:10px;}
 .pos-r{ position:relative}
 .add-hotel-btn{ position: absolute; bottom:10px;right: 30px;}
+
+.pad button{ padding:10px 25px}
+.pad{ padding:0 0 10px}
+.m-heading{margin:0px 0 10px}
+.bor-r{ border-right: 2px solid #ccc}
+.mar-l{ margin-left:20px}
+.col-blue{ color:#337ab7}
+.bor-2{ border-bottom: 2px solid #ccc}
+.item{ padding:10px; color:#333; margin:0 0 10px}
+.odd{ background:#f8f8f8}
+.p-t15{ padding-top:15px;}

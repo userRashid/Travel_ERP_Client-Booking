@@ -1,27 +1,44 @@
-<div><h1>Arrivals</h1></div>
-<div class="row well pad">
-    <button class="btn btn-success">fill text</button>
-    <button class="btn btn-success">fill text</button>
-    <button class="btn btn-success">fill text</button>
+<div class="p-t15">
+    <h3>Arrivals</h3>
 </div>
-<div class="row">
-    <div class="col-md-8">
-        <div class="well">
-            <h3>Rashid Tour to Delhi on 25/4/2016 by : Amit</h3>
-        </div>
-        <div class="well">
-            <p>Person : 4 Adult, 3 Kids, Phone : 8802907777, Email : user.rashid@gmail.com</p>
-            <p>Room : 2, PickUp : Noida, Drop : Delhi</p>
-            <p>Hotel : ParkPlaza, Redison, XYZ</p>
-            <p>Vehicle : Audi</p>
-        </div>
-    </div>
-    <div class="col-md-4 well">
-        <p>25 Fed Booked by Raju, Payment : full</p>
-    </div>
+<div class="well">
+    <button class="btn btn-success btn-sm">Confirmed by Traveler</button>
+    <button class="btn btn-success btn-sm">Token Amount Received</button>
+    <button class="btn btn-success btn-sm">Total Amount Received</button>
 </div>
-<div class="row well">
-    <div class="col-md-12">
-        <p>....<br>.....<br>....<br>.....</p>
+<div class="row item" ng-repeat="item in bookings" ng-class="{'odd' : $even}">
+    <div class="row">
+        <div class="col-md-9 bor-r">
+            <h4 class="bor-2 pad m-heading col-blue">{{item.erp_customer.erp_name}} Tour to {{item.erp_dropLocation}} on 25/4/2016 by : {{item.erp_salesPerson.erp_emp_name}}</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <i class="fa fa-users"></i> {{item.erp_adultCount}} Adult<span ng-if="item.erp_adultCount">, {{item.erp_kidsCount}} kids</span>
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-phone-square"></i> {{item.erp_customer.erp_phoneNo}}
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-envelope-o"></i> {{item.erp_customer.erp_emailId}}
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-bed"></i> {{item.erp_roomCount}}
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-map-marker"></i> {{item.erp_pickupLocation}}
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-map-marker"></i> {{item.erp_dropLocation}}
+                </div>
+                <div class="col-md-8">
+                    <i class="fa fa-building"></i> <span ng-repeat="_item in item.erp_hotelBookings">{{_item.erp_hotelName}}<span ng-if="!$last">, </span></span>
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-car"></i> {{item.erp_vehicle}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center">
+            <p class="pad">25 Fed Booked by<br> Raju,<br> Payment : {{item.erp_bookingStatus}}</p>
+        </div>
     </div>
 </div>
