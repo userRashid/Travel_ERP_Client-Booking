@@ -29,6 +29,7 @@ angular.module('sbAdminApp').directive('erpSelect',function($compile){
       }
     });*/
     $scope.Data = [];
+    if($scope.data.isDisable == undefined) $scope.data.isDisable = false;
     $scope.data.nullValue = $scope.data.nullValue || '-- Make Selection --';
     if(angular.isArray($scope.data.values)) {
       $scope.Data = $scope.data.values;
@@ -43,7 +44,7 @@ angular.module('sbAdminApp').directive('erpSelect',function($compile){
   }
   function renderHTML(){
     var html = '';
-    html += '<select class="form-control" ng-options="item for item in Data" ng-model="data.model">' +
+    html += '<select class="form-control" ng-disabled="data.isDisable" ng-options="item for item in Data" ng-model="data.model">' +
               '<option value="">{{data.nullValue}}</option>' +
             '</select>';
     return html;

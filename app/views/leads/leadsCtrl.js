@@ -18,14 +18,16 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     $scope.LeadStatus ={name : 'erp_leadStatus',values : LeadsServices.getLeadStatus()};
     $scope.promise.then(function(response){
         $scope.LeadStatus.model = response.data.erp_leadStatus;
+        if(response.data.erp_leadStatus == 'New') $scope.LeadStatus.isDisable = true;
     });
 
     $scope.open = function (size) {
           var leadId    =  $scope.leadId,
+          LeadStatus = $scope.LeadStatus,
           modalInstance = $uibModal.open({
           animation  : $scope.animationsEnabled,
           templateUrl: 'myModalContent.html',
-          controller : function($scope,ErpNodeServices,FormData,$uibModalInstance){
+          controller : function($scope,ErpNodeServices,FormData,$uibModalInstance,LeadsServices){
              $scope.BookingDetail = ErpNodeServices.createForm(FormData.addBookingData());
              $scope.addBooking = function(){
                 $scope.BookingDetail.then(function(data){
@@ -36,6 +38,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
                     if($scope.Model.erp_salesPersonId) $scope.Model.erp_salesPersonId = 10;
                     API.post('booking',$scope.Model).then(function(response){
                        Notify.add('success','Success',response.data.message);
+                       LeadsServices.saveLead(leadId,LeadStatus);
                        $uibModalInstance.dismiss('cancel');
                        $state.go('booking.list');
                     },function(error){
@@ -63,7 +66,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
         if($scope.LeadStatus.model == 'New'){
             $scope.open('lg');
         } else {
-            LeadsServices.saveLead($scope.leadId,$scope.LeadStatus)
+            LeadsServices.saveLead($scope.leadId,$scope.LeadStatus);
         }
     }
     function addNew(id,leadId,noteType,message){

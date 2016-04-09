@@ -22,7 +22,7 @@
     <div class="col-lg-4">
         <div class="page-header b0 col-sm-9" data-erp-select="LeadStatus"></div>
         <div class="page-header b0 col-sm-3">
-            <button ng-click="changeStatus()" class="btn btn-success">Go</button>
+            <button ng-click="changeStatus()" ng-disabled="LeadStatus.isDisable" class="btn btn-success">Go</button>
         </div>
     </div>
 </div>
