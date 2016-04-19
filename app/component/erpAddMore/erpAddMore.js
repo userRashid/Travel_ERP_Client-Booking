@@ -13,21 +13,24 @@ angular.module('sbAdminApp').directive('erpAddMore',function($compile,ErpNodeSer
   };
 
   function controller($scope){
-    $scope.$watch('options',function(d){
-        $scope.options = d;
+    if($scope.options.model == undefined) $scope.model = 0;
+    $scope.$watch('model',function(d){
+        if(d == undefined) return;
+        $scope.options.model = d;
+        if($scope.options.watch != undefined) $scope.options.watch.setRooms(d);
     });
     $scope.add = function(){
-        $scope.options++;
+        $scope.model++;
     }
     $scope.remove = function(){
-        $scope.options--;
+        $scope.model--;
     }
   }
   function renderHTML(){
     var html = '';
     html = '<div class="addMore">' +
                 '<button ng-click="remove()" ng-disabled="options == 0" class="fa fa-minus btn-info"></button>' +
-                '<input class="form-control" type="input" ng-model="options" />' +
+                '<input class="form-control" type="input" ng-model="model" />' +
                 '<button ng-click="add()" class="fa fa-plus btn-success"></button>' +
             '</div>';
     return html;

@@ -8,11 +8,22 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
     ,controller : controller
   }
 
-  function controller($scope){
+  function controller($scope,Watch){
     var hotelData = [{}];
     $scope.addMore = function(){
         $scope.hotelData.push({});
     }
+    $scope.Watch = Watch;
+    function SetRoom(count){
+        var data    = $scope.hotelData
+            ,len    = data.length;
+        for(var i=0;i<len;i++){
+            data[i].erp_roomType = count;
+        }
+    };
+    $scope.$watch('Watch.getRooms()',function(data){
+        SetRoom(data);
+    });
     $scope.remove = function(index){
         $scope.hotelData.splice(index, 1);
     };
@@ -30,7 +41,11 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                             '<div class="form-group col-sm-6"><label>Name</label><input class="form-control" ng-model="item.erp_hotelName" type="text" /></div>' +
                             '<div class="form-group col-sm-6"><label>Room Type</label>' +
                                 '<input class="form-control" type="text" ng-model="item.erp_roomType" />' +
-                            '</div><div class="form-group col-sm-4"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
+                            '</div>' +
+                            '<div class="form-group col-sm-6"><label>Hotel Category</label><input class="form-control" ng-model="item.erp_hotelCategory" type="text" /></div>' +
+                            '<div class="form-group col-sm-6"><label>Meal Plan</label><input class="form-control" ng-model="item.erp_mealPlan" type="text" /></div>' +
+                            '<div class="form-group col-sm-12"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_hotelInclusions" ></textarea></div>' +
+                            '<div class="form-group col-sm-4"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
                             '<div class="form-group col-sm-4"><label>Room Count</label>' +
                                 '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +
                             '</div><div class="form-group col-sm-4"><label>Nights Of Stay</label>' +

@@ -45,7 +45,7 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
                 } else if(_data[j].type == 'erpSelect'){
                   _obj[_data[j].name] = _data[j].model;
                 } else if(_data[j].type == 'erpNumber'){
-                    _obj[_data[j].name] = parseInt(_data[j].model);
+                  _obj[_data[j].name] = parseInt(_data[j].model);
                 } else if(_data[j].type == 'erpPeople'){
                   if(_data[j].model.kids == 'Kids'){
                     _obj.erp_kidsCount = 0;

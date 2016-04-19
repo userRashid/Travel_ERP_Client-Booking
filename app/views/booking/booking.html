@@ -1,12 +1,14 @@
-<div class="p-t15">
-    <h3>Arrivals</h3>
+<div class="p-t15 row">
+    <h3 class="col-sm-9 m0">Arrivals</h3>
+    <div class="col-sm-3" erp-calender="Date"></div>
 </div>
 <div class="well">
-    <button class="btn btn-success btn-sm">Confirmed by Traveler</button>
-    <button class="btn btn-success btn-sm">Token Amount Received</button>
-    <button class="btn btn-success btn-sm">Total Amount Received</button>
+    <button class="btn btn-success btn-sm" ng-click="Filter('Confirmed by Traveler')">Confirmed by Traveler</button>
+    <button class="btn btn-success btn-sm" ng-click="Filter('Token Amount Received')">Token Amount Received</button>
+    <button class="btn btn-success btn-sm" ng-click="Filter('Total Amount Received')">Total Amount Received</button>
+    <button class="btn btn-success btn-sm" ng-click="showAll()">Show All</button>
 </div>
-<div class="row item" ng-repeat="item in bookings" ng-class="{'odd' : $even}">
+<div class="row item" ng-repeat="item in bookings" ng-class="{'odd' : $even}" ng-if="item.isShow">
     <div class="row">
         <div class="col-md-9 bor-r">
             <h4 class="bor-2 pad m-heading col-blue">{{item.erp_customer.erp_name}} Tour to {{item.erp_dropLocation}} on 25/4/2016 by : {{item.erp_salesPerson.erp_emp_name}}</h4>
@@ -38,7 +40,7 @@
             </div>
         </div>
         <div class="col-md-3 text-center">
-            <p class="pad">25 Fed Booked by<br> Raju,<br> Payment : {{item.erp_bookingStatus}}</p>
+            <p class="pad">{{item.erp_createdAt}} Booked by<br> Raju,<br> Status : {{item.erp_bookingStatus}}</p>
         </div>
     </div>
 </div>

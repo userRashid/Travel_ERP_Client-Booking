@@ -42,7 +42,7 @@ angular.module('sbAdminApp').directive('formBuilder',function($compile){
       html +='<form name="cardForm" class="clearfix">';
         html +='<div ng-class="getClass()" ng-repeat="item in options" ng-class="{\'selected\':$odd}" class="form-group" ng-switch on="item.type">';
             html +='<label ng-if="item.label">{{item.label}}</label>';
-            html +='<input    ng-switch-when="erpText"      ng-model="item.model" class="form-control">';
+            html +='<div      ng-switch-when="erpText"      data-erp-text="item" ></div>';
             html +='<input    ng-switch-when="erpNumber"    ng-model="item.model" class="form-control">';
             html +='<div      ng-switch-when="erpEmail"     data-erp-email="item"></div>';
             html +='<div      ng-switch-when="erpPhone"     data-erp-phone="item"></div>';
@@ -52,7 +52,7 @@ angular.module('sbAdminApp').directive('formBuilder',function($compile){
             html +='<div      ng-switch-when="erpUpload"    data-erp-upload="item"></div>';
             html +='<div      ng-switch-when="erpPeople"    data-erp-people="item"></div>';
             html +='<div      ng-switch-when="erpCheckbox"  data-erp-checkbox="item"></div>';
-            html +='<div      ng-switch-when="erpAddMore"   data-erp-add-more="item.model"></div>';
+            html +='<div      ng-switch-when="erpAddMore"   data-erp-add-more="item"></div>';
             html +='<div      ng-switch-when="erpCalender"  data-erp-calender="item"></div>';
             html +='<div      ng-switch-when="erpMultiSelect" data-erp-multi-select="item"></div>';
             html +='<div      ng-switch-when="erpHotel"     data-erp-hotel="item"></div>';

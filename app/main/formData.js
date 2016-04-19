@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authenticate){
+angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authenticate,Watch){
     return {
         addLeadData     :   addLeadData
         ,customer       :   customer
@@ -103,11 +103,11 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             label : 'Package Name'
             ,name : 'erp_bookingName'
             ,type : 'erpText'
-          },{
+          }/*,{
             label : 'Package Code'
             ,name : 'erp_packageCode'
             ,type : 'erpText'
-          },{
+          }*/,{
             label : 'Sales Person'
             ,name : 'erp_salesPersonId'
             ,type : 'erpSelect'
@@ -117,6 +117,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             label : 'Rooms'
             ,name : 'erp_roomCount'
             ,type : 'erpAddMore'
+            ,watch  :   Watch
             //,values : GlobalData.getNight()
           },{
             label : 'Pick Up'
@@ -175,6 +176,12 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             label : 'Total Sold Cost'
             ,name : 'erp_proposedPackageCost'
             ,type : 'erpNumber'
+          },{
+            label : 'Actual Cost'
+            ,name : 'erp_actualCost'
+            ,type : 'erpText'
+            ,isDisable : true
+            ,watch : Watch
           },{
            label : 'Status'
            ,name : 'erp_bookingStatus'
