@@ -40,7 +40,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
                              label : 'Nights'
                              ,name : 'erp_nights'
                              ,type : 'erpAddMore'
-                             ,values : GlobalData.getNight()
+                             //,values : GlobalData.getNight()
                            },{
                              label : 'Leaving from'
                              ,name : 'erp_leavingFrom'

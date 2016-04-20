@@ -14,6 +14,7 @@ angular.module('sbAdminApp').directive('erpAddMore',function($compile,ErpNodeSer
 
   function controller($scope){
     if($scope.options.model == undefined) $scope.model = 0;
+    else $scope.model = $scope.options.model;
     $scope.$watch('model',function(d){
         if(d == undefined) return;
         $scope.options.model = d;
@@ -29,7 +30,7 @@ angular.module('sbAdminApp').directive('erpAddMore',function($compile,ErpNodeSer
   function renderHTML(){
     var html = '';
     html = '<div class="addMore">' +
-                '<button ng-click="remove()" ng-disabled="options == 0" class="fa fa-minus btn-info"></button>' +
+                '<button ng-click="remove()" ng-disabled="model == 0" class="fa fa-minus btn-info"></button>' +
                 '<input class="form-control" type="input" ng-model="model" />' +
                 '<button ng-click="add()" class="fa fa-plus btn-success"></button>' +
             '</div>';

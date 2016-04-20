@@ -90,3 +90,4 @@ body{background:#fff;}
 .item{ padding:10px; color:#333; margin:0 0 10px}
 .odd{ background:#f8f8f8}
 .p-t15{ padding-top:15px;}
+.nav>li>a{ cursor:pointer}

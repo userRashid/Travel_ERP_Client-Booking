@@ -18,7 +18,7 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
         var data    = $scope.hotelData
             ,len    = data.length;
         for(var i=0;i<len;i++){
-            data[i].erp_roomType = count;
+            data[i].erp_roomCount = count;
         }
     };
     $scope.$watch('Watch.getRooms()',function(data){
