@@ -91,3 +91,10 @@ body{background:#fff;}
 .odd{ background:#f8f8f8}
 .p-t15{ padding-top:15px;}
 .nav>li>a{ cursor:pointer}
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+    max-height: 740px;
+}
+.bookingStatus,_bookingStatus{ margin:10px 0 0 0; cursor:pointer;}
+._bookingStatus > i{ margin:0 5px; font-size:18px;}
+.bookingStatus:hover > i{ visibility:visible}
+.bookingStatus > i{ margin:0 5px; color:#337ab7; font-size:20px; cursor:pointer; visibility:hidden}

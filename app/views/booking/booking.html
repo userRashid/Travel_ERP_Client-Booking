@@ -40,7 +40,18 @@
             </div>
         </div>
         <div class="col-md-3 text-center">
-            <p class="pad">{{item.erp_createdAt}} Booked by<br> Raju,<br> Status : {{item.erp_bookingStatus}}</p>
+            <div class="pad">
+                {{item.erp_createdAt}} Booked by<br> Raju,
+                <p class="bookingStatus" ng-if="!item.editStatusValue">
+                    Status : {{item.erp_bookingStatus}}
+                    <i ng-click="editStatus(item)"class="fa fa-edit"></i>
+                </p>
+                <p class="_bookingStatus" ng-if="item.editStatusValue">
+                    <span data-erp-select="item.bookingStatus" class="col-sm-10 row"></span>
+                    <i ng-click="doneStatus(item)"class="fa fa-check"></i>
+                    <i ng-click="cancelStatus(item)"class="fa fa-times"></i>
+                </p>
+            </div>
         </div>
     </div>
 </div>

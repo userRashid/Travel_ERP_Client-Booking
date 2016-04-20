@@ -35,4 +35,10 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
         $scope.bookingsData = response;
         $scope.bookings = response;
     });
+    $scope.editStatus = function(item){
+        item.editStatusValue = true;
+    }
+    $scope.cancelStatus = function(item){
+        item.editStatusValue = false;
+    }
 });

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q){
+angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,GlobalData){
     return {
         getAllBookings  :   getAllBookings
     }
@@ -11,6 +11,10 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q){
         var len = data.length;
         for(var i=0;i<len;i++){
             data[i].isShow = true;
+            data[i].bookingStatus = {name : 'erp_bookingStatus'
+                                           ,values : GlobalData.getBookingStatus()
+                                           ,model : data[i].erp_bookingStatus};
+            data[i].editStatusValue = false;
         }
         return data;
     }
