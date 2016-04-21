@@ -44,7 +44,7 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                             '</div>' +
                             '<div class="form-group col-sm-6"><label>Hotel Category</label><input class="form-control" ng-model="item.erp_hotelCategory" type="text" /></div>' +
                             '<div class="form-group col-sm-6"><label>Meal Plan</label><input class="form-control" ng-model="item.erp_mealPlan" type="text" /></div>' +
-                            '<div class="form-group col-sm-12"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_hotelInclusions" ></textarea></div>' +
+                            '<div class="form-group col-sm-12"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_inclusions" ></textarea></div>' +
                             '<div class="form-group col-sm-4"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
                             '<div class="form-group col-sm-4"><label>Room Count</label>' +
                                 '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +
