@@ -90,6 +90,7 @@ body{background:#fff;}
 .item{ padding:10px; color:#333; margin:0 0 10px}
 .odd{ background:#f8f8f8}
 .p-t15{ padding-top:15px;}
+.p-b15{ padding-bottom:15px;}
 .nav>li>a{ cursor:pointer}
 .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
     max-height: 740px;

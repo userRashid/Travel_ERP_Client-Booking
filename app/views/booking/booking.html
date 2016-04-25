@@ -1,6 +1,6 @@
-<div class="p-t15 row">
-    <h3 class="col-sm-9 m0">Arrivals</h3>
-    <div class="col-sm-3" erp-calender="Date"></div>
+<div class="p-t15 row p-b15">
+    <h3 class="col-sm-6">Arrivals</h3>
+    <div class="col-sm-6" erp-date-range="Date"></div>
 </div>
 <div class="well">
     <button class="btn btn-success btn-sm" ng-click="Filter('Confirmed by Traveler')">Confirmed by Traveler</button>
@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-3 text-center">
             <div class="pad">
-                {{item.erp_createdAt}} Booked by<br> Raju,
+                Booked on {{item.erp_createdAt}}
                 <p class="bookingStatus" ng-if="!item.editStatusValue">
                     Status : {{item.erp_bookingStatus}}
                     <i ng-click="editStatus(item)"class="fa fa-edit"></i>
@@ -51,6 +51,7 @@
                     <i ng-click="doneStatus(item)"class="fa fa-check"></i>
                     <i ng-click="cancelStatus(item)"class="fa fa-times"></i>
                 </p>
+                <p class="s10">Lead ID : {{item.erp_leadId}}</p>
             </div>
         </div>
     </div>

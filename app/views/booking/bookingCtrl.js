@@ -33,6 +33,7 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
     };
     BookingService.getAllBookings().then(function(response){
         $scope.bookingsData = response;
+        console.log('-------------- ',$scope.bookingsData);
         $scope.bookings = response;
     });
     $scope.editStatus = function(item){
