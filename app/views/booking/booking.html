@@ -8,6 +8,22 @@
     <button class="btn btn-success btn-sm" ng-click="Filter('Total Amount Received')">Total Amount Received</button>
     <button class="btn btn-success btn-sm" ng-click="showAll()">Show All</button>
 </div>
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Are you sure to cancel booking?</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-groupcol-lg-12">
+            <label>Reason</label>
+            <textarea class="form-control" placeholder="Give a reason to cancel this booking" ng-model="selected.model"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-disabled="!selected.model" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+{{selected}}
 <div class="row item" ng-repeat="item in bookings" ng-class="{'odd' : $even}" ng-if="item.isShow">
     <div class="row">
         <div class="col-md-9 bor-r">
@@ -46,8 +62,8 @@
                     Status : {{item.erp_bookingStatus}}
                     <i ng-click="editStatus(item)"class="fa fa-edit"></i>
                 </p>
-                <p class="_bookingStatus" ng-if="item.editStatusValue">
-                    <span data-erp-select="item.bookingStatus" class="col-sm-10 row"></span>
+                <p class="_bookingStatus clearfix" ng-if="item.editStatusValue">
+                    <span data-erp-select="item.bookingStatus" class="col-sm-9"></span>
                     <i ng-click="doneStatus(item)"class="fa fa-check"></i>
                     <i ng-click="cancelStatus(item)"class="fa fa-times"></i>
                 </p>

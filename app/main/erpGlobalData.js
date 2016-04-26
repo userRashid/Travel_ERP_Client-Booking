@@ -19,8 +19,9 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API){
     var data = ["Email","Phone","Meeting"];
     return $q.when(data);
   }
-  function getBookingStatus(){
+  function getBookingStatus(type){
     var data = ["Confirmed by Traveler","Token Amount Received","Total Amount Received"];
+    if(type === 'cancel') data.push('Cancel Booking');
     return $q.when(data);
   }
   function getLeadSource(){

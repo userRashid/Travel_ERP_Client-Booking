@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingService){
+angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingService,$uibModal,Notify){
     ////////////////////////////////////////////////
     // Locals
 
@@ -42,4 +42,45 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
     $scope.cancelStatus = function(item){
         item.editStatusValue = false;
     }
+    $scope.doneStatus = function(item){
+        if(item.bookingStatus.model == 'Cancel Booking'){
+            $scope.open(item);
+        } else {
+            BookingService.updateBooking(item.erp_bookingId,item.bookingStatus.model).then(function(data){
+                item.editStatusValue = false;
+                item.erp_bookingStatus = item.bookingStatus.model;
+                Notify.add('success','Success',data.message);
+            });
+        }
+    }
+    $scope.open = function (item) {
+        var modalInstance = $uibModal.open({
+        templateUrl: 'myModalContent.html',
+        controller: function ($scope, $uibModalInstance) {
+          $scope.selected = {};
+          $scope.ok = function () {
+            $uibModalInstance.close($scope.selected);
+          };
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+        },
+        resolve: {
+                items: function () {
+                    return $scope.selected;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+          BookingService.updateBooking(item.erp_bookingId,item.bookingStatus.model).then(function(data){
+              item.editStatusValue = false;
+              item.erp_bookingStatus = item.bookingStatus.model;
+              Notify.add('success','Success',data.message);
+          });
+        }, function () {
+          console.log('Modal dismissed at: ' + new Date());
+        });
+    };
 });
