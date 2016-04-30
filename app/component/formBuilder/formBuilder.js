@@ -29,7 +29,8 @@ angular.module('sbAdminApp').directive('formBuilder',function($compile){
     if($scope.mode == undefined){
       $scope.mode = 'full';
     }
-    $scope.getClass = function(){
+    $scope.getClass = function(item){
+        if(item.mode != undefined) return 'col-lg-12';
       var c = '';
       if($scope.mode == 'full')     c = 'col-lg-12';
       if($scope.mode == 'inline')   c = 'col-lg-4';
@@ -40,7 +41,7 @@ angular.module('sbAdminApp').directive('formBuilder',function($compile){
   function renderHTML(){
     var html = '';
       html +='<form name="cardForm" class="clearfix">';
-        html +='<div ng-class="getClass()" ng-repeat="item in options" ng-class="{\'selected\':$odd}" class="form-group" ng-switch on="item.type">';
+        html +='<div ng-class="getClass(item)" ng-repeat="item in options" ng-class="{\'selected\':$odd}" class="form-group" ng-switch on="item.type">';
             html +='<label ng-if="item.label">{{item.label}}</label>';
             html +='<div      ng-switch-when="erpText"      data-erp-text="item" ></div>';
             html +='<input    ng-switch-when="erpNumber"    ng-model="item.model" class="form-control">';

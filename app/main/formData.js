@@ -103,6 +103,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             label : 'Package Name'
             ,name : 'erp_bookingName'
             ,type : 'erpText'
+            ,mandatory : true
           }/*,{
             label : 'Package Code'
             ,name : 'erp_packageCode'
@@ -113,11 +114,11 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             ,type : 'erpSelect'
             ,values : GlobalData.getAllEmployee()
             ,model : Authenticate.user().name
+            ,mandatory : true
           },{
             label : 'Rooms'
             ,name : 'erp_roomCount'
             ,type : 'erpAddMore'
-            ,watch  :   Watch
             //,values : GlobalData.getNight()
           },{
             label : 'Pick Up'
@@ -139,6 +140,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             label : 'Hotel Details'
             ,name : 'erp_hotelBookings'
             ,type : 'erpHotel'
+            ,mode : 'full'
           }/*,{
             label : 'Hotel Cost'
             ,name : 'erp_hotel_cost'
@@ -181,13 +183,20 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             ,name : 'erp_actualCost'
             ,type : 'erpText'
             ,isDisable : true
-            ,watch : Watch
           },{
            label : 'Status'
            ,name : 'erp_bookingStatus'
            ,type : 'erpSelect'
            ,values : GlobalData.getBookingStatus()
            ,model : 'Confirmed by Traveler'
+         },{
+           label : 'Booking Amount'
+           ,name : 'erp_bookingAmount'
+           ,type : 'erpText'
+         },{
+            label : 'Add miscellaneous cost'
+            ,name : 'erp_addMiscellaneousCost'
+            ,type : 'erpText'
          }];
         return addBookingData;
     }

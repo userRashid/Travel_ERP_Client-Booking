@@ -1,6 +1,9 @@
 <div class="p-t15 row p-b15">
-    <h3 class="col-sm-6">Arrivals</h3>
+    <h3 class="col-sm-5 m0">Arrivals</h3>
     <div class="col-sm-6" erp-date-range="Date"></div>
+    <div class="col-sm-1">
+        <button ng-click="changeStatus()" class="btn btn-success">Go</button>
+    </div>
 </div>
 <div class="well">
     <button class="btn btn-success btn-sm" ng-click="Filter('Confirmed by Traveler')">Confirmed by Traveler</button>
@@ -23,7 +26,6 @@
         <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
     </div>
 </script>
-{{selected}}
 <div class="row item" ng-repeat="item in bookings" ng-class="{'odd' : $even}" ng-if="item.isShow">
     <div class="row">
         <div class="col-md-9 bor-r">

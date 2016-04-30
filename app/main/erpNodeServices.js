@@ -5,9 +5,10 @@ angular.module('sbAdminApp').factory('ErpNodeServices',function($q,FormData,ErpN
   }
 
   function createForm(data){
-    var _q = $q.defer();
-        _q.resolve(ErpNode.Form(data));
-    return _q.promise;
+    var _q = $q.defer()
+        ,_data = ErpNode.Form(data);
+        _q.resolve(_data);
+    return {data:_data.data,promise:_q.promise};
   }
 
   function Search(model){

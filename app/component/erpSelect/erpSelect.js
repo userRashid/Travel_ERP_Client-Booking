@@ -20,14 +20,6 @@ angular.module('sbAdminApp').directive('erpSelect',function($compile){
     element.html('').append($compile(renderHTML())($scope));
   }
   function controller($scope){
-    /*$scope.data.values.then(function(_d){
-      $scope.Data = _d;
-      if($scope.data.model){
-        $scope.data.model = setModel($scope.data.model,_d);
-      } else {
-        $scope.data.model = $scope.Data[0];
-      }
-    });*/
     $scope.Data = [];
     if($scope.data.isDisable == undefined) $scope.data.isDisable = false;
     $scope.data.nullValue = $scope.data.nullValue || '-- Make Selection --';
@@ -36,7 +28,6 @@ angular.module('sbAdminApp').directive('erpSelect',function($compile){
     } else {
       $scope.$watch('data.values',function(value){
         value.then(function (possibleValues) {
-          //console.log('possibleValues  --- ',possibleValues)
           $scope.Data = possibleValues;
         });
       });

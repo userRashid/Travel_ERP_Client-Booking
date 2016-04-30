@@ -1,6 +1,5 @@
 'use strict';
 angular.module('sbAdminApp').controller('addLead',function ($scope,ErpNodeServices,API,Authenticate,Notify,$state,FormData) {
-    console.log('called add laed');
     $scope.customerId = null;
     $scope.LeadDetail       = ErpNodeServices.createForm(FormData.addLeadData());
     $scope.CustomerDetail   = ErpNodeServices.createForm(FormData.customer());
@@ -16,7 +15,7 @@ angular.module('sbAdminApp').controller('addLead',function ($scope,ErpNodeServic
             model.erp_createdBy = Authenticate.user().id;
             API.post('customer',model).then(function(response){
               var customerId =  response.data.id;
-              $scope.LeadDetail.then(function(lead){
+              $scope.LeadDetail.promise.then(function(lead){
                 var leadModel = lead.getModel();
                 leadModel.erp_customerId = customerId;
                 leadModel.erp_assignedTo  = Authenticate.user().id;

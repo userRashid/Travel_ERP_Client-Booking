@@ -27,10 +27,16 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
           modalInstance = $uibModal.open({
           animation  : $scope.animationsEnabled,
           templateUrl: 'myModalContent.html',
-          controller : function($scope,ErpNodeServices,FormData,$uibModalInstance,LeadsServices){
+          controller : function($scope,ErpNodeServices,FormData,$uibModalInstance,LeadsServices,Watch){
              $scope.BookingDetail = ErpNodeServices.createForm(FormData.addBookingData());
+             $scope.$watch('BookingDetail.data',function(data){
+                $scope.bookingButton = Watch.validation(data);
+                Watch.makeActualCost(data);
+                Watch.showAmountReceived(data);
+                Watch.setRooms(data);
+             },true);
              $scope.addBooking = function(){
-                $scope.BookingDetail.then(function(data){
+                $scope.BookingDetail.promise.then(function(data){
                     $scope.Model = data.getModel();
                     $scope.Model.erp_createdById = Authenticate.user().id;
                     $scope.Model.erp_leadId = leadId;

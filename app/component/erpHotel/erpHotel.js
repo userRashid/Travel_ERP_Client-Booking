@@ -36,15 +36,15 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
   function renderHTML(){
     var html = '';
         html += '<div class="add-hotel">' +
-                    '<div class="pos-r clearfix" ng-repeat="item in hotelData">' +
+                    '<div class="pos-r clearfix" ng-repeat="item in hotelData" ng-class="{\'odd\':$odd}">' +
                         '<div class="col-sm-11 row">' +
-                            '<div class="form-group col-sm-6"><label>Name</label><input class="form-control" ng-model="item.erp_hotelName" type="text" /></div>' +
-                            '<div class="form-group col-sm-6"><label>Room Type</label>' +
+                            '<div class="form-group col-sm-4"><label>Name</label><input class="form-control" ng-model="item.erp_hotelName" type="text" /></div>' +
+                            '<div class="form-group col-sm-4"><label>Room Type</label>' +
                                 '<input class="form-control" type="text" ng-model="item.erp_roomType" />' +
                             '</div>' +
-                            '<div class="form-group col-sm-6"><label>Hotel Category</label><input class="form-control" ng-model="item.erp_hotelCategory" type="text" /></div>' +
+                            '<div class="form-group col-sm-4"><label>Hotel Category</label><input class="form-control" ng-model="item.erp_hotelCategory" type="text" /></div>' +
                             '<div class="form-group col-sm-6"><label>Meal Plan</label><input class="form-control" ng-model="item.erp_mealPlan" type="text" /></div>' +
-                            '<div class="form-group col-sm-12"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_inclusions" ></textarea></div>' +
+                            '<div class="form-group col-sm-6"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_inclusions" ></textarea></div>' +
                             '<div class="form-group col-sm-4"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
                             '<div class="form-group col-sm-4"><label>Room Count</label>' +
                                 '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +

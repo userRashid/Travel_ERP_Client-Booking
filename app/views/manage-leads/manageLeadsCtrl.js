@@ -7,7 +7,7 @@ angular.module('sbAdminApp').controller('ManageLeadsCtrl', function ($scope,API,
     //$scope.allLeads = json;
     $scope.Search = ErpNodeServices.createForm(FormData.search());
     $scope.makeSearch = function(){
-        $scope.Search.then(function(data){
+        $scope.Search.promise.then(function(data){
             var model = data.getModel();
             ErpNodeServices.Search(model).then(function(_data){
                 $scope.allLeads = _data.data;
