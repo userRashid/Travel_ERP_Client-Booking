@@ -5,6 +5,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     $scope.Note     = {};
     $scope.Timeline = {};
     $scope.Attach   = {};
+    $scope.Alert    = {};
     $scope.leadId = $stateParams.id;
     if(!$scope.leadId) $state.go('leads.all');
     $scope.promise = API.get('lead/'+$scope.leadId);
@@ -18,7 +19,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     $scope.LeadStatus ={name : 'erp_leadStatus',values : LeadsServices.getLeadStatus()};
     $scope.promise.then(function(response){
         $scope.LeadStatus.model = response.data.erp_leadStatus;
-        if(response.data.erp_leadStatus == 'New') $scope.LeadStatus.isDisable = true;
+        if(response.data.erp_leadStatus == 'Matured') $scope.LeadStatus.isDisable = true;
     });
 
     $scope.open = function (size) {
@@ -69,7 +70,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
       };
 
     $scope.changeStatus = function(){
-        if($scope.LeadStatus.model == 'New'){
+        if($scope.LeadStatus.model == 'Matured'){
             $scope.open('lg');
         } else {
             LeadsServices.saveLead($scope.leadId,$scope.LeadStatus);
