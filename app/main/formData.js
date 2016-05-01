@@ -194,8 +194,8 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
            ,name : 'erp_bookingAmount'
            ,type : 'erpText'
          },{
-            label : 'Add miscellaneous cost'
-            ,name : 'erp_addMiscellaneousCost'
+            label : 'Miscellaneous cost'
+            ,name : 'erp_miscellaneousCost'
             ,type : 'erpText'
          }];
         return addBookingData;

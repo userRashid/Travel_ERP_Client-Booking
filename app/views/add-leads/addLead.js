@@ -8,9 +8,9 @@ angular.module('sbAdminApp').controller('addLead',function ($scope,ErpNodeServic
       if($scope.customerId){
 
       } else {
-        $scope.CustomerDetail.then(function(data){
+        $scope.CustomerDetail.promise.then(function(data){
           var model = data.getModel();
-          $scope.AdditionalDetail.then(function(_data){
+          $scope.AdditionalDetail.promise.then(function(_data){
             model.erp_dateOfBirth = _data.getModel().erp_dob;
             model.erp_createdBy = Authenticate.user().id;
             API.post('customer',model).then(function(response){

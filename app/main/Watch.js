@@ -28,12 +28,24 @@ angular.module('sbAdminApp').service('Watch',function(){
             ,actualCost = 0
             ,actualCostItem;
         for(var i=0;i<len;i++){
-            if(data[i].name == 'erp_vehicleCost' || data[i].name == 'erp_hotelBookings' || data[i].name == 'erp_travelBookings'){
+            if(data[i].name == 'erp_vehicleCost' || data[i].name == 'erp_hotelBookings' || data[i].name == 'erp_travelBookings' || data[i].name == 'erp_miscellaneousCost'){
                 cost.push(data[i]);
             } else if(data[i].name == 'erp_actualCost'){
                 actualCostItem = data[i];
             }
         }
+        ////////////// Locals
+
+        function getHotelCost(data){
+            var roomCount = 1
+                ,roomCost = data.erp_roomCost
+                ,nightsOfStay = 1;
+            if(data.hasOwnProperty('erp_roomCount') && data.erp_roomCount != '') roomCount = data.erp_roomCount;
+            if(data.hasOwnProperty('erp_nightsOfStay') && data.erp_nightsOfStay != '') nightsOfStay = data.erp_nightsOfStay;
+            var cost =  roomCost*roomCount*nightsOfStay;
+            return cost;
+        }
+
         for(var j=0;j<cost.length;j++){
             if(cost[j].hasOwnProperty('model')){
                 if(typeof(cost[j].model) == 'string'){
@@ -43,7 +55,7 @@ angular.module('sbAdminApp').service('Watch',function(){
                         ,_len = _data.length;
                     for(var z=0; z<_len;z++){
                         if(_data[z].hasOwnProperty('erp_roomCost') && _data[z].erp_roomCost != ''){
-                            actualCost = actualCost + Number(_data[z].erp_roomCost);
+                            actualCost = actualCost + Number(getHotelCost(_data[z]));
                         } else if(_data[z].hasOwnProperty('erp_travelCost') && _data[z].erp_travelCost != ''){
                             actualCost = actualCost + Number(_data[z].erp_travelCost);
                         }

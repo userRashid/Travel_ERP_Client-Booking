@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingService,$uibModal,Notify,Test,ErpNodeServices){
+angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingService,$uibModal,Notify,ErpNodeServices){
     ////////////////////////////////////////////////
     // Locals
 
@@ -31,8 +31,6 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
     $scope.Filter = function(value){
         $scope.bookings = makeFilter($scope.bookingsData,value);
     };
-
-    $scope.TestOne = ErpNodeServices.createForm(Test.search());
 
     BookingService.getAllBookings().then(function(response){
         $scope.bookingsData = response;
