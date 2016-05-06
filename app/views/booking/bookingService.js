@@ -37,7 +37,13 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
     //http://104.236.94.240:8080/Travel_ERP/booking/{bookingId}/status?bookingStatus={status}
     function updateBooking(item,model){
         var q = $q.defer();
-        API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.bookingStatus.model,model).then(function(response){
+        var url = '';
+        if(item.hasOwnProperty('erp_bookingAmount') && item.erp_bookingAmount != ''){
+            url = API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.erp_bookingStatus+'&tokenAmount='+item.erp_bookingAmount,model);
+        } else {
+            url = API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.erp_bookingStatus,model);
+        }
+        url.then(function(response){
             q.resolve(response.data);
         },function(error){
             q.reject(error)
