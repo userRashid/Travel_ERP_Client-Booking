@@ -3,6 +3,7 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
     return {
         getAllBookings  :   getAllBookings
         ,updateBooking  :   updateBooking
+        ,fillerBooking  :   fillerBooking
     }
 
     ////////////////////////////////////////////////
@@ -20,6 +21,10 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
         return data;
     }
 
+    function dateFormat(date){
+        return moment(date).format('DD/MM/YYYY')
+    }
+
     /////////////////////////////////////////////////
 
     function getAllBookings(){
@@ -30,13 +35,24 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
         return q.promise;
     }
     //http://104.236.94.240:8080/Travel_ERP/booking/{bookingId}/status?bookingStatus={status}
-    function updateBooking(bookingId,status){
+    function updateBooking(item,model){
         var q = $q.defer();
-        API.put('booking/'+bookingId+'/status?bookingStatus='+status).then(function(response){
+        API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.bookingStatus.model,model).then(function(response){
             q.resolve(response.data);
         },function(error){
             q.reject(error)
         });
         return q.promise;
     }
+
+    function fillerBooking(model){
+        var q = $q.defer()
+            ,startDate  =    dateFormat(model.start)
+            ,endDate    =    dateFormat(model.end);
+        API.get('bookings?fromDate='+startDate+'&toDate'+endDate).then(function(response){
+            q.resolve(createIsShow(response.data));
+        });
+        return q.promise;
+    };
+
 });

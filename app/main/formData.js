@@ -184,15 +184,10 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             ,type : 'erpText'
             ,isDisable : true
           },{
-           label : 'Status'
-           ,name : 'erp_bookingStatus'
-           ,type : 'erpSelect'
+           name : 'erp_bookingStatus'
+           ,type : 'erpBookingStatus'
            ,values : GlobalData.getBookingStatus()
            ,model : 'Confirmed by Traveler'
-         },{
-           label : 'Booking Amount'
-           ,name : 'erp_bookingAmount'
-           ,type : 'erpText'
          },{
             label : 'Miscellaneous cost'
             ,name : 'erp_miscellaneousCost'

@@ -32,7 +32,7 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
 
     $scope.editLead = function(){
         $scope.isEdit = true;
-        $scope.Form.then(function(data){
+        $scope.Form.promise.then(function(data){
             data.setModel(model);
         });
     }
@@ -46,13 +46,12 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
         _a();
     }
     $scope.update = function(){
-        $scope.Form.then(function(data){
+        $scope.Form.promise.then(function(data){
             var _model = data.getModel()
                 ,header = {'Content-Type' : 'application/json'};
             if($scope.options.type === 'lead'){
                 _model.erp_customerId = $scope.data.erp_customerId;
                 API.put('lead/'+model.erp_id,_model,header).then(function(response){
-                    //console.log('SSS -- ',response);
                     $scope.isEdit = false;
                     Notify.add('success','Success','Lead update successfully');
                 },function(error){
@@ -62,7 +61,8 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
                 _model.erp_dateOfBirth = $scope.data.erp_customer.erp_dateOfBirth;
                 _model.erp_createdBy = Authenticate.user().id;
                 API.put('customer/'+model.erp_id,_model,header).then(function(response){
-                    //console.log('Response ***** ',response);
+                    data.setModel(_model);
+                    $scope.isEdit = false;
                     Notify.add('success','Success','Customer information updated successfully');
                 },function(error){
                     Notify.add('error','Error','Error on updating customer');
@@ -111,7 +111,7 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
                     '</div>' +
                 '</div>'+
                 '<div ng-if="isEdit" class="panel panel-default panel-body">' +
-                    '<div data-form-builder="Form"></div>' +
+                    '<div data-form-builder="Form.promise"></div>' +
                     '<div class="text-right col-sm-12">' +
                         '<button class="btn btn-sm btn-success" ng-click="update()">Update</button>&nbsp;&nbsp;' +
                         '<button class="btn btn-sm" ng-click="cancelLead()">Cancel</button>' +

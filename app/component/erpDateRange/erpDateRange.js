@@ -10,7 +10,14 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile){
     //,controllerAs : 'rashid'
   }
 
-  function controller($scope){
+  function controller($scope,GlobalData){
+    $scope.format = GlobalData.getDateFormat();
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        startingDay: 1,
+        showWeeks : false
+    };
     $scope.popupFirst = {
         opened: false
     };
@@ -32,7 +39,7 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile){
     html +='<div style="float:left">';
       html +='<div class="col-lg-6">';
         html +='<p class="input-group">' +
-                   '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="popupFirst.model" is-open="popupFirst.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
+                   '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.model.start" is-open="popupFirst.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
                    '<span class="input-group-btn">' +
                      '<button type="button" class="btn btn-default" ng-click="openFirst()"><i class="fa fa-calendar"></i></button>' +
                    '</span>' +
@@ -40,7 +47,7 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile){
       html +='</div>';
       html +='<div class="col-lg-6">';
       html +='<p class="input-group">' +
-                 '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="popupTwo.model" is-open="popupTwo.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
+                 '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.model.end" is-open="popupTwo.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
                  '<span class="input-group-btn">' +
                    '<button type="button" class="btn btn-default" ng-click="openTwo()"><i class="fa fa-calendar"></i></button>' +
                  '</span>' +

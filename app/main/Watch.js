@@ -67,7 +67,7 @@ angular.module('sbAdminApp').service('Watch',function(){
     }
     function showAmountReceived(data){
         var len = data.length
-            ,amountReceived
+            ,amountReceived = {}
             ,value = false;
         for(var i=0;i<len;i++){
             if(data[i].name == 'erp_bookingStatus'){

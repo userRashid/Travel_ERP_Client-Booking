@@ -21,7 +21,7 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API){
   }
   function getBookingStatus(type){
     var data = ["Confirmed by Traveler","Token Amount Received","Total Amount Received"];
-    if(type === 'cancel') data.push('Cancel Booking');
+    if(type === 'cancel') data.push('Cancelled');
     return $q.when(data);
   }
   function getLeadSource(){

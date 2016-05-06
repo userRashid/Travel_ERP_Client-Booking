@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingService,$uibModal,Notify,ErpNodeServices){
+angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingService,$uibModal,Notify,ErpNodeServices,Authenticate){
     ////////////////////////////////////////////////
     // Locals
 
@@ -44,23 +44,27 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
         item.editStatusValue = false;
     }
     $scope.doneStatus = function(item){
-        if(item.bookingStatus.model == 'Cancel Booking'){
+        if(item.bookingStatus.model == 'Cancelled'){
             $scope.open(item);
         } else {
-            BookingService.updateBooking(item.erp_bookingId,item.bookingStatus.model).then(function(data){
+            BookingService.updateBooking(item).then(function(data){
                 item.editStatusValue = false;
                 item.erp_bookingStatus = item.bookingStatus.model;
                 Notify.add('success','Success',data.message);
+            },function(error){
+                Notify.add('error','Error',error.data.errorMessgae);
             });
         }
     }
     $scope.open = function (item) {
         var modalInstance = $uibModal.open({
         templateUrl: 'myModalContent.html',
-        controller: function ($scope, $uibModalInstance) {
+        controller: function ($scope, $uibModalInstance,API) {
           $scope.selected = {};
           $scope.ok = function () {
             $uibModalInstance.close($scope.selected);
+            item.editStatusValue = false;
+            item.erp_bookingStatus = item.bookingStatus.model;
           };
           $scope.cancel = function () {
             $uibModalInstance.dismiss('cancel');
@@ -74,8 +78,12 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
         });
 
         modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
-          BookingService.updateBooking(item.erp_bookingId,item.bookingStatus.model).then(function(data){
+          var model = {
+                          erp_notes       :   selectedItem.model,
+                          erp_source      :   "meeting",
+                          erp_createdBy   :   Authenticate.user().id
+                       }
+          BookingService.updateBooking(item,model).then(function(data){
               item.editStatusValue = false;
               item.erp_bookingStatus = item.bookingStatus.model;
               Notify.add('success','Success',data.message);
@@ -84,4 +92,11 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
           console.log('Modal dismissed at: ' + new Date());
         });
     };
+
+    $scope.arrivalsFilter = function(){
+        BookingService.fillerBooking($scope.Date.model).then(function(response){
+            $scope.bookingsData = response;
+            $scope.bookings = response;
+        });
+    }
 });

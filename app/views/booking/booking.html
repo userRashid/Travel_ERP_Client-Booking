@@ -2,7 +2,7 @@
     <h3 class="col-sm-5 m0">Arrivals</h3>
     <div class="col-sm-6" erp-date-range="Date"></div>
     <div class="col-sm-1">
-        <button ng-click="changeStatus()" class="btn btn-success">Go</button>
+        <button ng-click="arrivalsFilter()" class="btn btn-success">Go</button>
     </div>
 </div>
 <div class="well">
@@ -29,7 +29,7 @@
 <div class="row item" ng-repeat="item in bookings" ng-class="{'odd' : $even}" ng-if="item.isShow">
     <div class="row">
         <div class="col-md-9 bor-r">
-            <h4 class="bor-2 pad m-heading col-blue">{{item.erp_customer.erp_name}} Tour to {{item.erp_dropLocation}} on 25/4/2016 by : {{item.erp_salesPerson.erp_emp_name}}</h4>
+            <h4 class="bor-2 pad m-heading col-blue">{{item.erp_customer.erp_name}} Tour to {{item.erp_dropLocation}} on {{item.erp_departureDate}} by : {{item.erp_salesPerson.erp_emp_name}}</h4>
             <div class="row">
                 <div class="col-md-4">
                     <i class="fa fa-users"></i> {{item.erp_adultCount}} Adult<span ng-if="item.erp_adultCount">, {{item.erp_kidsCount}} kids</span>
@@ -65,7 +65,7 @@
                     <i ng-click="editStatus(item)"class="fa fa-edit"></i>
                 </p>
                 <p class="_bookingStatus clearfix" ng-if="item.editStatusValue">
-                    <span data-erp-select="item.bookingStatus" class="col-sm-9"></span>
+                    <span data-erp-booking-status="item.bookingStatus" class="col-sm-9"></span>
                     <i ng-click="doneStatus(item)"class="fa fa-check"></i>
                     <i ng-click="cancelStatus(item)"class="fa fa-times"></i>
                 </p>
