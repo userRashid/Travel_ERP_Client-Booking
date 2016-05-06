@@ -42,7 +42,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
                     $scope.Model.erp_createdById = Authenticate.user().id;
                     $scope.Model.erp_leadId = leadId;
                     if($scope.Model.erp_taxIncluded) $scope.Model.erp_taxIncluded = true;
-                    if($scope.Model.erp_salesPersonId) $scope.Model.erp_salesPersonId = 10;
+                    if($scope.Model.erp_salesPersonId) $scope.Model.erp_salesPersonId = Authenticate.user().id;
                     API.post('booking',$scope.Model).then(function(response){
                        Notify.add('success','Success',response.data.message);
                        LeadsServices.saveLead(leadId,LeadStatus);

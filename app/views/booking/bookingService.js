@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,GlobalData){
+angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,GlobalData,Authenticate){
     return {
         getAllBookings  :   getAllBookings
         ,updateBooking  :   updateBooking
@@ -10,15 +10,23 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
     // Locals
 
     function createIsShow(data){
-        var len = data.length;
+        var len = data.length
+            ,userId = Authenticate.user().id
+            ,temp = new Array();
         for(var i=0;i<len;i++){
-            data[i].isShow = true;
-            data[i].bookingStatus = {name : 'erp_bookingStatus'
-                                           ,values : GlobalData.getBookingStatus('cancel')
-                                           ,model : data[i].erp_bookingStatus};
-            data[i].editStatusValue = false;
+            if(data[i].erp_salesPersonId == userId){
+                data[i].isShow = true;
+                data[i].bookingStatus = {
+                                            name : 'erp_bookingStatus'
+                                            ,values : GlobalData.getBookingStatus('cancel')
+                                            ,model : data[i].erp_bookingStatus
+                                        };
+                data[i].editStatusValue = false;
+                temp.push(data[i]);
+            };
+
         }
-        return data;
+        return temp;
     }
 
     function dateFormat(date){
@@ -55,7 +63,7 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
         var q = $q.defer()
             ,startDate  =    dateFormat(model.start)
             ,endDate    =    dateFormat(model.end);
-        API.get('bookings?fromDate='+startDate+'&toDate'+endDate).then(function(response){
+        API.get('bookings?fromDate='+startDate+'&toDate='+endDate+'&salesPersonId='+Authenticate.user().id).then(function(response){
             q.resolve(createIsShow(response.data));
         });
         return q.promise;

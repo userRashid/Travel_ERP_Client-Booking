@@ -87,7 +87,7 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
         temp.erp_bookingAmount  = item.bookingStatus.model.erp_bookingAmount;
         modalInstance.result.then(function (selectedItem) {
           var model = {
-                          erp_notes       :   selectedItem.model,
+                          erp_notes       :   "Cancelled Booking - "+selectedItem.model,
                           erp_source      :   "meeting",
                           erp_createdBy   :   Authenticate.user().id
                        }

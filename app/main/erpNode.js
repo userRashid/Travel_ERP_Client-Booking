@@ -53,6 +53,11 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
                     _obj.erp_kidsCount = _data[j].model.kids;
                   }
                   _obj.erp_adultCount = _data[j].model.adults;
+                } else if(_data[j].type == 'erpBookingStatus'){
+                    var _m = _data[j].model;
+                    for(_k in _m){
+                        if(_m[_k] != '') _obj[_k] = _m[_k];
+                    }
                 } else {
                   _obj[_data[j].name] = _data[j].model;
                 };
