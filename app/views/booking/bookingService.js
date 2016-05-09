@@ -49,6 +49,7 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
         if(item.hasOwnProperty('erp_bookingAmount') && item.erp_bookingAmount != ''){
             url = API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.erp_bookingStatus+'&tokenAmount='+item.erp_bookingAmount,model);
         } else {
+
             url = API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.erp_bookingStatus,model);
         }
         url.then(function(response){
