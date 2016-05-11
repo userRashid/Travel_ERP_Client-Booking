@@ -118,7 +118,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     $scope.addAttach = function(){
         LeadsServices.addAttachment($scope.leadId,$scope.Attach.promise,$scope.noteType,Session.get('id')).then(function(response){
             $scope.closeAllPanel();
-            // $scope.Timeline.addNew(addNew(response[0].erp_attId,$scope.leadId,$scope.noteType,response[0].erp_attachmentName));
+            $scope.Timeline.addNew(addNew(response[0].erp_attId,$scope.leadId,"attachment",response[0].erp_attachmentName));
             Notify.add('success','Success','');
             },function(error){
             console.log('Error  ',error)
