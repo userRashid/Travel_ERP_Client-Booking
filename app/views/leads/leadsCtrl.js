@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$stateParams,Notify,Session,$state,Actions,$q,LeadsServices,$uibModal,Authenticate){
+angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$stateParams,Notify,Session,$state,Actions,$q,LeadsServices,$uibModal,Authenticate,$http){
     $scope.Lead     = {};
     $scope.Customer = {};
     $scope.Note     = {};
@@ -114,10 +114,22 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
             $scope.item[key] = false;
         }
     };
+
+    $scope.addAttach = function(){
+        LeadsServices.addAttachment($scope.leadId,$scope.Attach.promise,$scope.noteType,Session.get('id')).then(function(response){
+            $scope.closeAllPanel();
+            // $scope.Timeline.addNew(addNew(response[0].erp_attId,$scope.leadId,$scope.noteType,response[0].erp_attachmentName));
+            Notify.add('success','Success','');
+            },function(error){
+            console.log('Error  ',error)
+            });
+    };
+
     $scope.addNote = function(){
       $scope.Note.promise.then(function(data){
         var model = data.getModel()
           ,leadId = $scope.leadId;
+           console.log("model",model)
           model.erp_source = $scope.noteType;
           model.erp_createdBy = Session.get('id');
         API.post('lead/'+leadId+'/note',model).then(function(response){
