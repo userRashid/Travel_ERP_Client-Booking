@@ -36,6 +36,7 @@ angular.module('sbAdminApp').factory('API', function($http, $q, Session) {
     ,post: post
     ,put: put
     ,_delete: _delete
+    ,upload : upload
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,7 +65,21 @@ angular.module('sbAdminApp').factory('API', function($http, $q, Session) {
     return httpRequest('DELETE', apiPath, headers);
   }
 
+   function upload(apiPath,_data){
+     return $http({
+                    method: 'POST',
+                    url : baseUrl() + apiPath,
+                    headers: { 'Content-Type': undefined },
+                    transformRequest: function (data) {
+                    var formData = new FormData();
+                    formData.append("properties",angular.toJson( data.properties));
+                    formData.append("file" , data.attachments);
+                    return formData;
+                    },
+                    data: _data
+                  });
 
+   }
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // private
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
