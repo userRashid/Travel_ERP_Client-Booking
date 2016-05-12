@@ -19,7 +19,8 @@ angular.module('sbAdminApp').directive('erpPeople',function($compile){
         if($scope.data.kids != undefined) $scope.model.kids.model = $scope.data.kids;
         $scope.$watch('model',function(_data){
             if(_data == undefined) return;
-            $scope.data.model = {adults:_data.adults.model,kids:_data.kids.model};
+            if(_data.kids.model>0) $scope.data.model = {adults:_data.adults.model,kids:_data.kids.model};
+            else $scope.data.model = {adults:_data.adults.model};
         },true);
     /*var f = true;
 
