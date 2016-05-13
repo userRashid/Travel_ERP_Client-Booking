@@ -11,9 +11,9 @@ angular.module('sbAdminApp').directive('erpPhone',function($compile){
     element.html('').append($compile(renderHTML())($scope));
   }
   function controller($scope){
-        var phoneNumbr=/^[7|8]\d*/;
+        var phoneNumbr = /^[7|8|9]\d*/;
         $scope.$watch('data',function(_data){
-            $scope.erorr=""
+            $scope.erorr = '';
             if(!phoneNumbr.test(_data.model)&&_data.model) $scope.erorr="Phone Number must begin with either 7 or 8";
         },true);
   }
