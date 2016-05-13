@@ -38,17 +38,41 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
         html += '<div class="add-hotel">' +
                     '<div class="pos-r clearfix" ng-repeat="item in hotelData" ng-class="{\'odd\':$odd}">' +
                         '<div class="col-sm-11 row">' +
-                            '<div class="form-group col-sm-4"><label>Name</label><input class="form-control" ng-model="item.erp_hotelName" type="text" /></div>' +
-                            '<div class="form-group col-sm-4"><label>Room Type</label>' +
-                                '<input class="form-control" type="text" ng-model="item.erp_roomType" />' +
+                            '<div class="form-group col-sm-3"><label>Name</label><input class="form-control" ng-model="item.erp_hotelName" type="text" /></div>' +
+                            '<div class="form-group col-sm-3"><label>Room Type</label>' +
+                                '<select class="form-control" ng-model="item.erp_roomType">' +
+                                    '<option value="Deluxe">Deluxe</option>' +
+                                    '<option value="Super Deluxe">Super Deluxe</option>' +
+                                    '<option value="Luxury">Luxury</option>' +
+                                    '<option value="Executive">Executive</option>' +
+                                    '<option value="Family Suite">Family Suite</option>' +
+                                    '<option value="Family Room">Family Room</option>' +
+                                    '<option value="Honeymoon Suite">Honeymoon Suite</option>' +
+                                    '<option value="Standard">Standard</option>' +
+                                    '<option value="Others">Others</option>' +
+                                '</select>' +
                             '</div>' +
-                            '<div class="form-group col-sm-4"><label>Hotel Category</label><input class="form-control" ng-model="item.erp_hotelCategory" type="text" /></div>' +
-                            '<div class="form-group col-sm-6"><label>Meal Plan</label><input class="form-control" ng-model="item.erp_mealPlan" type="text" /></div>' +
+                            '<div class="form-group col-sm-3"><label>Hotel Category</label>' +
+                                '<select class="form-control" ng-model="item.erp_hotelCategory">' +
+                                    '<option value="2 Star">2 Star</option>' +
+                                    '<option value="3 Star">3 Star</option>' +
+                                    '<option value="4 Star">4 Star</option>' +
+                                    '<option value="5 Star">5 Star</option>' +
+                                '</select>' +
+                            '</div>' +
+                            '<div class="form-group col-sm-3"><label>Meal Plan</label>' +
+                                '<select class="form-control" ng-model="item.erp_mealPlan">' +
+                                    '<option value="CP">CP</option>' +
+                                    '<option value="MAP">MAP</option>' +
+                                    '<option value="EP">EP</option>' +
+                                    '<option value="API">API</option>' +
+                                '</select>' +
+                            '</div>' +
                             '<div class="form-group col-sm-6"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_inclusions" ></textarea></div>' +
-                            '<div class="form-group col-sm-4"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
-                            '<div class="form-group col-sm-4"><label>Room Count</label>' +
+                            '<div class="form-group col-sm-3"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
+                            '<div class="form-group col-sm-3"><label>Room Count</label>' +
                                 '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +
-                            '</div><div class="form-group col-sm-4"><label>Nights Of Stay</label>' +
+                            '</div><div class="form-group col-sm-6"><label>Nights Of Stay</label>' +
                                 '<input class="form-control" type="number" ng-model="item.erp_nightsOfStay" />' +
                             '</div>' +
                         '</div>' +
