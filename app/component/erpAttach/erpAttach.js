@@ -13,7 +13,7 @@ angular.module('sbAdminApp').directive('erpAttach',function($compile,ErpNodeServ
   };
 
   function controller($scope){
-    $scope.data = ErpNodeServices.createForm(FormData.addNote());
+    $scope.data = ErpNodeServices.createForm(FormData.addAttach());
     $scope.options.promise = $scope.data.promise;
   }
   function renderHTML(){
