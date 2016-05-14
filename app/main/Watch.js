@@ -4,6 +4,7 @@ angular.module('sbAdminApp').service('Watch',function(){
         ,makeActualCost : makeActualCost
         ,showAmountReceived : showAmountReceived
         ,setRooms   :   setRooms
+        ,setcustomerCountry :   setcustomerCountry
     }
 
     function validation(data){
@@ -41,7 +42,10 @@ angular.module('sbAdminApp').service('Watch',function(){
                 ,roomCost = data.erp_roomCost
                 ,nightsOfStay = 1;
             if(data.hasOwnProperty('erp_roomCount') && data.erp_roomCount != '') roomCount = data.erp_roomCount;
-            if(data.hasOwnProperty('erp_nightsOfStay') && data.erp_nightsOfStay != '') nightsOfStay = data.erp_nightsOfStay;
+          //  if(data.hasOwnProperty('erp_nightsOfStay') && data.erp_nightsOfStay != '') nightsOfStay = data.erp_nightsOfStay;
+            if(data.hasOwnProperty('checkin') && data.checkin.end.model != undefined && data.checkin.start.model != undefined){
+                nightsOfStay = parseInt((data.checkin.end.model - data.checkin.start.model) / (24 * 3600 * 1000));
+             }
             var cost =  roomCost*roomCount*nightsOfStay;
             return cost;
         }
@@ -94,6 +98,31 @@ angular.module('sbAdminApp').service('Watch',function(){
                         _data[z].erp_roomCount = roomCount;
                     }
                 }
+            }
+        }
+    }
+
+    function setcustomerCountry(data){
+         var len = data.length;
+        for(var i=0;i<len;i++){
+            if(data[i].name == 'erp_country'){
+                country = data[i].model;
+            }
+            if(data[i].name == "erp_phoneNo"){
+                setData(data[i],country);
+            }
+        }
+    }
+
+    function setData(data,country){
+        if(country == "India"){
+            data.validation = {
+            maxPhoneNoLength   : "10",
+            phoneNumberPattern : /^[7|8|9]\d*/
+            }
+        }else{
+            data.validation={
+            maxPhoneNoLength  : ""
             }
         }
     }
