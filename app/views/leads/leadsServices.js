@@ -30,7 +30,7 @@ angular.module('sbAdminApp').factory('LeadsServices', function(API,$q,Notify) {
             _data.erp_attId             = 0;
             _data.erp_leadId            = leadId;
             _data.erp_attachmentName    = model.erp_attachmentName
-            _data.erp_attachmentType    = model.erp_attachment.type;
+            _data.erp_attachmentType    = model.erp_attachment.type.split("/")[1];
             _data.erp_source            = noteType;
             _data.erp_createdBy         = id;
             attachData.push(_data);
