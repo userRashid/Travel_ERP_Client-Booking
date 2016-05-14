@@ -29,6 +29,11 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
     };
     $scope.hotelData = hotelData;
     $scope.data.model = $scope.hotelData;
+    $scope.Date = {
+        start : {label : 'Checkin' },
+        end   : {label : 'Checkout'}
+
+    };
   }
   function link($scope,element,attr){
     element.html('').append($compile(renderHTML())($scope));
@@ -72,8 +77,9 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                             '<div class="form-group col-sm-3"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
                             '<div class="form-group col-sm-3"><label>Room Count</label>' +
                                 '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +
-                            '</div><div class="form-group col-sm-6"><label>Nights Of Stay</label>' +
-                                '<input class="form-control" type="number" ng-model="item.erp_nightsOfStay" />' +
+                            '</div><div class="form-group col-sm-6">' +
+                                '<div erp-date-range="Date" ></div>'
+                                //'<label>Nights Of Stay</label><input class="form-control" type="number" ng-model="item.erp_nightsOfStay" />' +
                             '</div>' +
                         '</div>' +
                         '<div class="col-sm-1 add-hotel-btn">' +
