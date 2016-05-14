@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').controller('addLead',function ($scope,ErpNodeServices,API,Authenticate,Notify,$state,FormData) {
+angular.module('sbAdminApp').controller('addLead',function ($scope,ErpNodeServices,API,Authenticate,Notify,$state,FormData,Watch) {
     $scope.customerId = null;
     $scope.LeadDetail       = ErpNodeServices.createForm(FormData.addLeadData());
     $scope.CustomerDetail   = ErpNodeServices.createForm(FormData.customer());
@@ -38,4 +38,7 @@ angular.module('sbAdminApp').controller('addLead',function ($scope,ErpNodeServic
         });
       }
     };
+    $scope.$watch('CustomerDetail.data',function(data){
+        Watch.setcustomerCountry(data);
+      },true)
   });

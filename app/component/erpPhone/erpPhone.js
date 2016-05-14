@@ -11,7 +11,12 @@ angular.module('sbAdminApp').directive('erpPhone',function($compile){
     element.html('').append($compile(renderHTML())($scope));
   }
   function controller($scope){
-         $scope.phoneNumberPattern = /^[7|8|9]\d*/;
+    $scope.$watch('data',function(data){
+        if(!data.validation)return
+         $scope.phoneNumberPattern =  data.validation.phoneNumberPattern;
+         $scope.maxPhoneLength     =  data.validation.maxPhoneNoLength;
+       },true)
+
   }
 
   function renderHTML(){
@@ -20,7 +25,7 @@ angular.module('sbAdminApp').directive('erpPhone',function($compile){
                '<span style="color:red;" ng-show="myerpPhone.myInput.$error.maxlength">Phone number must of 10 digits</span>' +
                 '<div class="input-group" ng-form name="myerpPhone">' +
                   '<span ng-if="data.code" class="input-group-addon">{{data.code}}</span>' +
-                  '<input name="myInput" type="text" ng-model="data.model" class="form-control"  ng-pattern="phoneNumberPattern" ng-maxlength="10" >' +
+                  '<input name="myInput" type="text" ng-model="data.model" class="form-control"  ng-pattern="phoneNumberPattern" ng-maxlength="maxPhoneLength" >' +
                 '</div>';
     return html;
   }
