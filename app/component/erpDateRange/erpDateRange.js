@@ -30,6 +30,7 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile){
     $scope.openTwo = function() {
         $scope.popupTwo.opened = true;
     };
+
   }
   function link($scope,element,attr){
     element.html('').append($compile(renderHTML())($scope));
@@ -37,17 +38,19 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile){
   function renderHTML(){
     var html = '';
     html +='<div style="float:left">';
-      html +='<div class="col-lg-6">';
+      html +='<div class="col-lg-6">' +
+             '<label ng-if="data.start.label">{{data.start.label}}</label>' ;
         html +='<p class="input-group">' +
-                   '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.model.start" is-open="popupFirst.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
+                   '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.start.model" is-open="popupFirst.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
                    '<span class="input-group-btn">' +
                      '<button type="button" class="btn btn-default" ng-click="openFirst()"><i class="fa fa-calendar"></i></button>' +
                    '</span>' +
                  '</p>';
       html +='</div>';
-      html +='<div class="col-lg-6">';
+      html +='<div class="col-lg-6">' +
+             '<label ng-if="data.start.label">{{data.end.label}}</label>' ;
       html +='<p class="input-group">' +
-                 '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.model.end" is-open="popupTwo.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
+                 '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.end.model" is-open="popupTwo.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
                  '<span class="input-group-btn">' +
                    '<button type="button" class="btn btn-default" ng-click="openTwo()"><i class="fa fa-calendar"></i></button>' +
                  '</span>' +
