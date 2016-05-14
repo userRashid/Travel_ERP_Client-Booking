@@ -102,7 +102,7 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
                         '</div>' +
                         '<div ng-switch-when="lead">' +
                             '<b>Nights : </b> {{data.erp_nights}}<br />' +
-                            '<b>People : </b> {{data.erp_adultCount}} - Adult&nbsp;,&nbsp;{{data.erp_kidsCount}} - Kids<br />' +
+                            '<b>People : </b> {{data.erp_adultCount}} - Adult<span ng-if="data.erp_kidsCount >0">&nbsp;,&nbsp;{{data.erp_kidsCount}} - Kids</span><br />' +
                             '<b>Leaving From : </b> {{data.erp_leavingFrom}}<br />' +
                             '<b>Lead Source : </b> {{data.erp_leadSource}}<br />' +
                             '<b>Additional Info : </b> {{data.erp_additionalInfo}}<br />' +
