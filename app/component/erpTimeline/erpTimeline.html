@@ -1,9 +1,13 @@
 <div class="panel-body">
     <ul class="timeline">
         <li class="timeline-inverted" ng-repeat="item in timeline">
-            <div class="timeline-badge" ng-class="getStyleBG(item.erp_source)"><i class="fa" ng-class="getStyle(item.erp_source)"></i>
+            <div class="timeline-badge" ng-class="getStyleBG(item.erp_source)">
+                <i class="fa" ng-class="getStyle(item.erp_source)"></i>
             </div>
             <div class="timeline-panel">
+                <div ng-if="item.erp_source == 'ATTACHMENT'">
+                    <a href="http://104.236.94.240:8080/Travel_ERP/lead/{{item.erp_leadId}}/leadAttachment/{{item.erp_attId}}">{{item.erp_attachmentName}}.{{item.erp_attachmentType}}</a>
+                </div>
                 <div ng-if="!item.showItem">
                     <button type="button" ng-click="editTimeLine(item)" class="btn btn-default btn-circle timeline-heading-edit">
                         <i class="fa fa-pencil-square-o"></i>
