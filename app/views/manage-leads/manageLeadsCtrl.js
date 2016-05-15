@@ -15,4 +15,15 @@ angular.module('sbAdminApp').controller('ManageLeadsCtrl', function ($scope,API,
         });
     }
     $scope.dateSearch = '';
+    $scope.export = function(){
+        API.get('lead/export?assignedTo='+Session.get('id')).then(function(response){
+             var anchor = angular.element('<a/>');
+                 anchor.attr({
+                     href: 'data:attachment/csv;charset=utf-8,' + encodeURI(response.data),
+                     target: '_blank',
+                     download: 'leads.csv'
+                 })[0].click();
+
+         });
+    }
 });
