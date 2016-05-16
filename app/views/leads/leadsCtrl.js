@@ -76,17 +76,13 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
             LeadsServices.saveLead($scope.leadId,$scope.LeadStatus);
         }
     }
-    function addNew(id,leadId,noteType,message){
-        var temp = {};
-            temp.erp_noteId     = id;
-            temp.erp_leadId     = leadId;
-            temp.erp_notes      = message;
-            temp.erp_source     = noteType;
-            temp.erp_createdBy  = Session.get('id');
-            temp.erp_updateTimestamp = Math.floor(Date.now());
-        return temp;
+    function addNew(id,leadId,noteType,message,response){
+        response.erp_leadId             = leadId;
+        response.erp_createdBy          = Session.get('id');
+        response.erp_updateTimestamp    = Math.floor(Date.now());
+        response.erp_source             = response.erp_source.toLowerCase();
+        return response;
     }
-
     //Timeline
     $scope.item = {
                     meeting : false,
@@ -118,7 +114,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     $scope.addAttach = function(){
         LeadsServices.addAttachment($scope.leadId,$scope.Attach.promise,$scope.noteType,Session.get('id')).then(function(response){
             $scope.closeAllPanel();
-            $scope.Timeline.addNew(addNew(response[0].erp_attId,$scope.leadId,"attachment",response[0].erp_attachmentName));
+            $scope.Timeline.addNew(addNew(response[0].erp_attId,$scope.leadId,"attachment",response[0].erp_attachmentName,response[0]));
             Notify.add('success','Success','');
             },function(error){
             console.log('Error  ',error)
@@ -129,7 +125,6 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
       $scope.Note.promise.then(function(data){
         var model = data.getModel()
           ,leadId = $scope.leadId;
-           console.log("model",model)
           model.erp_source = $scope.noteType;
           model.erp_createdBy = Session.get('id');
         API.post('lead/'+leadId+'/note',model).then(function(response){

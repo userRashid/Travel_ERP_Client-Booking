@@ -26,20 +26,19 @@ angular.module('sbAdminApp').factory('LeadsServices', function(API,$q,Notify) {
             attachData = [],
             model = data.getModel(),
             file = model.erp_attachment;
-
             _data.erp_attId             = 0;
             _data.erp_leadId            = leadId;
-            _data.erp_attachmentName    = model.erp_attachmentName
-            _data.erp_attachmentType    = model.erp_attachment.type.split("/")[1];
+            _data.erp_attachmentName    = file.name.split(".")[0]
+            _data.erp_attachmentType    = file.name.split(".")[1];
             _data.erp_source            = noteType;
             _data.erp_createdBy         = id;
             attachData.push(_data);
             API.upload('lead/'+leadId+'/leadAttachments',{ properties: attachData ,attachments:file}).then(function(response){
                 q.resolve(response.data);
             },function(error){
-                q.reject(error)
+                q.reject(error);
             });
-        })
-      return q.promise;
+        });
+        return q.promise;
    }
 });

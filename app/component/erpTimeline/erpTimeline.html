@@ -5,10 +5,10 @@
                 <i class="fa" ng-class="getStyle(item.erp_source)"></i>
             </div>
             <div class="timeline-panel">
-                <div ng-if="item.erp_source == 'ATTACHMENT'">
-                    <a href="http://104.236.94.240:8080/Travel_ERP/lead/{{item.erp_leadId}}/leadAttachment/{{item.erp_attId}}">{{item.erp_attachmentName}}.{{item.erp_attachmentType}}</a>
-                </div>
                 <div ng-if="!item.showItem">
+                    <div ng-if="item.erp_source == 'attachment'">
+                        <a href="http://104.236.94.240:8080/Travel_ERP/lead/{{item.erp_leadId}}/leadAttachment/{{item.erp_attId}}">{{item.erp_attachmentName}}.{{item.erp_attachmentType}}</a>
+                    </div>
                     <button type="button" ng-click="editTimeLine(item)" class="btn btn-default btn-circle timeline-heading-edit">
                         <i class="fa fa-pencil-square-o"></i>
                     </button>

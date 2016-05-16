@@ -39,6 +39,7 @@ angular.module('sbAdminApp')
         }
         function insertionSort(files,attrToSortBy){
         	for(var k=1; k < files.length; k++){
+        	    files[k].erp_source = files[k].erp_source.toLowerCase();
         		for(var i=k; i > 0 && _getDate(files[i][attrToSortBy]) <  _getDate(files[i-1][attrToSortBy]); i--){
         			var tmpFile = files[i];
                 	files[i] = files[i-1];
@@ -121,7 +122,9 @@ angular.module('sbAdminApp')
         }
 
         $scope.options.addNew = function(data){
+            console.log(' ----  ',data);
             $scope.timeline.unshift(addNoteObj(data));
+            console.log('$scope.timeline --- ',$scope.timeline);
         }
 
         $scope.getAttachment = function(item){

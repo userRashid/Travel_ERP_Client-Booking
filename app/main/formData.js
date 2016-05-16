@@ -10,10 +10,6 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
     }
     function addAttach(){
         var addAttach = [{
-                    label : 'Attachment Name'
-                    ,name : 'erp_attachmentName'
-                    ,type : 'erpText'
-                },{
                     label : 'Attachment'
                     ,name : 'erp_attachment'
                     ,type : 'erpUpload'
