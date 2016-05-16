@@ -122,13 +122,11 @@ angular.module('sbAdminApp')
         }
 
         $scope.options.addNew = function(data){
-            console.log(' ----  ',data);
             $scope.timeline.unshift(addNoteObj(data));
-            console.log('$scope.timeline --- ',$scope.timeline);
         }
 
         $scope.getAttachment = function(item){
-            console.log(' *****  ',item);
+            //console.log(' *****  ',item);
         }
     }
     function link(){
