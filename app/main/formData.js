@@ -163,6 +163,10 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
                 label : 'Inclusions'
                 ,name : 'erp_inclusions'
                 ,type : 'erpTextarea'
+                ,isCheckbox : true
+                ,checkboxModel : ''
+                ,checkboxLabel : 'Honeymoon'
+                ,checkboxData : 'Flower Decorated bed, Honeymoon Cake, Candle Light Dinner , '
           },{
                 label : 'Exclusions'
                 ,name : 'erp_exclusions'

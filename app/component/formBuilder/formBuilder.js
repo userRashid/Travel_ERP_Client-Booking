@@ -48,7 +48,7 @@ angular.module('sbAdminApp').directive('formBuilder',function($compile){
             html +='<div      ng-switch-when="erpEmail"     data-erp-email="item"></div>';
             html +='<div      ng-switch-when="erpPhone"     data-erp-phone="item"></div>';
             html +='<input    ng-switch-when="erpPassword"  ng-model="item.model" class="form-control" type="password">';
-            html +='<textarea ng-switch-when="erpTextarea"  ng-model="item.model" class="form-control" rows="5"></textarea>';
+            html +='<div      ng-switch-when="erpTextarea"  data-erp-textarea="item"></div>';
             html +='<div      ng-switch-when="erpSelect"    data-erp-select="item"></div>';
             html +='<div      ng-switch-when="erpUpload"    data-erp-upload="item"></div>';
             html +='<div      ng-switch-when="erpPeople"    data-erp-people="item"></div>';
