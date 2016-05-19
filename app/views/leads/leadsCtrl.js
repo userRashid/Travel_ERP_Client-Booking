@@ -6,6 +6,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     $scope.Timeline = {};
     $scope.Attach   = {};
     $scope.Alert    = {};
+    $scope.Email    = {};
     $scope.leadId = $stateParams.id;
     if(!$scope.leadId) $state.go('leads.all');
     $scope.promise = API.get('lead/'+$scope.leadId);
@@ -120,6 +121,16 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
             console.log('Error  ',error)
             });
     };
+
+    $scope.addEmail = function(){
+        $scope.Email.promise.then(function(data){
+            console.log("email",data);
+        })
+    }
+
+    $scope.cancel = function(){
+        console.log("-----cancel----");
+    }
 
     $scope.addNote = function(){
       $scope.Note.promise.then(function(data){

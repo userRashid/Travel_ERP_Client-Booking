@@ -9,8 +9,9 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API){
     ,getLeadSource  :   getLeadSource
     ,getDateFormat  :   getDateFormat
     ,getAllEmployee    :   getAllEmployee
-    ,getTransportType  :    getTransportType
-    ,getBookingStatus   :   getBookingStatus
+    ,getTransportType  :   getTransportType
+    ,getBookingStatus  :   getBookingStatus
+    ,getEmailStatus    :   getEmailStatus
   };
   function getDateFormat(){
     return 'dd/MM/yyyy';
@@ -83,5 +84,10 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API){
   function getTaxType(){
     var taxType = [{label : 'Tax Included',value:'tax_included'}];
     return $q.when(taxType);
+  }
+
+  function getEmailStatus(){
+    var status = ['Follow Up','Meeting','Phone Call']
+    return $q.when(status);
   }
 });

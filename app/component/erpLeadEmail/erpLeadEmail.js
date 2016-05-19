@@ -1,0 +1,38 @@
+'use strict';
+angular.module('sbAdminApp').directive('erpLeadEmail',function($compile,ErpNodeServices,API,Notify,Session,FormData){
+  return {
+    restrict : 'A'
+    ,scope : {
+      options : '=erpLeadEmail'
+    }
+    ,link : link
+    ,controller : controller
+  }
+  function link($scope,element,attr){
+    element.html('').append($compile(renderHTML())($scope));
+  };
+
+  function controller($scope){
+    $scope.data = ErpNodeServices.createForm(FormData.addEmail());
+    $scope.options.promise = $scope.data.promise;console.log($scope.data)
+  }
+  function renderHTML(){
+    var html = '';
+    html = '<div>' +
+                '<div class="clearfix" style="margin-top:10px;" data-form-builder="options.promise"></div>' +
+            '</div>';
+    return html;
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+

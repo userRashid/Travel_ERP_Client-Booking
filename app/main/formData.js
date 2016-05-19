@@ -8,7 +8,30 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
         ,search     :   search
         ,addAttach  :   addAttach
         ,getCity    :   getCity
+        ,addEmail   :   addEmail
     }
+    function addEmail(){
+       var addEmail =[{
+                    label :''
+                    ,name : 'erp_follow'
+                    ,type : 'erpSelect'
+                    ,values : GlobalData.getEmailStatus()
+                    ,model : 'Follow Up'
+                    },{
+                      label :''
+                      ,name : 'erp_calendar'
+                      ,type : 'erpCalender'
+                     // ,defaultDate : 0 // 0 for current date -digit for previous date and digit for next date
+                      ,hidePrevious : true
+                     },{
+                        label : ''
+                        ,name : 'erp_description'
+                        ,type : 'erpTextarea'
+                        ,placeholder: 'Description...'
+                     }]
+       return addEmail;
+    }
+
     function addAttach(){
         var addAttach = [{
                     label : 'Attachment'
