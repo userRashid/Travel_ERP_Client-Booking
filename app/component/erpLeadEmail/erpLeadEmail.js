@@ -14,7 +14,7 @@ angular.module('sbAdminApp').directive('erpLeadEmail',function($compile,ErpNodeS
 
   function controller($scope){
     $scope.data = ErpNodeServices.createForm(FormData.addEmail());
-    $scope.options.promise = $scope.data.promise;console.log($scope.data)
+    $scope.options.promise = $scope.data.promise;
   }
   function renderHTML(){
     var html = '';
