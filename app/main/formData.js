@@ -21,7 +21,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
                       label :''
                       ,name : 'erp_calendar'
                       ,type : 'erpCalender'
-                     // ,defaultDate : 0 // 0 for current date -digit for previous date and digit for next date
+                      ,defaultDate : 0 // 0 for current date -digit for previous date and digit for next date
                       ,hidePrevious : true
                      },{
                         label : ''
