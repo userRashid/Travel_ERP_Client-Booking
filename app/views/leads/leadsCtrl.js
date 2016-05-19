@@ -118,7 +118,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
             $scope.Timeline.addNew(addNew(response[0].erp_attId,$scope.leadId,"attachment",response[0].erp_attachmentName,response[0]));
             Notify.add('success','Success','');
             },function(error){
-            console.log('Error  ',error)
+           // console.log('Error  ',error)
             });
     };
 
@@ -128,7 +128,6 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     }
 
     $scope.cancel = function(){
-        console.log("-----cancel----");
     }
 
     $scope.addNote = function(){
