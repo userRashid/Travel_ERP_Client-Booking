@@ -124,7 +124,6 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
 
     $scope.addEmail = function(){
         $scope.Email.promise.then(function(data){
-            console.log("email",data);
         })
     }
 
