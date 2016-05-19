@@ -66,10 +66,9 @@
                         </div>
                     </div>
                     <div ng-if="item.email" style="border:1px solid #ccc; margin-top:10px;">
-                        <div data-erp-lead-email="Email"></div>
+                        <div data-erp-note="Note"></div>
                         <div style="margin:0 18px 20px;">
-                            <button class="btn btn-link" ng-click="cancel()">Cancel</button>
-                            <button class="btn btn-warning" ng-click="addEmail()">Submit</button>
+                            <button class="btn btn-success" ng-click="addNote()">Add Email</button>
                         </div>
                     </div>
                     <div ng-if="item.phone" style="border:1px solid #ccc; margin-top:10px;">
@@ -85,9 +84,10 @@
                         </div>
                     </div>
                     <div ng-if="item.alert" style="border:1px solid #ccc; margin-top:10px;">
-                        <div data-erp-note="Alert"></div>
+                        <div data-erp-alert="Alert"></div>
                         <div style="margin:0 18px 20px;">
-                            <button class="btn btn-success" ng-click="addAlert">Add Alert</button>
+                            <button class="btn btn-link" ng-click="cancel()">Cancel</button>
+                            <button class="btn btn-warning" ng-click="addAlert()">Submit</button>
                         </div>
                     </div>
                 </div>

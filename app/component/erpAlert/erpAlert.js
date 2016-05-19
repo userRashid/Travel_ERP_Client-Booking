@@ -1,9 +1,9 @@
 'use strict';
-angular.module('sbAdminApp').directive('erpLeadEmail',function($compile,ErpNodeServices,API,Notify,Session,FormData){
+angular.module('sbAdminApp').directive('erpAlert',function($compile,ErpNodeServices,API,Notify,Session,FormData){
   return {
     restrict : 'A'
     ,scope : {
-      options : '=erpLeadEmail'
+      options : '=erpAlert'
     }
     ,link : link
     ,controller : controller
@@ -13,7 +13,7 @@ angular.module('sbAdminApp').directive('erpLeadEmail',function($compile,ErpNodeS
   };
 
   function controller($scope){
-    $scope.data = ErpNodeServices.createForm(FormData.addEmail());
+    $scope.data = ErpNodeServices.createForm(FormData.erpAlert());
     $scope.options.promise = $scope.data.promise;
   }
   function renderHTML(){

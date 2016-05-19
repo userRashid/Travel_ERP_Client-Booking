@@ -8,10 +8,10 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
         ,search     :   search
         ,addAttach  :   addAttach
         ,getCity    :   getCity
-        ,addEmail   :   addEmail
+        ,erpAlert   :   erpAlert
     }
-    function addEmail(){
-       var addEmail =[{
+    function erpAlert(){
+       var erpAlert =[{
                     label :''
                     ,name : 'erp_follow'
                     ,type : 'erpSelect'
@@ -29,7 +29,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
                         ,type : 'erpTextarea'
                         ,placeholder: 'Description...'
                      }]
-       return addEmail;
+       return erpAlert;
     }
 
     function addAttach(){
