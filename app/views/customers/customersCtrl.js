@@ -4,4 +4,5 @@ angular.module('sbAdminApp').controller('CustomersCtrl', function($scope,API,Ses
     API.get('customers?createdBy='+Session.get('id')).then(function(response){
         $scope.customers = response.data;
     })
+    $scope.placement = 'top';
 });
