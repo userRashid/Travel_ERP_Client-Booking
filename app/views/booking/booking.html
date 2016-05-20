@@ -61,6 +61,7 @@
         <div class="col-md-3 text-center">
             <div class="pad">
                 Booked on {{item.erp_createdAt}}
+                <p ng-if="item.erp_tokenAmount">Token Amount : {{item.erp_tokenAmount}}</p>
                 <p class="bookingStatus" ng-if="!item.editStatusValue">
                     Status : {{item.erp_bookingStatus}}
                     <i ng-click="editStatus(item)"class="fa fa-edit"></i>
@@ -70,7 +71,7 @@
                     <i ng-click="doneStatus(item)"class="fa fa-check"></i>
                     <i ng-click="cancelStatus(item)"class="fa fa-times"></i>
                 </p>
-                <p class="s10">Lead ID : {{item.erp_leadId}}</p>
+                <p class="s10">Lead ID : <a href="#/leads/manage-leads/{{item.erp_leadId}}">{{item.erp_leadId}}</a></p>
             </div>
         </div>
     </div>

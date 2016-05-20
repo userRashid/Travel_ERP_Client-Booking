@@ -99,3 +99,11 @@ body{background:#fff;}
 ._bookingStatus > i{ margin:0 5px; font-size:18px;}
 .bookingStatus:hover > i{ visibility:visible}
 .bookingStatus > i{ margin:0 5px; color:#337ab7; font-size:20px; cursor:pointer; visibility:hidden}
+.navbar-brand{ padding:2px;}
+.copyright{ border-top: 1px solid #ccc;
+               bottom: 0;
+               padding: 10px 0;
+               position: fixed;
+               text-align: center;
+               width: 78%;
+               background: #fff}
