@@ -74,6 +74,7 @@ angular
         url:'/booking'
     }).state('booking.conversions',{
         templateUrl:'views/conversions/conversions.html',
+        controller : 'ConversionsCtrl',
         url:'/conversions'
     }).state('booking.list',{
         templateUrl:'views/booking/booking.html',
