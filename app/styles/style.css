@@ -107,3 +107,26 @@ body{background:#fff;}
                text-align: center;
                width: 78%;
                background: #fff}
+
+.pad button{ padding:10px 25px}
+.btn{ button-border: 0px}
+.pad{ padding: 20px}
+.bor-l{ border-left: 2px solid #ccc}
+.mar-l{ margin-left:20px}
+.col-blue{ color:#00F}
+.m-t40{ margin: 40px 0 0 0}
+.fontcol h2{ color: #048db4}
+.book b{ font-size:18px}
+.tripcol h3{ color: #f79459}
+.bor-r{ border-right: 2px solid #ccc}
+.sold b{ font-size:25px}
+.m-t10{ margin: 10px 0 0 0}
+.black-bor{ border-bottom: 2px solid #000;}
+.splook b{ font-size:24px}
+.splook p{ color :#f79459; font-size: 15px}
+.forside{ border: 2px solid #CCC; margin-top: 30px; width: 450px}
+.mside{ margin-left: 10px}
+.borbottm{ border-bottom: 5px dotted #000;}
+.mt30{ margin-bottom: 30px}
+.pZero {padding : 0px}
+.txtArea {width : 100% ;resize:none}
