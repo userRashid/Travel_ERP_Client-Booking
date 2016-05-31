@@ -3,6 +3,7 @@ angular.module('sbAdminApp').factory('LeadsServices', function(API,$q,Notify) {
     getLeadStatus   :   getLeadStatus
     ,saveLead       :   saveLead
     ,addAttachment  :   addAttachment
+    ,addAlert       :   addAlert
   };
   function saveLead(leadId,values){
     var model = {};
@@ -18,6 +19,25 @@ angular.module('sbAdminApp').factory('LeadsServices', function(API,$q,Notify) {
     });
     return q.promise;
   }
+ function addAlert(promise,createdBy,leadId){
+        var q = $q.defer();
+        promise.then(function(data){
+        var model = data.getModel();
+        var _data = {};
+            _data.erp_alertNotes = model.erp_follow;
+            _data.erp_alertDate =  model.erp_datetime;
+            _data.erp_alertStatus = "ACTIVE";
+            _data.erp_emailNotification = false;
+            _data.erp_createdById  = createdBy;console.log("_data",_data)
+            API.post('lead/'+leadId+'/alert',_data).then(function(response){
+                q.resolve(response);
+                },function(error){
+                q.reject(error);
+            });
+         });
+        return q.promise;
+   };
+
 
    function addAttachment(leadId,promise,noteType,id){
         var q = $q.defer();

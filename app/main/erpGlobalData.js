@@ -12,7 +12,11 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API){
     ,getTransportType  :   getTransportType
     ,getBookingStatus  :   getBookingStatus
     ,getEmailStatus    :   getEmailStatus
+    ,getDateTimeFormat :   getDateTimeFormat
   };
+  function getDateTimeFormat(){
+    return 'dd/MM/yyyy HH:mm';
+  }
   function getDateFormat(){
     return 'dd/MM/yyyy';
   }

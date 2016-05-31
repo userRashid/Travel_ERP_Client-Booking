@@ -123,7 +123,11 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     };
 
     $scope.addAlert = function(){
-        $scope.Alert.promise.then(function(data){
+        LeadsServices.addAlert($scope.Alert.promise,Session.get('id'),$scope.leadId).then(function(response){console.log("response",response);
+            $scope.closeAllPanel();
+            Notify.add('success','Success',response.data.message);
+        },function(error){
+            console.log("error",error)
         })
     }
 

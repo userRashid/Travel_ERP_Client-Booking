@@ -19,10 +19,8 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
                     ,model : 'Follow Up'
                     },{
                       label :''
-                      ,name : 'erp_calendar'
-                      ,type : 'erpCalender'
-                      ,defaultDate : 0 // 0 for current date -digit for previous date and digit for next date
-                      ,hidePrevious : true
+                      ,name : 'erp_datetime'
+                      ,type : 'erpDateTime'
                      },{
                         label : ''
                         ,name : 'erp_description'

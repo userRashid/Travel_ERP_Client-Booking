@@ -18,6 +18,7 @@ angular
       ,'ngMaterial'
       ,'smart-table'
       ,'ngAnimate'
+      ,'ui.bootstrap.datetimepicker'
       //,'ngCookies'
       //,'ngResource'
       //,'toggle-switch'
