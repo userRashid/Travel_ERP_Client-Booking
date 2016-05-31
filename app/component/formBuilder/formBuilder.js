@@ -55,6 +55,7 @@ angular.module('sbAdminApp').directive('formBuilder',function($compile){
             html +='<div      ng-switch-when="erpCheckbox"  data-erp-checkbox="item"></div>';
             html +='<div      ng-switch-when="erpAddMore"   data-erp-add-more="item"></div>';
             html +='<div      ng-switch-when="erpCalender"  data-erp-calender="item"></div>';
+            html +='<div      ng-switch-when="erpDateTime"  data-erp-date-time="item"></div>';
             html +='<div      ng-switch-when="erpMultiSelect"       data-erp-multi-select="item"></div>';
             html +='<div      ng-switch-when="erpHotel"             data-erp-hotel="item"></div>';
             html +='<div      ng-switch-when="erpBookingStatus"     data-erp-booking-status="item"></div>';
