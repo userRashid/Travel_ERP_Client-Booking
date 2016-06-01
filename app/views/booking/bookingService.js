@@ -62,8 +62,8 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
 
     function fillerBooking(model){
         var q = $q.defer()
-            ,startDate  =    dateFormat(model.start)
-            ,endDate    =    dateFormat(model.end);
+            ,startDate  =    dateFormat(model.start.model)
+            ,endDate    =    dateFormat(model.end.model);
         API.get('bookings?fromDate='+startDate+'&toDate='+endDate+'&salesPersonId='+Authenticate.user().id).then(function(response){
             q.resolve(createIsShow(response.data));
         });

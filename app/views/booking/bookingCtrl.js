@@ -102,7 +102,7 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
     };
 
     $scope.arrivalsFilter = function(){
-        BookingService.fillerBooking($scope.Date.model).then(function(response){
+        BookingService.fillerBooking($scope.Date).then(function(response){
             $scope.bookingsData = response;
             $scope.bookings = response;
         });
