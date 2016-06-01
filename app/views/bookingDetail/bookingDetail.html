@@ -1,7 +1,7 @@
-<div ng-repeat="item in conversionData">
+<div>
     <div class="row black-bor">
         <div class="col-md-8 m-t20 fontcol">
-            <h2>Shimla Retreat Of Gourav From Delhi</h2>
+            <h2>{{conversionData.erp_destinations}} Retreat Of {{conversionData.erp_customer.erp_name}} From {{conversionData.erp_customer.erp_city}}</h2>
         </div>
         <div class="col-md-4 m-t40 text-right">
             <button class="btn-success btn">Open Lead</button>
@@ -10,37 +10,37 @@
     <div class="row item" >
         <div class="col-md-6 m-t20 bor-r">
             <div class="col-md-4">
-                <h5>Arrival</h5><h3>{{item.arrival}}</h3>
+                <h5>Arrival</h5><h3>{{conversionData.erp_departureDate}}</h3>
             </div>
             <div class="col-md-4">
-                <h5>Duration</h5><h3>{{item.duration}}</h3>
+                <h5>Duration</h5><h3>{{conversionData.erp_nights}}</h3>
             </div>
             <div class="col-md-4">
-                <h5>Rooms</h5><h3>{{item.room}}</h3>
+                <h5>Rooms</h5><h3>{{conversionData.erp_roomCount}}</h3>
             </div>
             <div class="book m-t40 col-md-12">
-                <h5>People: <b>{{item.adultCount}} Adults, {{item.kidsCount}} kid</b></h5>
+                <h5>People: <b>{{conversionData.erp_adultCount}} Adults, {{conversionData.erp_kidsCount}} kid</b></h5>
             </div>
             <div class="col-md-12 m-t40">
                 <div class="col-md-6 tripcol pZero">
-                    <h5>Pickup</h5><h3>{{item.pickupFrom}}------{{item.pickupTo}}  ,</h3>
+                    <h5>Pickup</h5><h3>{{conversionData.erp_pickupLocation}} ------</h3>
                 </div>
                 <div class="col-md-6 tripcol">
-                    <h5>Drop</h5><h3>{{item.dropFrom}}------{{item.dropTo}}</h3>
+                    <h5>Drop</h5><h3>---------- {{conversionData.erp_dropLocation}}</h3>
                 </div>
                 <div class="col-md-12 pZero">
-                    <textarea  readonly class="m-t20 txtArea forside" rows="4">inclusions {{item.inclusions}}</textarea>
+                    <textarea  readonly class="m-t20 txtArea forside" rows="4">inclusions {{conversionData.erp_inclusions}}</textarea>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div  class="sold text-right">
-                <h5>Sold  Cost</h5><b>{{item.soldCost}}&nbsp;/-</b>
+                <h5>Sold Cost</h5><b>{{conversionData.erp_costBreakup.soldCost}}&nbsp;/-</b>
             </div>
             <div class="col-md-12 black-bor pZero" >
-                <div ng-repeat ="_item in item.cost">
-                    <div class="col-md-6 text-left m-t10">{{_item.label}}</div>
-                    <div class="col-md-6 text-right m-t10 pZero">{{_item.value}}&nbsp;/-</div>
+                <div ng-repeat ="_conversionData in conversionData.cost">
+                    <div class="col-md-6 text-left m-t10">{{_conversionData.label}}</div>
+                    <div class="col-md-6 text-right m-t10 pZero">{{_conversionData.value}}&nbsp;/-</div>
                 </div>
             </div>
             <div class="col-md-12 pZero">
@@ -48,7 +48,7 @@
                     <b>Total Cost Price</b>
                 </div>
                 <div class="col-md-6 text-right m-t10 book pZero">
-                    <b>{{item.totlCost}}&nbsp;/-</b>
+                    <b>{{conversionData.totlCost}}&nbsp;/-</b>
                 </div>
             </div>
         </div>
@@ -57,12 +57,16 @@
         <h2>HOTEL DETAILS</h2>
     </div>
 
-    <div data-erp-hotel-detail ="item.hotelDetailData"></div>
+    <div data-erp-hotel-detail ="conversionData.erp_hotelBookings"></div>
 
     <div class="m-t40 black-bor">
         <h2>EXCLUSIONS</h2>
     </div>
     <div class="m-t20">
-        <P>{{item.exclusion}}</P>
+        <P>{{conversionData.erp_exclusions}}</P>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>

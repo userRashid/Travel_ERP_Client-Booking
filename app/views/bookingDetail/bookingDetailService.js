@@ -11,10 +11,10 @@ angular.module('sbAdminApp').factory('BookingDetailService', function(API,$q){
 
     /////////////////////////////////////////////////
 
-    function getBooking(){
+    function getBooking(id){
         var q = $q.defer();
-        API.get('bookings').then(function(response){
-            q.resolve(createIsShow(response.data));
+        API.get('booking/'+id).then(function(response){
+            q.resolve(response.data);
         });
         return q.promise;
     }
