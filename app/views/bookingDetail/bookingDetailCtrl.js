@@ -1,6 +1,6 @@
 //'use strict';
-angular.module('sbAdminApp').controller('ConversionsCtrl', function($scope,Notify,ErpNodeServices){
-
+angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$stateParams,BookingDetailService){
+    $scope.bookingId = $stateParams.id;
     $scope.conversionData = [{
         arrival     : '2-dec-16'
        ,duration    : '3N/2D'

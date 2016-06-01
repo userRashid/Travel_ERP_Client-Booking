@@ -73,14 +73,14 @@ angular
     }).state('booking',{
         templateUrl:'views/dashboard/main.html',
         url:'/booking'
-    }).state('booking.conversions',{
-        templateUrl:'views/conversions/conversions.html',
-        controller : 'ConversionsCtrl',
-        url:'/conversions'
-    }).state('booking.list',{
+    }).state('booking.detail',{
+        templateUrl:'views/bookingDetail/bookingDetail.html',
+        controller : 'bookingDetailCtrl',
+        url:'/manage-booking/:id'
+    }).state('booking.manage-booking',{
         templateUrl:'views/booking/booking.html',
         controller: 'BookingCtrl',
-        url:'/list'
+        url:'/manage-booking'
     }).state('leads.x',{
         templateUrl:'views/ui-elements/grid.html',
         url:'/x'
