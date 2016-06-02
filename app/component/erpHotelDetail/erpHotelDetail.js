@@ -24,7 +24,12 @@ angular.module('sbAdminApp').directive('erpHotelDetail',function($compile){
                                     '<span>     ,Star -- {{item.erp_hotelCategory}}</span>'+
                                     '<p>{{item.erp_roomType}}</p>'+
                                     '<div class="col-md-12" >'+
-                                           '<div data-erp-date-range = "item.erp_checkinDate"></div>'+
+                                       '<div class="col-md-6 tripcol">'+
+                                              '<h5>Checkin</h5> <h3>{{item.erp_checkinDate}}</h3>'+
+                                         '</div>'+
+                                          '<div class="col-md-6 tripcol">'+
+                                              '<h5>Checkout</h5> <h3>{{item.erp_checkoutDate}}</h3>'+
+                                           '</div>'+
                                     '</div>'+
                                 '</div>'+
                                 '<div class="col-md-6">'+
