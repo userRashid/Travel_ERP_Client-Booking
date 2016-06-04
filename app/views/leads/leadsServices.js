@@ -28,7 +28,7 @@ angular.module('sbAdminApp').factory('LeadsServices', function(API,$q,Notify) {
             _data.erp_alertDate =  model.erp_datetime;
             _data.erp_alertStatus = "ACTIVE";
             _data.erp_emailNotification = false;
-            _data.erp_createdById  = createdBy;console.log("_data",_data)
+            _data.erp_createdById  = createdBy;
             API.post('lead/'+leadId+'/alert',_data).then(function(response){
                 q.resolve(response);
                 },function(error){
