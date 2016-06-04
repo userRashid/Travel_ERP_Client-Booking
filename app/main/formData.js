@@ -21,6 +21,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
                       label :''
                       ,name : 'erp_datetime'
                       ,type : 'erpDateTime'
+                      ,minuteStep : 15
                      },{
                         label : ''
                         ,name : 'erp_description'

@@ -10,11 +10,11 @@ angular.module('sbAdminApp').directive('erpDateTime',function($compile){
 
   function controller($scope,GlobalData,$filter){
     var format = GlobalData.getDateTimeFormat();
-    $scope.dateId = "#dropdown2";
+    $scope.dateId       = "#dropdown2";
     if($scope.data.model == undefined){
         $scope.data.model = $filter('date')(new Date(), format);
     }
-    $scope.$watch('data.model',function(data){
+    $scope.$watch('data.dateTime',function(data){
         $scope.data.model = $filter('date')(data, format);
     },true)
   }
@@ -29,7 +29,7 @@ angular.module('sbAdminApp').directive('erpDateTime',function($compile){
                 '</div>'+
               '</a>'+
               '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'+
-                '<datetimepicker  ng-model="data.model" data-datetimepicker-config="{dropdownSelector: dateId}"/>'+
+                '<datetimepicker  ng-model="data.dateTime" data-datetimepicker-config="{dropdownSelector: dateId , minuteStep : data.minuteStep}"/>'+
               '</ul>'+
         '</div>';
     return html;
