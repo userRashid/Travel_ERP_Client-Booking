@@ -12,12 +12,6 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
     }
     function erpAlert(){
        var erpAlert =[{
-                    label :''
-                    ,name : 'erp_follow'
-                    ,type : 'erpSelect'
-                    ,values : GlobalData.getEmailStatus()
-                    ,model : 'Follow Up'
-                    },{
                       label :''
                       ,name : 'erp_datetime'
                       ,type : 'erpDateTime'

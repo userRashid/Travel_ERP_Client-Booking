@@ -22,8 +22,19 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
     }
 
     $scope.Date = {
-        defaultDate : 0 // 0 for current date -digit for previous date and digit for next date
+        defaultDate : 0
         ,hidePrevious : true
+        ,opts : {
+                locale: {format: 'DD/MM/YYYY'},
+                ranges: {
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()]
+                     }
+                }
+         ,date : {
+                  startDate: moment(),
+                  endDate: moment()
+                 }
     };
     $scope.showAll = function(){
         $scope.bookings = $scope.bookingsData;
@@ -102,7 +113,7 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
     };
 
     $scope.arrivalsFilter = function(){
-        BookingService.fillerBooking($scope.Date).then(function(response){
+        BookingService.fillerBooking($scope.Date.date).then(function(response){
             $scope.bookingsData = response;
             $scope.bookings = response;
         });

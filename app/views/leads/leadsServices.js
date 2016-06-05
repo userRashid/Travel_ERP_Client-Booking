@@ -24,7 +24,7 @@ angular.module('sbAdminApp').factory('LeadsServices', function(API,$q,Notify) {
         promise.then(function(data){
         var model = data.getModel();
         var _data = {};
-            _data.erp_alertNotes = model.erp_follow;
+            _data.erp_alertNotes = model.erp_description;
             _data.erp_alertDate =  model.erp_datetime;
             _data.erp_alertStatus = "ACTIVE";
             _data.erp_emailNotification = false;
