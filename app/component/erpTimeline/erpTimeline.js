@@ -62,12 +62,12 @@ angular.module('sbAdminApp')
             var css = '';
             if(type != undefined) type = type.toLowerCase();
             switch(type){
-                case "email"        : css = 'fa-envelope-o';  break;
-                case "phone"        : css = 'fa-phone';       break;
-                case "meeting"      : css = 'fa-file-o';  break;
-                case "attachment"   : css = 'fa-paperclip';   break;
-                case "alert"        : css = 'fa-paperclip';   break;
-                default             : css = '';  break;
+                case "email"        : css = 'fa-envelope-o';    break;
+                case "phone"        : css = 'fa-phone';         break;
+                case "meeting"      : css = 'fa-file-o';        break;
+                case "attachment"   : css = 'fa-paperclip';     break;
+                case "alert"        : css = 'fa-paperclip';     break;
+                default             : css = '';                 break;
             }
             return css;
         }
@@ -76,12 +76,12 @@ angular.module('sbAdminApp')
             var css = '';
             if(type != undefined) type = type.toLowerCase();
             switch(type){
-                case "email"        : css = '';  break;
-                case "phone"        : css = 'warning';       break;
-                case "meeting"      : css = 'danger';  break;
-                case "attachment"   : css = 'info';   break;
-                case "alert"        : css = 'success';   break;
-                default             : css = '';  break;
+                case "email"        : css = '';         break;
+                case "phone"        : css = 'warning';  break;
+                case "meeting"      : css = 'danger';   break;
+                case "attachment"   : css = 'info';     break;
+                case "alert"        : css = 'success';  break;
+                default             : css = '';         break;
             }
             return css;
         }
