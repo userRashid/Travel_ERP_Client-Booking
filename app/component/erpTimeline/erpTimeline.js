@@ -66,6 +66,7 @@ angular.module('sbAdminApp')
                 case "phone"        : css = 'fa-phone';       break;
                 case "meeting"      : css = 'fa-file-o';  break;
                 case "attachment"   : css = 'fa-paperclip';   break;
+                case "alert"        : css = 'fa-paperclip';   break;
                 default             : css = '';  break;
             }
             return css;
@@ -79,6 +80,7 @@ angular.module('sbAdminApp')
                 case "phone"        : css = 'warning';       break;
                 case "meeting"      : css = 'danger';  break;
                 case "attachment"   : css = 'info';   break;
+                case "alert"        : css = 'success';   break;
                 default             : css = '';  break;
             }
             return css;
