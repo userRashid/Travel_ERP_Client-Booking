@@ -15,8 +15,12 @@
                     <!--<div class="timeline-heading">
                         <h4 class="timeline-title">Lorem ipsum dolor</h4>
                     </div>-->
-                    <p class="timeline-body">
+                    <p ng-if="item.erp_source != 'attachment' && item.erp_source != 'alert'" class="timeline-body">
                         {{item.erp_notes}}
+                    </p>
+                    <p ng-if="item.erp_source == 'alert'">
+                        {{item.erp_alertNotes}}<br />
+                        <i style="color:red" class="fa fa-clock-o"></i> {{item.erp_alertDate}}
                     </p>
                     <p class="m0"><small class="text-muted"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;<b>Added on : </b>{{timeAgo(item.erp_updateTimestamp)}}&nbsp;&nbsp;[{{showTime(item.erp_updateTimestamp)}}]</small></p>
                 </div>

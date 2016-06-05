@@ -102,7 +102,7 @@ angular.module('sbAdminApp')
             return data;
         }
         $scope.options.promise.then(function(response){
-            var timeline = insertionSort(response.data.erp_leadAttachments.concat(response.data.erp_notes),'erp_updateTimestamp').reverse()
+            var timeline = insertionSort(response.data.erp_leadAttachments.concat(response.data.erp_notes,response.data.erp_alerts),'erp_updateTimestamp').reverse()
                 ,len = timeline.length
                 ,temp = new Array();
             for(var i=0; i<len;i++){
@@ -126,6 +126,7 @@ angular.module('sbAdminApp')
         }
 
         $scope.options.addNew = function(data){
+            console.log(' ********  ',data);
             $scope.timeline.unshift(addNoteObj(data));
         }
 
