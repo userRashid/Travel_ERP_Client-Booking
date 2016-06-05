@@ -19,6 +19,7 @@ angular
       ,'smart-table'
       ,'ngAnimate'
       ,'ui.bootstrap.datetimepicker'
+      ,'daterangepicker'
       //,'ngCookies'
       //,'ngResource'
       //,'toggle-switch'
