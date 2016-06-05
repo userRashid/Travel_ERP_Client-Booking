@@ -114,8 +114,10 @@ angular.module('sbAdminApp')
                 var model = d.getModel();
                 model.erp_source    = item.erp_source;
                 model.erp_createdBy = Authenticate.user().id;
+                console.log('Update Called',item,model);
                 API.put('lead/'+item.erp_leadId+'/note/'+item.erp_noteId,model).then(function(response){
                     Notify.add('success','Success','Update '+item.erp_source);
+                    item.erp_notes = model.erp_notes;
                     item.showItem = false;
                 });
             });
