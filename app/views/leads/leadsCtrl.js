@@ -126,8 +126,6 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
         LeadsServices.addAlert($scope.Alert.promise,Session.get('id'),$scope.leadId).then(function(response){
             $scope.closeAllPanel();
             Notify.add('success','Success',response.data.message);
-            response.erp_source = 'Alert';
-            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ',response.data.id,$scope.leadId,$scope.noteType,"Alert",response);
             $scope.Timeline.addNew(addNew(response.data.id,$scope.leadId,$scope.noteType,"Alert",response));
         },function(error){
             console.log("error",error)

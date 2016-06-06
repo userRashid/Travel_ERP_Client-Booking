@@ -30,8 +30,11 @@ angular.module('sbAdminApp').factory('LeadsServices', function(API,$q,Notify) {
             _data.erp_emailNotification = false;
             _data.erp_createdById  = createdBy;
             API.post('lead/'+leadId+'/alert',_data).then(function(response){
+                response.erp_alertNotes = model.erp_description;
+                response.erp_alertDate  = model.erp_datetime;
+                response.erp_source     = 'Alert';
                 q.resolve(response);
-                },function(error){
+            },function(error){
                 q.reject(error);
             });
          });

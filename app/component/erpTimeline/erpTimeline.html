@@ -25,9 +25,16 @@
                     <p class="m0"><small class="text-muted"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;<b>Added on : </b>{{timeAgo(item.erp_updateTimestamp)}}&nbsp;&nbsp;[{{showTime(item.erp_updateTimestamp)}}]</small></p>
                 </div>
                 <div ng-if="item.showItem">
-                    <div class="row" data-erp-note="item.Note"></div>
-                    <button ng-click="updateNode(item)">Update</button>
-                    <button ng-click="cancelEdit(item)">Cancel</button>
+                    <div ng-if="item.erp_source != 'alert'">
+                        <div class="row" data-erp-note="item.Note"></div>
+                        <button ng-click="updateNode(item)">Update</button>
+                        <button ng-click="cancelEdit(item)">Cancel</button>
+                    </div>
+                    <div ng-if="item.erp_source == 'alert'">
+                        <div class="row" data-erp-alert="item.Note"></div>
+                        <button ng-click="updateAlert(item)">Update</button>
+                        <button ng-click="cancelEdit(item)">Cancel</button>
+                    </div>
                 </div>
             </div>
         </li>
