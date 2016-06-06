@@ -1,7 +1,7 @@
 <div>
     <div class="row black-bor">
         <div class="col-md-8 m-t20 fontcol">
-            <h2>{{conversionData.erp_destinations}} Retreat Of {{conversionData.erp_customer.erp_name}} From {{conversionData.erp_customer.erp_city}}</h2>
+            <h2>{{conversionData.erp_destinations}} Of {{conversionData.erp_customer.erp_name}} From {{conversionData.erp_customer.erp_city}}</h2>
         </div>
         <div class="col-md-4 m-t40 text-right">
             <button class="btn-success btn">Open Lead</button>
@@ -13,7 +13,7 @@
                 <h5>Arrival</h5><h3>{{conversionData.erp_departureDate}}</h3>
             </div>
             <div class="col-md-4">
-                <h5>Duration</h5><h3>{{conversionData.erp_nights}}</h3>
+                <h5>Duration</h5><h3>{{conversionData.erp_nights}} Nights</h3>
             </div>
             <div class="col-md-4">
                 <h5>Rooms</h5><h3>{{conversionData.erp_roomCount}}</h3>
@@ -35,21 +35,36 @@
         </div>
         <div class="col-md-6">
             <div  class="sold text-right">
-                <h5>Sold Cost</h5><b>{{conversionData.erp_costBreakup.soldCost}}&nbsp;/-</b>
+
             </div>
             <div class="col-md-12 black-bor pZero" >
-                <div ng-repeat ="_conversionData in conversionData.cost">
-                    <div class="col-md-6 text-left m-t10">{{_conversionData.label}}</div>
-                    <div class="col-md-6 text-right m-t10 pZero">{{_conversionData.value}}&nbsp;/-</div>
+                <div ng-repeat ="(key, value) in conversionData.erp_costBreakup">
+                    <div ng-if="key == 'Sold Cost'">
+                        <b>Sold Cost</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>{{value}}&nbsp;/-</b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 black-bor pZero" >
+                <div ng-repeat ="(key, value) in conversionData.erp_costBreakup">
+                    <div class="col-md-6 text-left m-t10">{{key}}</div>
+                    <div class="col-md-6 text-right m-t10 pZero">{{value}}&nbsp;/-</div>
                 </div>
             </div>
             <div class="col-md-12 pZero">
-                <div class="col-md-6 text-left m-t10 book">
-                    <b>Total Cost Price</b>
+                <div class="col-md-12 black-bor pZero" >
+                    <div ng-repeat ="(key, value) in conversionData.erp_costBreakup">
+                        <div ng-if="key == 'Total Cost Price'">
+                            <div class="col-md-6 text-left m-t10 book">
+                                <b>Total Cost Price</b>
+                            </div>
+                            <div class="col-md-6 text-right m-t10 book pZero">
+                                <b>{{value}}&nbsp;/-</b>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 text-right m-t10 book pZero">
-                    <b>{{conversionData.totlCost}}&nbsp;/-</b>
-                </div>
+
             </div>
         </div>
     </div>

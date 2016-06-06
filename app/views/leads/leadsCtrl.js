@@ -133,6 +133,9 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     }
 
     $scope.cancel = function(){
+        for(var key in $scope.item){
+            $scope.item[key] = false;
+        }
     }
 
     $scope.addNote = function(){
