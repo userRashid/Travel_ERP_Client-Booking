@@ -89,7 +89,11 @@ angular.module('sbAdminApp')
             item.showItem = true;
             $timeout(function(){
                 item.Note.promise.then(function(d){
-                    d.setModel({erp_notes:item.erp_notes});
+                    if(item.erp_source == 'alert'){
+                        d.setModel({erp_description : item.erp_alertNotes,erp_datetime : item.erp_alertDate});
+                    } else {
+                        d.setModel({erp_notes   :   item.erp_notes});
+                    }
                 });
             });
 
@@ -128,14 +132,17 @@ angular.module('sbAdminApp')
         $scope.updateAlert = function(item){
             item.Note.promise.then(function(d){
                var model = d.getModel();
-               model.erp_source    = item.erp_source;
-               model.erp_createdBy = Authenticate.user().id;
-               console.log('Update Called',item,model);
-               /*API.put('lead/'+item.erp_leadId+'/note/'+item.erp_noteId,model).then(function(response){
+               model.erp_source     = item.erp_source;
+               //TODO need to change ids in formData
+               model.erp_alertNotes         = model.erp_description;
+               model.erp_alertDate          = model.erp_datetime;
+               model.erp_alertStatus        = 'ACTIVE';
+               model.erp_emailNotification  = false;
+               API.put('lead/'+item.erp_leadId+'/alert/'+item.erp_alertId,model).then(function(response){
                    Notify.add('success','Success','Update '+item.erp_source);
-                   item.erp_notes = model.erp_notes;
+                   item.erp_alertNotes = model.erp_description;
                    item.showItem = false;
-               });*/
+               });
             });
         }
 
