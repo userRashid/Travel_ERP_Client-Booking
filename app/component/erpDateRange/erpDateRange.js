@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('erpDateRange',function($compile){
+angular.module('sbAdminApp').directive('erpDateRange',function($compile,$filter){
   return {
     restrict : 'A'
     ,scope : {
@@ -31,7 +31,8 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile){
         $scope.popupTwo.opened = true;
     };
     $scope.$watch('data',function(values){
-        $scope.startModel = values.data.end.model;
+        if(values.start.model)$scope.startModel = $filter('date')(values.start.model, $scope.format);
+        if(values.end.model)$scope.endModel = $filter('date')(values.end.model, $scope.format);;
 
     },true);
   }

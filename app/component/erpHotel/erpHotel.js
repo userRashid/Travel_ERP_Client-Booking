@@ -77,7 +77,7 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                             '<div class="form-group col-sm-3"><label>Room Count</label>' +
                                 '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +
                             '</div><div class="form-group col-sm-6">' +
-                                '<div erp-date-range="item.checkin" start-model="item.erp_inclusions"  end-model="item.erp_inclusions" ></div>'
+                                '<div erp-date-range="item.checkin" start-model="item.erp_checkinDate"  end-model="item.erp_checkoutDate" ></div>'
                                 //'<label>Nights Of Stay</label><input class="form-control" type="number" ng-model="item.erp_nightsOfStay" />' +
                             '</div>' +
                         '</div>' +
