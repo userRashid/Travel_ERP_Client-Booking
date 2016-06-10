@@ -22,7 +22,7 @@ angular.module('sbAdminApp').directive('erpHotelDetail',function($compile){
                             '<div class="row mt30">'+
                                ' <div class="col-md-6 splook m-t20">'+
                                     '<b>{{item.erp_hotelName}}</b>'+
-                                    '<span>     ,Star -- {{item.erp_hotelCategory}}</span>'+
+                                    '<span>     ,Star --- {{item.erp_hotelCategory}}</span>'+
                                     '<p>{{item.erp_roomType}}</p>'+
                                     '<div class="col-md-12" >'+
                                        '<div class="col-md-6 tripcol">'+
