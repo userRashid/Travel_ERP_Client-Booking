@@ -1,13 +1,13 @@
-angular.module('sbAdminApp').directive('erpDateRange',function($compile){
+angular.module('sbAdminApp').directive('erpDateRange',function($compile,$filter){
   return {
     restrict : 'A'
     ,scope : {
       data : '=erpDateRange'
+      ,startModel : '='
+      ,endModel : '='
     }
-    //,replace :true
     ,link : link
     ,controller : controller
-    //,controllerAs : 'rashid'
   }
 
   function controller($scope,GlobalData){
@@ -30,7 +30,11 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile){
     $scope.openTwo = function() {
         $scope.popupTwo.opened = true;
     };
+    $scope.$watch('data',function(values){
+        if(values.start.model)$scope.startModel = $filter('date')(values.start.model, $scope.format);
+        if(values.end.model)$scope.endModel = $filter('date')(values.end.model, $scope.format);;
 
+    },true);
   }
   function link($scope,element,attr){
     element.html('').append($compile(renderHTML())($scope));
@@ -48,7 +52,7 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile){
                  '</p>';
       html +='</div>';
       html +='<div class="col-lg-6">' +
-             '<label ng-if="data.start.label">{{data.end.label}}</label>' ;
+             '<label ng-if="data.end.label">{{data.end.label}}</label>' ;
       html +='<p class="input-group">' +
                  '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.end.model" is-open="popupTwo.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
                  '<span class="input-group-btn">' +
