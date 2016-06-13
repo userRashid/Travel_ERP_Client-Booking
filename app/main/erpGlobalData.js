@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('GlobalData',function($q,API){
+angular.module('sbAdminApp').factory('GlobalData',function($q,API,Session){
   return {
     getNight        :   getNight
     ,getSocial      :   getSocial
@@ -53,15 +53,14 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API){
 
   function getAllEmployee(){
       var p = $q.defer()
-          temp = new Array();
-      API.get('employee').then(function(response){
-        var len = response.data.length;
+          ,temp = new Array()
+          ,response = JSON.parse(Session.get('employee'))
+          ,len = response.length;
         for(var i=0;i<len;i++){
-            temp.push(response.data[i].erp_emp_name);
+            temp.push(response[i].erp_emp_name);
         }
         p.resolve(temp);
-      });
-      return p.promise;
+        return p.promise;
   }
 
   function getTransportType(){

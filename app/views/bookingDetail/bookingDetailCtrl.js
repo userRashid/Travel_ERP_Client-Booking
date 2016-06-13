@@ -17,7 +17,9 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
           controller    : function($scope,ErpNodeServices,FormData,$uibModalInstance,LeadsServices,Watch){
             $scope.BookingDetail = ErpNodeServices.createForm(FormData.addBookingData());
             $scope.BookingDetail.promise.then(function(data){
-                console.log('Hello ---- ',modelData);
+                console.log(' ----- one ',modelData);
+                modelData.erp_createdById = ErpNodeServices.getName(modelData.erp_createdById);
+                console.log(' ----- ',modelData);
                 data.setModel(modelData);
             });
           },

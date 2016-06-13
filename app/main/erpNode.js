@@ -96,6 +96,7 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
                 ,date = new Date(_date);
             data.model = date;
         } else {
+            //console.log(' ---- ',model);
             data.model = model;
         }
       };

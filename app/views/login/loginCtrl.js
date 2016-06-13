@@ -1,7 +1,9 @@
-angular.module('sbAdminApp').controller('Login', function ($scope,Navigation,Authenticate,API,$state) {
+angular.module('sbAdminApp').controller('Login', function ($scope,Navigation,Authenticate,API,$state,$q,Session) {
     $scope.Login = function(data){
-        API.post('employee/login',data).then(function(response){
-            Authenticate.doLogin('',response.data.erp_emp_id,response.data.erp_emp_name);
+        var promise = [API.post('employee/login',data),API.get('employee')];
+        $q.all(promise).then(function(response){
+            Session.set('employee',JSON.stringify(response[1].data))
+            Authenticate.doLogin('',response[0].data.erp_emp_id,response[0].data.erp_emp_name);
             $state.go('leads.all', { objId: 479 });
         });
         //Authenticate.doLogin('',9,'Rashid');
