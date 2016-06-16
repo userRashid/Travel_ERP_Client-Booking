@@ -31,8 +31,12 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
     $scope.remove = function(index){
         $scope.hotelData.splice(index, 1);
     };
-    $scope.hotelData = hotelData;
-    $scope.data.model = $scope.hotelData;
+    if($scope.data.model){
+        $scope.hotelData = $scope.data.model;
+    }else{
+        $scope.hotelData = hotelData;
+        $scope.data.model = $scope.hotelData;
+    }
   }
   function link($scope,element,attr){
     element.html('').append($compile(renderHTML())($scope));

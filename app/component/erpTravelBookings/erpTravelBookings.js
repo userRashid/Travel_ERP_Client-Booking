@@ -17,7 +17,11 @@ angular.module('sbAdminApp').directive('erpTravelBookings',function($compile){
         $scope.travelData.splice(index, 1);
     };
     $scope.travelData = travelData;
-    $scope.data.model = $scope.travelData;
+    if(!$scope.data.model){
+        $scope.data.model = $scope.travelData;
+    }else{
+        $scope.travelData =  $scope.data.model;
+    }
   }
   function link($scope,element,attr){
     element.html('').append($compile(renderHTML())($scope));

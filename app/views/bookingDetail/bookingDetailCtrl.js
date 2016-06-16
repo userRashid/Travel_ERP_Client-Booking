@@ -2,7 +2,7 @@
 angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$stateParams,BookingDetailService,$uibModal){
     $scope.bookingId = $stateParams.id;
     BookingDetailService.getBooking($stateParams.id).then(function(data){
-        console.log(data);
+       // console.log(data);
         $scope.conversionData = data;
     });
     $scope.editBooking = function(data){
@@ -19,7 +19,7 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
             $scope.BookingDetail.promise.then(function(data){
                 console.log(' ----- one ',modelData);
                 modelData.erp_createdById = ErpNodeServices.getName(modelData.erp_createdById);
-                console.log(' ----- ',modelData);
+                if(modelData.hasOwnProperty('erp_salesPersonId')) modelData.erp_salesPersonId = modelData.erp_salesPerson.erp_emp_name//GlobalData.getEmployee(modelData.erp_salesPersonId);
                 data.setModel(modelData);
             });
           },

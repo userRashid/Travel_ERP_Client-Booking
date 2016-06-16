@@ -30,7 +30,9 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile,$filter)
     $scope.openTwo = function() {
         $scope.popupTwo.opened = true;
     };
+
     $scope.$watch('data',function(values){
+        if(!values) return
         if(values.start.model)$scope.startModel = $filter('date')(values.start.model, $scope.format);
         if(values.end.model)$scope.endModel = $filter('date')(values.end.model, $scope.format);;
 
