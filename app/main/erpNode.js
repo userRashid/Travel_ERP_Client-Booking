@@ -79,7 +79,6 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
         }
       }
       function Set(data,model){
-        //console.log('data,model ',data,model);
         if(data.type == 'erpText'){
           data.model = model;
         } else if(data.type == 'erpMultiSelect') {
@@ -95,8 +94,9 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
                 ,_date = temp[2]+'-'+temp[1]+'-'+temp[0]
                 ,date = new Date(_date);
             data.model = date;
-        } else {
-            //console.log(' ---- ',model);
+         } else if(data.type == 'erpBookingStatus') {
+              data.erpBookingStatus = model;
+         } else {
             data.model = model;
         }
       };
