@@ -44,10 +44,10 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
   function renderHTML(){
     var html = '';
         html += '<div class="add-hotel">' +
-                    '<div class="pos-r clearfix" ng-repeat="item in hotelData" ng-class="{\'odd\':$odd}">' +
+                    '<div class="pos-r clearfix p5" ng-repeat="item in hotelData" ng-class="{\'odd\':$odd}">' +
                         '<div class="col-sm-11 row">' +
                             '<div class="form-group col-sm-3"><label>Name</label><input class="form-control" ng-model="item.erp_hotelName" type="text" /></div>' +
-                            '<div class="form-group col-sm-3"><label>Hotel Category</label>' +
+                            '<div class="form-group col-sm-2"><label>Hotel Category</label>' +
                                 '<select class="form-control" ng-model="item.erp_hotelCategory">' +
                                     '<option value="2 Star">2 Star</option>' +
                                     '<option value="3 Star">3 Star</option>' +
@@ -55,10 +55,10 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                                     '<option value="5 Star">5 Star</option>' +
                                 '</select>' +
                             '</div>' +
-                            '<div class="form-group col-sm-3"><label>Room Count</label>' +
+                            '<div class="form-group col-sm-2"><label>Room Count</label>' +
                                 '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +
                             '</div>' +
-                            '<div class="form-group col-sm-3"><label>Room Type</label>' +
+                            '<div class="form-group col-sm-2"><label>Room Type</label>' +
                                 '<select class="form-control" ng-model="item.erp_roomType">' +
                                     '<option value="Deluxe">Deluxe</option>' +
                                     '<option value="Super Deluxe">Super Deluxe</option>' +
@@ -87,7 +87,7 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                             '</div>' +
                             '<div class="form-group col-sm-6"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_inclusions" ></textarea></div>' +
                         '</div>' +
-                        '<div class="col-sm-1 add-hotel-btn">' +
+                        '<div class="col-sm-1 add-hotel-btn form-group">' +
                             '<button ng-if="!$last" class="btn btn-danger" ng-click="remove($index)"><i class="fa fa-minus"></i></button>' +
                             '<button ng-if="$last" class="btn btn-success" ng-click="addMore()"><i class="fa fa-plus"></i></button>' +
                         '</div>' +
