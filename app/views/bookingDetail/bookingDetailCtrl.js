@@ -15,7 +15,7 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
           modalInstance = $uibModal.open({
           templateUrl   : 'myModalContent.html',
           controller    : function($scope,ErpNodeServices,FormData,$uibModalInstance,LeadsServices,Watch){
-            $scope.BookingDetail = ErpNodeServices.createForm(FormData.addBookingData());
+            $scope.BookingDetail = ErpNodeServices.createForm(FormData.editBookingData());
             $scope.BookingDetail.promise.then(function(data){
                 console.log(' ----- one ',data);
             //    Watch.makeActualCost(data.data);
