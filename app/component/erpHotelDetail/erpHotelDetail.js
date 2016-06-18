@@ -9,7 +9,6 @@ angular.module('sbAdminApp').directive('erpHotelDetail',function($compile){
 
     }
     function controller($scope){
-        console.log('data',$scope.data);
     }
 
     function link($scope,element,attr){

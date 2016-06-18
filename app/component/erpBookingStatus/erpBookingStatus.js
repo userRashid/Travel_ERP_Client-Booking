@@ -53,6 +53,7 @@ angular.module('sbAdminApp').directive('erpBookingStatus',function($compile){
       });
     }
     $scope.isBookingAmount = false;
+    if($scope.data.erpBookingStatus)$scope.Model.erp_bookingStatus = $scope.data.erpBookingStatus
     $scope.$watch('Model',function(model){
         if(model == undefined) return;
         if(model.erp_bookingStatus == 'Token Amount Received'){
