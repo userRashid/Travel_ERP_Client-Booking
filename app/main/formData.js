@@ -208,6 +208,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             ,name : 'erp_hotelBookings'
             ,type : 'erpHotel'
             ,mode : 'full'
+            ,isEdit : true
           },{
             label : 'Ticketing Details'
             ,name : 'erp_travelBookings'
