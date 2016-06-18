@@ -36,39 +36,38 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
     }
     function addLeadData(){
         var data = [{
-                             label : 'Going to (multiple destinations)'
-                             ,name : 'erp_destinations'
-                             ,type : 'erpMultiSelect'
-                             ,dropDown : $q.when(getCity())
-                           },{
-                             label : 'Departure'
-                             ,name : 'erp_departureDate'
-                             ,type : 'erpCalender'
-                             ,defaultDate : 0 // 0 for current date -digit for previous date and digit for next date
-                             ,hidePrevious : true
-                           },{
-                             label : 'People'
-                             ,name : 'erp_people'
-                             ,type : 'erpPeople'
-                           },{
-                             label : 'Nights'
-                             ,name : 'erp_nights'
-                             ,type : 'erpAddMore'
-                             //,values : GlobalData.getNight()
-                           },{
-                             label : 'Leaving from'
-                             ,name : 'erp_leavingFrom'
-                             ,type : 'erpText'
-                           },{
-                             label : 'Source'
-                             ,name : 'erp_leadSource'
-                             ,type : 'erpSelect'
-                             ,values : GlobalData.getLeadSource()
-                           },{
-                             label : 'Additional Requirement'
-                             ,name : 'erp_additionalInfo'
-                             ,type : 'erpTextarea'
-                           }];
+             label : 'Going to (multiple destinations)'
+             ,name : 'erp_destinations'
+             ,type : 'erpMultiSelect'
+             ,dropDown : $q.when(getCity())
+           },{
+             label : 'Departure'
+             ,name : 'erp_departureDate'
+             ,type : 'erpCalender'
+             ,defaultDate : 0 // 0 for current date -digit for previous date and digit for next date
+             ,hidePrevious : true
+           },{
+             label : 'People'
+             ,name : 'erp_people'
+             ,type : 'erpPeople'
+           },{
+             label : 'Nights'
+             ,name : 'erp_nights'
+             ,type : 'erpAddMore'
+           },{
+             label : 'Leaving from'
+             ,name : 'erp_leavingFrom'
+             ,type : 'erpText'
+           },{
+             label : 'Source'
+             ,name : 'erp_leadSource'
+             ,type : 'erpSelect'
+             ,values : GlobalData.getLeadSource()
+           },{
+             label : 'Additional Requirement'
+             ,name : 'erp_additionalInfo'
+             ,type : 'erpTextarea'
+           }];
         return data;
     }
     function customer(){
@@ -113,21 +112,12 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
         return additionalInformation;
     }
     function addBookingData(){
-      var addBookingData = [{
+       var addBookingData = [{
             label : 'Package Name'
             ,name : 'erp_bookingName'
             ,type : 'erpText'
             ,mandatory : true
-          }/*,{
-            label : 'Package Code'
-            ,name : 'erp_packageCode'
-            ,type : 'erpText'
           },{
-            label : 'Rooms'
-            ,name : 'erp_roomCount'
-            ,type : 'erpAddMore'
-            //,values : GlobalData.getNight()
-          }*/,{
             label : 'Pick Up'
             ,name : 'erp_pickupLocation'
             ,type : 'erpText'
@@ -139,71 +129,41 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             label : 'Transport/Vehicle Given (optional)'
             ,name : 'erp_vehicle'
             ,type : 'erpText' //TODO drop down , values coming from service
-          },/*{
-            label : 'Total Transport/Vehicle Cost'
-            ,name : 'erp_vehicleCost'
-            ,type : 'erpNumber'
-          },*/{
+          },{
             label : 'Hotel Details'
             ,name : 'erp_hotelBookings'
             ,type : 'erpHotel'
             ,mode : 'full'
-          }/*,{
-            label : 'Hotel Cost'
-            ,name : 'erp_hotel_cost'
-            ,type : 'erpText'
           },{
-            label : 'Total Cost'
-            ,name : 'erp_total_cost'
-            ,type : 'erpText'
-          },{
-            label : 'Volvo/Airticket/Train'
-            ,name : 'erp_vehicle'
-            ,type : 'erpSelect'
-            ,values : GlobalData.getTransportType()
-          },*/,{
             label : 'Ticketing Details'
             ,name : 'erp_travelBookings'
             ,type : 'erpTravelBookings'
-          }/*,{
-            label : 'Cost'
-            ,name : 'erp_vehicleCost'
-            ,type : 'erpText'
-          }*/,{
-                label : 'Inclusions'
-                ,name : 'erp_inclusions'
-                ,type : 'erpTextarea'
-                ,isCheckbox : true
-                ,checkboxModel : ''
-                ,checkboxLabel : 'Honeymoon'
-                ,checkboxData : 'Flower Decorated bed, Honeymoon Cake, Candle Light Dinner , '
           },{
-                label : 'Exclusions'
-                ,name : 'erp_exclusions'
-                ,type : 'erpTextarea'
+            label : 'Inclusions'
+            ,name : 'erp_inclusions'
+            ,type : 'erpTextarea'
+            ,isCheckbox : true
+            ,checkboxModel : ''
+            ,checkboxLabel : 'Honeymoon'
+            ,checkboxData : 'Flower Decorated bed, Honeymoon Cake, Candle Light Dinner , '
           },{
-                name : 'erp_bookingStatus'
-                ,type : 'erpBookingStatus'
-                ,values : GlobalData.getBookingStatus()
-                ,model : 'Confirmed by Traveler'
+            label : 'Exclusions'
+            ,name : 'erp_exclusions'
+            ,type : 'erpTextarea'
+          },{
+            name : 'erp_bookingStatus'
+            ,type : 'erpBookingStatus'
+            ,values : GlobalData.getBookingStatus()
+            ,model : 'Confirmed by Traveler'
           },{
             label : 'Total Sold Cost'
             ,name : 'erp_proposedPackageCost'
             ,type : 'erpNumber'
-          }/*,{
-            label : 'Actual Cost'
-            ,name : 'erp_actualCost'
-            ,type : 'erpText'
-            ,isDisable : true
           },{
-            label : 'Miscellaneous cost'
-            ,name : 'erp_miscellaneousCost'
-            ,type : 'erpText'
-         }*/,{
-                            name : 'erp_taxIncluded'
-                            ,type : 'erpCheckbox'
-                            ,values : GlobalData.getTaxType()
-                      },{
+            name : 'erp_taxIncluded'
+            ,type : 'erpCheckbox'
+            ,values : GlobalData.getTaxType()
+          },{
             label : 'Sales Person'
             ,name : 'erp_salesPersonId'
             ,type : 'erpSelect'
@@ -214,111 +174,85 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
         return addBookingData;
     }
 
-        function editBookingData(){
-          var editBookingData = [{
-                label : 'Package Name'
-                ,name : 'erp_bookingName'
-                ,type : 'erpText'
-                ,mandatory : true
-              }/*,{
-                label : 'Package Code'
-                ,name : 'erp_packageCode'
-                ,type : 'erpText'
-              }*/,{
-                label : 'Sales Person'
-                ,name : 'erp_salesPersonId'
-                ,type : 'erpSelect'
-                ,values : GlobalData.getAllEmployee()
-                ,model : Authenticate.user().name
-                ,mandatory : true
-              }/*,{
-                label : 'Rooms'
-                ,name : 'erp_roomCount'
-                ,type : 'erpAddMore'
-              }*/,{
-                label : 'Pick Up'
-                ,name : 'erp_pickupLocation'
-                ,type : 'erpText'
-              },{
-                label : 'Drop'
-                ,name : 'erp_dropLocation'
-                ,type : 'erpText'
-              },{
-                label : 'Transport/Vehicle Given (optional)'
-                ,name : 'erp_vehicle'
-                ,type : 'erpText'
-              },{
-                label : 'Total Transport/Vehicle Cost'
-                ,name : 'erp_vehicleCost'
-                ,type : 'erpNumber'
-              },{
-                label : 'Hotel Details'
-                ,name : 'erp_hotelBookings'
-                ,type : 'erpHotel'
-                ,mode : 'full'
-              }/*,{
-                label : 'Hotel Cost'
-                ,name : 'erp_hotel_cost'
-                ,type : 'erpText'
-              },{
-                label : 'Total Cost'
-                ,name : 'erp_total_cost'
-                ,type : 'erpText'
-              },{
-                label : 'Volvo/Airticket/Train'
-                ,name : 'erp_vehicle'
-                ,type : 'erpSelect'
-                ,values : GlobalData.getTransportType()
-              },*/,{
-                label : 'Ticketing Details'
-                ,name : 'erp_travelBookings'
-                ,type : 'erpTravelBookings'
-              }/*,{
-                label : 'Cost'
-                ,name : 'erp_vehicleCost'
-                ,type : 'erpText'
-              }*/,{
-                    label : 'Inclusions'
-                    ,name : 'erp_inclusions'
-                    ,type : 'erpTextarea'
-                    ,isCheckbox : true
-                    ,checkboxModel : ''
-                    ,checkboxLabel : 'Honeymoon'
-                    ,checkboxData : 'Flower Decorated bed, Honeymoon Cake, Candle Light Dinner , '
-              },{
-                    label : 'Exclusions'
-                    ,name : 'erp_exclusions'
-                    ,type : 'erpTextarea'
-              },{
-                name : 'erp_taxIncluded'
-                ,type : 'erpCheckbox'
-                ,values : GlobalData.getTaxType()
-              },{
-                label : 'Total Sold Cost'
-                ,name : 'erp_proposedPackageCost'
-                ,type : 'erpNumber'
-              },{
-                label : 'Actual Cost'
-                ,name : 'erp_actualCost'
-                ,type : 'erpText'
-                ,isDisable : true
-              },{
-               name : 'erp_bookingStatus'
-               ,type : 'erpBookingStatus'
-               ,values : GlobalData.getBookingStatus()
-               ,model : 'Confirmed by Traveler'
-             },{
-                label : 'Miscellaneous cost'
-                ,name : 'erp_miscellaneousCost'
-                ,type : 'erpText'
-             }];
-            return editBookingData;
-        }
-
-
-
-
-
+    function editBookingData(){
+      var editBookingData = [{
+            label : 'Package Name'
+            ,name : 'erp_bookingName'
+            ,type : 'erpText'
+            ,mandatory : true
+          },{
+            label : 'Sales Person'
+            ,name : 'erp_salesPersonId'
+            ,type : 'erpSelect'
+            ,values : GlobalData.getAllEmployee()
+            ,model : Authenticate.user().name
+            ,mandatory : true
+          },{
+            label : 'Pick Up'
+            ,name : 'erp_pickupLocation'
+            ,type : 'erpText'
+          },{
+            label : 'Drop'
+            ,name : 'erp_dropLocation'
+            ,type : 'erpText'
+          },{
+            label : 'Transport/Vehicle Given (optional)'
+            ,name : 'erp_vehicle'
+            ,type : 'erpText'
+          },{
+            label : 'Total Transport/Vehicle Cost'
+            ,name : 'erp_vehicleCost'
+            ,type : 'erpNumber'
+          },{
+            label : 'Hotel Details'
+            ,name : 'erp_hotelBookings'
+            ,type : 'erpHotel'
+            ,mode : 'full'
+          },{
+            label : 'Ticketing Details'
+            ,name : 'erp_travelBookings'
+            ,type : 'erpTravelBookings'
+          }/*,{
+            label : 'Cost'
+            ,name : 'erp_vehicleCost'
+            ,type : 'erpText'
+          }*/,{
+            label : 'Inclusions'
+            ,name : 'erp_inclusions'
+            ,type : 'erpTextarea'
+            ,isCheckbox : true
+            ,checkboxModel : ''
+            ,checkboxLabel : 'Honeymoon'
+            ,checkboxData : 'Flower Decorated bed, Honeymoon Cake, Candle Light Dinner , '
+          },{
+            label : 'Exclusions'
+            ,name : 'erp_exclusions'
+            ,type : 'erpTextarea'
+          },{
+            name : 'erp_taxIncluded'
+            ,type : 'erpCheckbox'
+            ,values : GlobalData.getTaxType()
+          },{
+            label : 'Total Sold Cost'
+            ,name : 'erp_proposedPackageCost'
+            ,type : 'erpNumber'
+          },{
+            label : 'Actual Cost'
+            ,name : 'erp_actualCost'
+            ,type : 'erpText'
+            ,isDisable : true
+          },{
+           name : 'erp_bookingStatus'
+           ,type : 'erpBookingStatus'
+           ,values : GlobalData.getBookingStatus()
+           ,model : 'Confirmed by Traveler'
+         },{
+            label : 'Miscellaneous cost'
+            ,name : 'erp_miscellaneousCost'
+            ,type : 'erpText'
+         }];
+        return editBookingData;
+    }
     function addNote(){
       var addNote = [{
           label : 'Note'
