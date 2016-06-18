@@ -9,7 +9,7 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
         ,addAttach  :   addAttach
         ,getCity    :   getCity
         ,erpAlert   :   erpAlert
-        ,editBookingData : editBookingData
+        ,editBookingData :  editBookingData
     }
     function erpAlert(){
        var erpAlert =[{
