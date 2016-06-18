@@ -121,19 +121,12 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
             label : 'Package Code'
             ,name : 'erp_packageCode'
             ,type : 'erpText'
-          }*/,{
-            label : 'Sales Person'
-            ,name : 'erp_salesPersonId'
-            ,type : 'erpSelect'
-            ,values : GlobalData.getAllEmployee()
-            ,model : Authenticate.user().name
-            ,mandatory : true
           },{
             label : 'Rooms'
             ,name : 'erp_roomCount'
             ,type : 'erpAddMore'
             //,values : GlobalData.getNight()
-          },{
+          }*/,{
             label : 'Pick Up'
             ,name : 'erp_pickupLocation'
             ,type : 'erpText'
@@ -144,12 +137,12 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
           },{
             label : 'Transport/Vehicle Given (optional)'
             ,name : 'erp_vehicle'
-            ,type : 'erpText'
-          },{
+            ,type : 'erpText' //TODO drop down , values coming from service
+          },/*{
             label : 'Total Transport/Vehicle Cost'
             ,name : 'erp_vehicleCost'
             ,type : 'erpNumber'
-          },{
+          },*/{
             label : 'Hotel Details'
             ,name : 'erp_hotelBookings'
             ,type : 'erpHotel'
@@ -188,27 +181,34 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
                 ,name : 'erp_exclusions'
                 ,type : 'erpTextarea'
           },{
-            name : 'erp_taxIncluded'
-            ,type : 'erpCheckbox'
-            ,values : GlobalData.getTaxType()
+                name : 'erp_bookingStatus'
+                ,type : 'erpBookingStatus'
+                ,values : GlobalData.getBookingStatus()
+                ,model : 'Confirmed by Traveler'
           },{
             label : 'Total Sold Cost'
             ,name : 'erp_proposedPackageCost'
             ,type : 'erpNumber'
-          },{
+          }/*,{
             label : 'Actual Cost'
             ,name : 'erp_actualCost'
             ,type : 'erpText'
             ,isDisable : true
           },{
-           name : 'erp_bookingStatus'
-           ,type : 'erpBookingStatus'
-           ,values : GlobalData.getBookingStatus()
-           ,model : 'Confirmed by Traveler'
-         },{
             label : 'Miscellaneous cost'
             ,name : 'erp_miscellaneousCost'
             ,type : 'erpText'
+         }*/,{
+                            name : 'erp_taxIncluded'
+                            ,type : 'erpCheckbox'
+                            ,values : GlobalData.getTaxType()
+                      },{
+            label : 'Sales Person'
+            ,name : 'erp_salesPersonId'
+            ,type : 'erpSelect'
+            ,values : GlobalData.getAllEmployee()
+            ,model : Authenticate.user().name
+            ,mandatory : true
          }];
         return addBookingData;
     }

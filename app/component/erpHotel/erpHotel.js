@@ -47,6 +47,17 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                     '<div class="pos-r clearfix" ng-repeat="item in hotelData" ng-class="{\'odd\':$odd}">' +
                         '<div class="col-sm-11 row">' +
                             '<div class="form-group col-sm-3"><label>Name</label><input class="form-control" ng-model="item.erp_hotelName" type="text" /></div>' +
+                            '<div class="form-group col-sm-3"><label>Hotel Category</label>' +
+                                '<select class="form-control" ng-model="item.erp_hotelCategory">' +
+                                    '<option value="2 Star">2 Star</option>' +
+                                    '<option value="3 Star">3 Star</option>' +
+                                    '<option value="4 Star">4 Star</option>' +
+                                    '<option value="5 Star">5 Star</option>' +
+                                '</select>' +
+                            '</div>' +
+                            '<div class="form-group col-sm-3"><label>Room Count</label>' +
+                                '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +
+                            '</div>' +
                             '<div class="form-group col-sm-3"><label>Room Type</label>' +
                                 '<select class="form-control" ng-model="item.erp_roomType">' +
                                     '<option value="Deluxe">Deluxe</option>' +
@@ -60,14 +71,7 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                                     '<option value="Others">Others</option>' +
                                 '</select>' +
                             '</div>' +
-                            '<div class="form-group col-sm-3"><label>Hotel Category</label>' +
-                                '<select class="form-control" ng-model="item.erp_hotelCategory">' +
-                                    '<option value="2 Star">2 Star</option>' +
-                                    '<option value="3 Star">3 Star</option>' +
-                                    '<option value="4 Star">4 Star</option>' +
-                                    '<option value="5 Star">5 Star</option>' +
-                                '</select>' +
-                            '</div>' +
+
                             '<div class="form-group col-sm-3"><label>Meal Plan</label>' +
                                 '<select class="form-control" ng-model="item.erp_mealPlan">' +
                                     '<option value="CP">CP</option>' +
@@ -76,14 +80,12 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                                     '<option value="API">API</option>' +
                                 '</select>' +
                             '</div>' +
-                            '<div class="form-group col-sm-6"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_inclusions" ></textarea></div>' +
-                            '<div class="form-group col-sm-3"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
-                            '<div class="form-group col-sm-3"><label>Room Count</label>' +
-                                '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +
-                            '</div><div class="form-group col-sm-6">' +
-                                '<div erp-date-range="item.checkin" start-model="item.erp_checkinDate"  end-model="item.erp_checkoutDate" ></div>'
+                            //'<div class="form-group col-sm-3"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
+                            '<div class="form-group col-sm-6">' +
+                                '<div erp-date-range="item.checkin" start-model="item.erp_checkinDate"  end-model="item.erp_checkoutDate" ></div>' +
                                 //'<label>Nights Of Stay</label><input class="form-control" type="number" ng-model="item.erp_nightsOfStay" />' +
                             '</div>' +
+                            '<div class="form-group col-sm-6"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_inclusions" ></textarea></div>' +
                         '</div>' +
                         '<div class="col-sm-1 add-hotel-btn">' +
                             '<button ng-if="!$last" class="btn btn-danger" ng-click="remove($index)"><i class="fa fa-minus"></i></button>' +
