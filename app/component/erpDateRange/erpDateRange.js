@@ -33,7 +33,7 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile,$filter)
 
      if($scope.startModel || $scope.endModel ){
         $scope.data ={
-            start : {label : 'Checkin' ,  model : moment($scope.startModel, 'DD/MM/YYYY')._d },
+            start : {label : 'Checkin' ,  model : moment($scope.startModel, 'DD/MM/YYYY')._d},
             end   : {label : 'Checkout' , model : moment($scope.endModel, 'DD/MM/YYYY')._d }
         }
      }
