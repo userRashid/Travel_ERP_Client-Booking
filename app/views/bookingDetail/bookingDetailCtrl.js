@@ -17,12 +17,16 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
           controller    : function($scope,ErpNodeServices,FormData,$uibModalInstance,LeadsServices,Watch){
             $scope.BookingDetail = ErpNodeServices.createForm(FormData.editBookingData());
             $scope.BookingDetail.promise.then(function(data){
-                console.log(' ----- one ',data);
-            //    Watch.makeActualCost(data.data);
+                console.log(' ----- one ',data.data ,modelData);
                 modelData.erp_createdById = ErpNodeServices.getName(modelData.erp_createdById);
                 if(modelData.hasOwnProperty('erp_salesPersonId')) modelData.erp_salesPersonId = modelData.erp_salesPerson.erp_emp_name//GlobalData.getEmployee(modelData.erp_salesPersonId);
                 data.setModel(modelData);
+                $scope._data = data.data;
+                Watch.makeActualCost(data.data)
             });
+          $scope.$watch('_data',function(data){
+            Watch.makeActualCost(data)
+          },true);
           },
           size: size,
           resolve: {
@@ -31,6 +35,7 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
             }
           }
         });
+
 
         modalInstance.result.then(function (selectedItem) {
           //$scope.selected = selectedItem;
