@@ -26,7 +26,7 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
         }
     };
     $scope.$watch('Watch.getRooms()',function(data){
-        SetRoom(data);
+      //  SetRoom(data);
     });
     $scope.remove = function(index){
         $scope.hotelData.splice(index, 1);

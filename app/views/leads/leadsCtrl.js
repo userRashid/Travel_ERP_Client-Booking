@@ -35,16 +35,27 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
                 $scope.bookingButton = Watch.validation(data);
                 //Watch.makeActualCost(data);
                 Watch.showAmountReceived(data);
-                Watch.setRooms(data);
+              //  Watch.setRooms(data);
              },true);
+             // set zero value
+             function setZero(data){
+                data.erp_vehicleCost = 0;
+                var _data = data.erp_hotelBookings ,
+                     len  = _data.length;
+                 for(var i =0 ;i<len ;i++){
+                    data.erp_hotelBookings[i].erp_roomCost = 0;
+                 }
+                 return data;
+             }
              $scope.addBooking = function(){
                 $scope.BookingDetail.promise.then(function(data){
                     $scope.Model = data.getModel();
                     $scope.Model.erp_createdById = Authenticate.user().id;
                     $scope.Model.erp_leadId = leadId;
+                    $scope.Model.erp_roomCount = $scope.Model.erp_hotelBookings[0].erp_roomCount;
                     if($scope.Model.erp_taxIncluded) $scope.Model.erp_taxIncluded = true;
                     if($scope.Model.erp_salesPersonId) $scope.Model.erp_salesPersonId = Authenticate.user().id;
-                  API.post('booking',$scope.Model).then(function(response){
+                  API.post('booking',setZero($scope.Model)).then(function(response){
                        Notify.add('success','Success',response.data.message);
                        LeadsServices.saveLead(leadId,LeadStatus);
                        $uibModalInstance.dismiss('cancel');
