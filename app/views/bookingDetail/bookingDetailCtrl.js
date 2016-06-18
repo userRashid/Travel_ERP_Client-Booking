@@ -1,5 +1,5 @@
 //'use strict';
-angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$stateParams,BookingDetailService,$uibModal,Watch){
+angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$stateParams,BookingDetailService,$uibModal,Watch,API,Notify,Authenticate){
     $scope.bookingId = $stateParams.id;
     BookingDetailService.getBooking($stateParams.id).then(function(data){
        // console.log(data);
@@ -29,6 +29,21 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
             Watch.makeActualCost(data);
             $scope.bookingButton = Watch.validation(data);
           },true);
+
+          $scope.updateBooking = function(){
+           $scope.BookingDetail.promise.then(function(data){
+             $scope.Model = data.getModel();
+             $scope.Model.erp_createdById = Authenticate.user().id;
+            API.put('booking/'+modelData.erp_bookingId,$scope._d).then(function(response){
+               Notify.add('success','Success',response.data.message);
+               //LeadsServices.saveLead(leadId,LeadStatus);
+               $uibModalInstance.dismiss('cancel');
+              // $state.go('booking.list');
+            },function(error){
+                Notify.add('error','Error',error);
+            });
+           });
+          }
           },
           size: size,
           resolve: {
