@@ -31,6 +31,13 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile,$filter)
         $scope.popupTwo.opened = true;
     };
 
+     if($scope.startModel || $scope.endModel ){
+        $scope.data ={
+            start : {label : 'Checkin' ,  model : moment($scope.startModel, 'DD/MM/YYYY')._d },
+            end   : {label : 'Checkout' , model : moment($scope.endModel, 'DD/MM/YYYY')._d }
+        }
+     }
+
     $scope.$watch('data',function(values){
         if(!values) return
         if(values.start.model)$scope.startModel = $filter('date')(values.start.model, $scope.format);
