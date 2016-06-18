@@ -33,7 +33,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
              $scope.BookingDetail = ErpNodeServices.createForm(FormData.addBookingData());
              $scope.$watch('BookingDetail.data',function(data){
                 $scope.bookingButton = Watch.validation(data);
-                Watch.makeActualCost(data);
+                //Watch.makeActualCost(data);
                 Watch.showAmountReceived(data);
                 Watch.setRooms(data);
              },true);
@@ -44,7 +44,7 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
                     $scope.Model.erp_leadId = leadId;
                     if($scope.Model.erp_taxIncluded) $scope.Model.erp_taxIncluded = true;
                     if($scope.Model.erp_salesPersonId) $scope.Model.erp_salesPersonId = Authenticate.user().id;
-                    API.post('booking',$scope.Model).then(function(response){
+                  API.post('booking',$scope.Model).then(function(response){
                        Notify.add('success','Success',response.data.message);
                        LeadsServices.saveLead(leadId,LeadStatus);
                        $uibModalInstance.dismiss('cancel');
