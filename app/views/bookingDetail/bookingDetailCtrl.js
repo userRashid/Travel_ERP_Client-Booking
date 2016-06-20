@@ -17,13 +17,12 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
           controller    : function($scope,ErpNodeServices,FormData,$uibModalInstance,LeadsServices,Watch){
             $scope.BookingDetail = ErpNodeServices.createForm(FormData.editBookingData());
             $scope.BookingDetail.promise.then(function(data){
-                 $scope.bookingButton = Watch.validation(data);
-                console.log(' ----- one ',data.data ,modelData);
+                $scope.bookingButton = Watch.validation(data);
                 modelData.erp_createdById = ErpNodeServices.getName(modelData.erp_createdById);
                 if(modelData.hasOwnProperty('erp_salesPersonId')) modelData.erp_salesPersonId = modelData.erp_salesPerson.erp_emp_name//GlobalData.getEmployee(modelData.erp_salesPersonId);
                 data.setModel(modelData);
                 $scope._data = data.data;
-                Watch.makeActualCost(data.data);
+                //Watch.makeActualCost(data.data);
             });
           $scope.$watch('_data',function(data){
             Watch.makeActualCost(data);
@@ -31,18 +30,18 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
           },true);
 
           $scope.updateBooking = function(){
-           $scope.BookingDetail.promise.then(function(data){
-             $scope.Model = data.getModel();
-             $scope.Model.erp_createdById = Authenticate.user().id;
-            API.put('booking/'+modelData.erp_bookingId,$scope._d).then(function(response){
-               Notify.add('success','Success',response.data.message);
-               //LeadsServices.saveLead(leadId,LeadStatus);
-               $uibModalInstance.dismiss('cancel');
-              // $state.go('booking.list');
-            },function(error){
-                Notify.add('error','Error',error);
-            });
-           });
+               $scope.BookingDetail.promise.then(function(data){
+                   var updateModelData = data.getModel();
+                   console.log(updateModelData);
+                   //,updateModelData.erp_createdById = Authenticate.user().id;
+                   API.put('booking/'+modelData.erp_bookingId,updateModelData).then(function(response){
+                       Notify.add('success','Success',response.data.message);
+                       //LeadsServices.saveLead(leadId,LeadStatus);
+                       $uibModalInstance.dismiss('cancel');
+                   },function(error){
+                        Notify.add('error','Error',error);
+                   });
+               });
           }
           },
           size: size,
