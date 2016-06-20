@@ -1,5 +1,5 @@
 //'use strict';
-angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$stateParams,BookingDetailService,$uibModal,Watch,API,Notify,Authenticate){
+angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$stateParams,BookingDetailService,$uibModal,Watch,API,Notify,Authenticate,GlobalData){
     $scope.bookingId = $stateParams.id;
     BookingDetailService.getBooking($stateParams.id).then(function(data){
        // console.log(data);
@@ -33,7 +33,8 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
           $scope.updateBooking = function(){
            $scope.BookingDetail.promise.then(function(data){
              $scope.Model = data.getModel();
-             $scope.Model.erp_createdById = Authenticate.user().id;
+             $scope.Model.erp_createdById   = Authenticate.user().id;
+             if($scope.Model.erp_salesPersonId)$scope.Model.erp_salesPersonId = GlobalData.getEmployeeId($scope.Model.erp_salesPersonId);
             API.put('booking/'+modelData.erp_bookingId,$scope.Model).then(function(response){
                Notify.add('success','Success',response.data.message);
                //LeadsServices.saveLead(leadId,LeadStatus);

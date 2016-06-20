@@ -13,6 +13,7 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API,Session){
     ,getBookingStatus  :   getBookingStatus
     ,getEmailStatus    :   getEmailStatus
     ,getDateTimeFormat :   getDateTimeFormat
+    ,getEmployeeId     :   getEmployeeId
   };
   function getDateTimeFormat(){
     return 'dd/MM/yyyy HH:mm';
@@ -63,6 +64,18 @@ angular.module('sbAdminApp').factory('GlobalData',function($q,API,Session){
         return p.promise;
   }
 
+  function getEmployeeId(empName){
+    var response  = JSON.parse(Session.get('employee'))
+       ,len = response.length
+       , temp;
+     for(var i=0;i<len;i++){
+         if(response[i].erp_emp_name == empName){
+            temp = response[i].erp_emp_id;
+            break;
+           }
+     }
+     return temp;
+  }
   function getTransportType(){
     return $q.when(['Velvo','Aerteted','Train']);
   }
