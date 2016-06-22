@@ -36,8 +36,15 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
     /////////////////////////////////////////////////
 
     function getAllBookings(){
-        var q = $q.defer();
-        API.get('bookings').then(function(response){
+        var q = $q.defer()
+            ,url = ''
+            ,userId = Authenticate.user().id;
+        if(superAdminIds.indexOf(userId) !== -1){
+            url = API.get('bookings');
+        } else {
+            url = API.get('bookings?assignTo='+userId);
+        }
+        url.then(function(response){
             q.resolve(createIsShow(response.data));
         });
         return q.promise;
