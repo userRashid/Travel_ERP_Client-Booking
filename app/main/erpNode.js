@@ -104,6 +104,7 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
       for(key in model){
         if(key == 'erp_adultCount' || key == 'erp_kidsCount')  setErpPeople(key,data,model[key]);
         for(var i=0;i<len;i++){
+          if(key == 'erp_tokenAmount' && data[i].name=='erp_bookingStatus') data[i].erpTokenAmount =  model[key];
           if(key == data[i].name){
             Set(data[i],model[key]);
           }
