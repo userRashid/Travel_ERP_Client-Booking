@@ -8,13 +8,16 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
 
     ////////////////////////////////////////////////
     // Locals
+    function checkUser(userId){
+        return superAdminIds.indexOf(userId) !== -1;
+    }
 
     function createIsShow(data){
         var len = data.length
             ,userId = Authenticate.user().id
             ,temp = new Array();
         for(var i=0;i<len;i++){
-            if(data[i].erp_salesPersonId == userId){
+            if(checkUser(userId)){
                 data[i].isShow = true;
                 data[i].bookingStatus = {
                                             name : 'erp_bookingStatus'
