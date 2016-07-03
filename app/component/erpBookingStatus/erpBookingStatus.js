@@ -75,7 +75,7 @@ angular.module('sbAdminApp').directive('erpBookingStatus',function($compile){
                 '</div>' +
                 '<div ng-if="isBookingAmount" class="form-group">' +
                     '<label>{{Model.erp_bookingStatus}}</label>' +
-                    '<input class="form-control" type="text" ng-model="Model.erp_tokenAmount" />' +
+                    '<input class="form-control" type="number" ng-model="Model.erp_tokenAmount" />' +
                 '</div>';
         return html;
   }

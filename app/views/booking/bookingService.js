@@ -17,17 +17,14 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
             ,userId = Authenticate.user().id
             ,temp = new Array();
         for(var i=0;i<len;i++){
-            if(checkUser(userId)){
-                data[i].isShow = true;
-                data[i].bookingStatus = {
-                                            name : 'erp_bookingStatus'
-                                            ,values : GlobalData.getBookingStatus('cancel')
-                                            ,model : data[i].erp_bookingStatus
-                                        };
-                data[i].editStatusValue = false;
-                temp.push(data[i]);
-            };
-
+            data[i].isShow = true;
+            data[i].bookingStatus = {
+                                        name : 'erp_bookingStatus'
+                                        ,values : GlobalData.getBookingStatus('cancel')
+                                        ,model : data[i].erp_bookingStatus
+                                    };
+            data[i].editStatusValue = false;
+            temp.push(data[i]);
         }
         return temp;
     }
