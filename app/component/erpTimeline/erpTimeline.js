@@ -64,7 +64,7 @@ angular.module('sbAdminApp')
             switch(type){
                 case "email"        : css = 'fa-envelope-o';    break;
                 case "phone"        : css = 'fa-phone';         break;
-                case "meeting"      : css = 'fa-file-o';        break;
+                case "note"         : css = 'fa-file-o';        break;
                 case "attachment"   : css = 'fa-paperclip';     break;
                 case "alert"        : css = 'fa-bell';     break;
                 default             : css = '';                 break;
@@ -78,7 +78,7 @@ angular.module('sbAdminApp')
             switch(type){
                 case "email"        : css = '';         break;
                 case "phone"        : css = 'warning';  break;
-                case "meeting"      : css = 'danger';   break;
+                case "note"         : css = 'danger';   break;
                 case "attachment"   : css = 'info';     break;
                 case "alert"        : css = 'success';  break;
                 default             : css = '';         break;

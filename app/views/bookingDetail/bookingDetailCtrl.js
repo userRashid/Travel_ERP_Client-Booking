@@ -2,10 +2,9 @@
 angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$stateParams,BookingDetailService,$uibModal,Watch,API,Notify,Authenticate,GlobalData){
     $scope.bookingId = $stateParams.id;
     BookingDetailService.getBooking($stateParams.id).then(function(data){
-       // console.log(data);
         $scope.conversionData = data;
     });
-    $scope.editBooking = function(data){console.log("data",data);
+    $scope.editBooking = function(data){
         $scope.modelData = data;
         $scope.open('lg');
     }
@@ -18,7 +17,6 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
             $scope.BookingDetail = ErpNodeServices.createForm(FormData.editBookingData());
             $scope.BookingDetail.promise.then(function(data){
                  $scope.bookingButton = Watch.validation(data);
-                console.log(' ----- one ',data.data ,modelData);
                 modelData.erp_createdById = ErpNodeServices.getName(modelData.erp_createdById);
                 if(modelData.hasOwnProperty('erp_salesPersonId')) modelData.erp_salesPersonId = modelData.erp_salesPerson.erp_emp_name//GlobalData.getEmployee(modelData.erp_salesPersonId);
                 data.setModel(modelData);

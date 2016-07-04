@@ -97,13 +97,14 @@ angular.module('sbAdminApp').controller('LeadsCtrl', function ($scope,API,$state
     }
     //Timeline
     $scope.item = {
-                    meeting : false,
+                    note : false,
                     email   : false,
                     phone   : false,
                     attach  : false,
                     alert   : false
                    };
     $scope.openPanel = function(name){
+        console.log(name,$scope.item);
         for(var key in $scope.item){
             if(key == name){
                 if($scope.item[key]){

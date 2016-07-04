@@ -96,9 +96,11 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
             data.model = date;
          } else if(data.type == 'erpBookingStatus') {
               data.erpBookingStatus = model;
+         } else if(data.type == 'erpHotel'){
+            data.setModel = model;
          } else {
             data.model = model;
-        }
+         }
       };
       var len = this.data.length;
       for(key in model){

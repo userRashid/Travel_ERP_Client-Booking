@@ -8,35 +8,163 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
     ,controller : controller
   }
 
-  function controller($scope,Watch){
-    var hotelData = [{checkin: {
-                              start : {label : 'Checkin' },
-                              end   : {label : 'Checkout'}
-                               }
-                     }];
-    $scope.addMore = function(){
-        $scope.hotelData.push({});
-    }
-    $scope.Watch = Watch;
-    function SetRoom(count){
-        var data    = $scope.hotelData
-            ,len    = data.length;
-        for(var i=0;i<len;i++){
-            data[i].erp_roomCount = count;
+  function controller($scope,Watch,GlobalData,$timeout){
+    function dateOption(){
+        return {
+            formatYear: 'yy',
+            maxDate: new Date(2020, 5, 22),
+            startingDay: 1,
+            showWeeks : false
         }
-    };
-    $scope.$watch('Watch.getRooms()',function(data){
-      //  SetRoom(data);
-    });
-    $scope.remove = function(index){
-        $scope.hotelData.splice(index, 1);
-    };
-    if($scope.data.model){
-        $scope.hotelData = $scope.data.model;
-    }else{
-        $scope.hotelData = hotelData;
-        $scope.data.model = $scope.hotelData;
     }
+    function getHotelRow(){
+        var hotelRowData = [{
+            label : 'Name'
+            ,type : 'text'
+            ,name : 'erp_hotelName'
+            ,column : '3'
+        },{
+            label : 'Hotel Category'
+            ,type : 'select'
+            ,name : 'erp_hotelCategory'
+            ,values :   ['2 Star','3 Star','4 Star','5 Star']
+            ,column : '2'
+        },{
+            label : 'Room Count'
+            ,type : 'number'
+            ,name : 'erp_roomCount'
+            ,column : '2'
+        },{
+            label : 'Room Type'
+            ,type : 'select'
+            ,name : 'erp_roomType'
+            ,values :  ['Deluxe','Super Deluxe','Luxury','Executive','Family Suite','Family Room','Honeymoon Suite','Standard','Others']
+            ,column : '2'
+        },{
+             label : 'Meal Plan'
+             ,type : 'select'
+             ,name : 'erp_mealPlan'
+             ,values :  ['CP','MAP','EP','API']
+             ,column : '3'
+        },{
+           label : 'Room Cost'
+           ,type : 'number'
+           ,name : 'erp_roomCost'
+           ,column : '2'
+        },{
+           label : 'Checkin'
+           ,type : 'calender'
+           ,name : 'erp_checkinDate'
+           ,format : GlobalData.getDateFormat()
+           ,column : '3'
+           ,defaultDate : 0 // 0 for current date -digit for previous date and digit for next date
+           ,hidePrevious : true
+           ,options : dateOption()
+           ,opened : false
+        },{
+           label : 'Checkout'
+           ,type : 'calender'
+           ,name : 'erp_checkoutDate'
+           ,column : '3'
+           ,format : GlobalData.getDateFormat()
+           ,defaultDate : 0 // 0 for current date -digit for previous date and digit for next date
+           ,hidePrevious : true
+           ,options : dateOption()
+           ,opened : false
+        },{
+            label : 'Inclusions'
+            ,type : 'textarea'
+            ,name : 'erp_inclusions'
+            ,column : '4'
+        }];
+        return {data : hotelRowData};
+    }
+
+    function getNights(first,second) {
+        var a = moment(first, 'DD/MM/YYYY')
+            ,b = moment(second, 'DD/MM/YYYY')
+            ,days = b.diff(a, 'days');
+        return days;
+    }
+    function createModel(data){
+        var len = data.length
+            model = new Array();
+        for(var i=0;i<len;i++){
+            var _data = data[i].data
+                ,_len = _data.length
+                ,temp = {};
+            for(var j=0;j<_len;j++){
+                if(_data[j].hasOwnProperty('model')){
+                    if(_data[j].type === 'calender'){
+                        temp[_data[j].name] = moment(_data[j].model).format('DD/MM/YYYY')
+                    } else {
+                        temp[_data[j].name] = _data[j].model;
+                    }
+                }
+            }
+            if(temp.hasOwnProperty('erp_checkinDate') && temp.hasOwnProperty('erp_checkoutDate')){
+               temp.erp_nightsOfStay = getNights(temp.erp_checkinDate,temp.erp_checkoutDate);
+            };
+            model.push(temp);
+        }
+        return model;
+    }
+    function setModel(data){
+        var len = data.length;
+        for(var i=0;i<len;i++){
+            if(i) $scope.HotelData.push(getHotelRow());
+            var _model = $scope.HotelData[i].data
+                ,_len = _model.length;
+            for(var j=0;j<_len;j++){
+                for(key in data[i]){
+                    if(key === _model[j].name){
+                        if(_model[j].type === 'calender'){
+                            _model[j].model = new Date(data[i][key]);
+                        } else {
+                            _model[j].model = data[i][key];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        startingDay: 1,
+        showWeeks : false
+    };
+    $scope.popup = {
+        opened: false
+    };
+    $scope.open = function(item) {
+        item.opened = true;
+    };
+    $scope.dateOptions.minDate = new Date();
+    var d = new Date()
+      ,date = d.getDate()
+      ,month = d.getMonth()
+      ,year = d.getFullYear()+($scope.data.defaultDate);
+    $scope.data.model = new Date(year,month,date);
+
+    $scope.HotelData = [getHotelRow()];
+    $scope.addMore = function(){
+        $scope.HotelData.push(getHotelRow());
+    }
+    $scope.remove = function(index){
+        $scope.HotelData.splice(index, 1);
+    };
+
+    $scope.$watch('HotelData',function(data){
+        if(data == undefined) return;
+        $scope.data.model = createModel(data);
+    },true);
+
+    $timeout(function(){
+        if($scope.data.model){
+            setModel($scope.data.setModel);
+        }
+    });
   }
   function link($scope,element,attr){
     element.html('').append($compile(renderHTML())($scope));
@@ -44,48 +172,23 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
   function renderHTML(){
     var html = '';
         html += '<div class="add-hotel">' +
-                    '<div class="pos-r clearfix p5" ng-repeat="item in hotelData" ng-class="{\'odd\':$odd}">' +
+                    '<div class="pos-r clearfix p5" ng-repeat="hotel in HotelData" ng-class="{\'odd\':$odd}">' +
                         '<div class="col-sm-11 row">' +
-                            '<div class="form-group col-sm-3"><label>Name</label><input class="form-control" ng-model="item.erp_hotelName" type="text" /></div>' +
-                            '<div class="form-group col-sm-2"><label>Hotel Category</label>' +
-                                '<select class="form-control" ng-model="item.erp_hotelCategory">' +
-                                    '<option value="2 Star">2 Star</option>' +
-                                    '<option value="3 Star">3 Star</option>' +
-                                    '<option value="4 Star">4 Star</option>' +
-                                    '<option value="5 Star">5 Star</option>' +
+                            '<div ng-repeat="item in hotel.data" class="form-group col-sm-{{item.column}}">' +
+                                '<label>{{item.label}}</label>' +
+                                '<input ng-if="item.type == \'text\'" class="form-control" ng-model="item.model" type="text" />' +
+                                '<input ng-if="item.type == \'number\'" class="form-control" ng-model="item.model" type="number" />' +
+                                '<select ng-if="item.type == \'select\'" class="form-control" ng-model="item.model">' +
+                                    '<option ng-repeat="opt in item.values">{{opt}}</option>' +
                                 '</select>' +
+                                '<textarea ng-if="item.type == \'textarea\'" class="form-control" ng-model="item.model" ></textarea>' +
+                                '<p ng-if="item.type == \'calender\'" class="input-group">' +
+                                    '<input type="text" class="form-control" uib-datepicker-popup="{{item.format}}" ng-model="item.model" is-open="item.opened" show-button-bar="false" datepicker-options="item.options"/>' +
+                                    '<span class="input-group-btn">' +
+                                      '<button style="padding: 2px 5px 1px" type="button" class="btn btn-default" ng-click="open(item)"><i class="fa fa-calendar"></i></button>' +
+                                    '</span>' +
+                                  '</p>' +
                             '</div>' +
-                            '<div class="form-group col-sm-2"><label>Room Count</label>' +
-                                '<input class="form-control" type="number" ng-model="item.erp_roomCount" />' +
-                            '</div>' +
-                            '<div class="form-group col-sm-2"><label>Room Type</label>' +
-                                '<select class="form-control" ng-model="item.erp_roomType">' +
-                                    '<option value="Deluxe">Deluxe</option>' +
-                                    '<option value="Super Deluxe">Super Deluxe</option>' +
-                                    '<option value="Luxury">Luxury</option>' +
-                                    '<option value="Executive">Executive</option>' +
-                                    '<option value="Family Suite">Family Suite</option>' +
-                                    '<option value="Family Room">Family Room</option>' +
-                                    '<option value="Honeymoon Suite">Honeymoon Suite</option>' +
-                                    '<option value="Standard">Standard</option>' +
-                                    '<option value="Others">Others</option>' +
-                                '</select>' +
-                            '</div>' +
-
-                            '<div class="form-group col-sm-3"><label>Meal Plan</label>' +
-                                '<select class="form-control" ng-model="item.erp_mealPlan">' +
-                                    '<option value="CP">CP</option>' +
-                                    '<option value="MAP">MAP</option>' +
-                                    '<option value="EP">EP</option>' +
-                                    '<option value="API">API</option>' +
-                                '</select>' +
-                            '</div>' +
-                            '<div class="form-group col-sm-3" ng-if="data.isEdit"><label>Room Cost</label><input class="form-control" type="number" number-converter ng-model="item.erp_roomCost" /></div>' +
-                            '<div class="form-group col-sm-5">' +
-                                '<div erp-date-range="item.checkin" start-model="item.erp_checkinDate"  end-model="item.erp_checkoutDate" ></div>' +
-                                //'<label>Nights Of Stay</label><input class="form-control" type="number" ng-model="item.erp_nightsOfStay" />' +
-                            '</div>' +
-                            '<div class="form-group col-sm-4"><label>Inclusions</label><textarea class="form-control" ng-model="item.erp_inclusions" ></textarea></div>' +
                         '</div>' +
                         '<div class="col-sm-1 add-hotel-btn form-group">' +
                             '<button ng-if="!$last" class="btn btn-danger" ng-click="remove($index)"><i class="fa fa-minus"></i></button>' +
@@ -97,20 +200,18 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
   }
 }).directive('numberConverter', function() {
     return {
-      priority: 1,
-      restrict: 'A',
-      require: 'ngModel',
-      link: function(scope, element, attr, ngModel) {
-        function toModel(value) {
-          return "" + value; // convert to string
+        priority : 1,
+        restrict : 'A',
+        require  : 'ngModel',
+        link : function(scope, element, attr, ngModel) {
+            function toModel(value) {
+                return "" + value;
+            }
+            function toView(value) {
+                return parseInt(value); // convert to number
+            }
+            ngModel.$formatters.push(toView);
+            //ngModel.$parsers.push(toModel);
         }
-
-        function toView(value) {
-          return parseInt(value); // convert to number
-        }
-
-        ngModel.$formatters.push(toView);
-        //ngModel.$parsers.push(toModel);
-      }
     };
-  });;
+});
