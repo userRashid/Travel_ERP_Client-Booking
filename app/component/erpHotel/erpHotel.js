@@ -51,6 +51,7 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
            ,type : 'number'
            ,name : 'erp_roomCost'
            ,column : '2'
+           ,isEdit : $scope.data.isEdit
         },{
            label : 'Checkin'
            ,type : 'calender'
@@ -128,6 +129,12 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
             }
         }
     }
+    $scope.isShow = function(item){
+        if(item.hasOwnProperty('isEdit')){
+            return $scope.data.isEdit;
+        }
+        return true;
+    }
     $scope.dateOptions = {
         formatYear: 'yy',
         maxDate: new Date(2020, 5, 22),
@@ -174,8 +181,8 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
         html += '<div class="add-hotel">' +
                     '<div class="pos-r clearfix p5" ng-repeat="hotel in HotelData" ng-class="{\'odd\':$odd}">' +
                         '<div class="col-sm-11 row">' +
-                            '<div ng-repeat="item in hotel.data" class="form-group col-sm-{{item.column}}">' +
-                                '<label>{{item.label}}</label>' +
+                            '<div ng-repeat="item in hotel.data" ng-if="isShow(item)" class="form-group col-sm-{{item.column}}">' +
+                                '<label >{{item.label}}</label>' +
                                 '<input ng-if="item.type == \'text\'" class="form-control" ng-model="item.model" type="text" />' +
                                 '<input ng-if="item.type == \'number\'" class="form-control" ng-model="item.model" type="number" />' +
                                 '<select ng-if="item.type == \'select\'" class="form-control" ng-model="item.model">' +
