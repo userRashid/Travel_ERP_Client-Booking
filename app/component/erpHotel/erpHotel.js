@@ -120,7 +120,9 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
                 for(key in data[i]){
                     if(key === _model[j].name){
                         if(_model[j].type === 'calender'){
-                            _model[j].model = new Date(data[i][key]);
+                            var tempDate = data[i][key].split('/');
+                            var date = tempDate[1]+'/'+tempDate[0]+'/'+tempDate[2];
+                            _model[j].model = new Date(date);
                         } else {
                             _model[j].model = data[i][key];
                         }
