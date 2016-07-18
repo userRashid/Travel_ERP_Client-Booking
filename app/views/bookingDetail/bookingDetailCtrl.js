@@ -33,12 +33,12 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
              $scope.Model = data.getModel();
              $scope.Model.erp_createdById   = Authenticate.user().id;
              if($scope.Model.erp_salesPersonId)$scope.Model.erp_salesPersonId = GlobalData.getEmployeeId($scope.Model.erp_salesPersonId);
-            API.put('booking/'+modelData.erp_bookingId,$scope.Model).then(function(response){
+             API.put('booking/'+modelData.erp_bookingId,$scope.Model).then(function(response){
                Notify.add('success','Success',response.data.message);
                //LeadsServices.saveLead(leadId,LeadStatus);
                $uibModalInstance.dismiss('cancel');
-              // $state.go('booking.list');
-            },function(error){
+               // $state.go('booking.list');
+             },function(error){
                 Notify.add('error','Error',error);
             });
            });

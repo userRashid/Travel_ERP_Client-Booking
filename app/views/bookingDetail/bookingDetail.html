@@ -1,10 +1,23 @@
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Add Booking Details</h3>
+    </div>
+    <div class="modal-body">
+        <div data-form-builder="BookingDetail.promise" mode="half" class="clearfix"></div>
+    </div>
+    <div class="text-center modal-body">
+        <button class="btn btn-icon btn-success buttonBg" ng-disabled="!bookingButton" ng-click="updateBooking()">
+            <h2 class="f30 buttonM"><i></i>Update</h2>
+        </button>
+    </div>
+</script>
 <div>
     <div class="row black-bor">
         <div class="col-md-8 m-t20 fontcol">
             <h2>{{conversionData.erp_destinations}} Of {{conversionData.erp_customer.erp_name}} From {{conversionData.erp_customer.erp_city}}</h2>
         </div>
         <div class="col-md-4 m-t40 text-right">
-            <button class="btn-success btn">Open Lead</button>
+            <button class="btn-success btn" ng-click="editBooking(conversionData)">Edit Booking</button>
         </div>
     </div>
     <div class="row item" >
