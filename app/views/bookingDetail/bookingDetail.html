@@ -16,7 +16,7 @@
         <div class="col-md-8 m-t20 fontcol">
             <h2>{{conversionData.erp_destinations}} Of {{conversionData.erp_customer.erp_name}} From {{conversionData.erp_customer.erp_city}}</h2>
         </div>
-        <div class="col-md-4 m-t40 text-right">
+        <div ng-if="isAdmin()" class="col-md-4 m-t40 text-right">
             <button class="btn-success btn" ng-click="editBooking(conversionData)">Edit Booking</button>
         </div>
     </div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" ng-if="isAdmin()">
             <div  class="sold text-right">
 
             </div>
