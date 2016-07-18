@@ -70,8 +70,10 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
     function fillerBooking(model){
         var q = $q.defer()
             ,startDate  =    dateFormat(model.startDate._d)
-            ,endDate    =    dateFormat(model.endDate._d);
-        API.get('bookings?fromDate='+startDate+'&toDate='+endDate+'&salesPersonId='+Authenticate.user().id).then(function(response){
+            ,endDate    =    dateFormat(model.endDate._d)
+            ,_url = Authenticate.isAdmin() ? '' : '&salesPersonId='+Authenticate.user().id;
+        console.log(_url);
+        API.get('bookings?fromDate='+startDate+'&toDate='+endDate+_url).then(function(response){
             q.resolve(createIsShow(response.data));
         });
         return q.promise;

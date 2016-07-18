@@ -4,11 +4,15 @@ angular.module('sbAdminApp').factory('Authenticate',function(Session){
     ,doLogin  : doLogin
     ,doLogout : doLogout
     ,user : user
+    ,isAdmin : isAdmin
   }
 
   function isLogin(){
     //console.log('Called',Session.get('ticket'));
     return Session.get('ticket') !== null;
+  }
+  function isAdmin(){
+      return superAdminIds.indexOf(user().id) !== -1;
   }
   function doLogin(ticket,userId,name){
     //console.log('ticket,userId -- ',ticket,userId,name);
