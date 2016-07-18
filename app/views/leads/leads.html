@@ -42,7 +42,7 @@
                     <i class="fa fa-clock-o fa-fw"></i> Activities Timeline
                 </div>
                 <div style="padding-bottom: 0px;" class="panel-body text-center">
-                    <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('meeting')">
+                    <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('note')">
                         <h3 class="m0"><i class="fa fa-file-o"></i>&nbsp;&nbsp;Note</h3>
                     </button>
                     <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('email')">
@@ -59,7 +59,7 @@
                     </button>
                 </div>
                 <div style="padding:0 18px;">
-                    <div ng-if="item.meeting" style="border:1px solid #ccc; margin-top:10px;">
+                    <div ng-if="item.note" style="border:1px solid #ccc; margin-top:10px;">
                         <div data-erp-note="Note"></div>
                         <div style="margin:0 18px 20px;">
                             <button class="btn btn-success" ng-click="addNote()">Add Note</button>

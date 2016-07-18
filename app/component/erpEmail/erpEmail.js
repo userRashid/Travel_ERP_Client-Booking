@@ -16,7 +16,7 @@ angular.module('sbAdminApp').directive('erpEmail',function($compile){
   }
   function renderHTML(){
     var html = '';
-        html +='<md-input-container class="md-block"><label>{{data.innerLabel}}</label><input ng-model="data.model" type="email"></md-input-container>';
+        html +='<md-input-container class="md-block"><label>{{data.innerLabel}}</label><input ng-model="data.model" ng-disabled="data.isDisable" type="email" ></md-input-container>';
     return html;
   }
 });

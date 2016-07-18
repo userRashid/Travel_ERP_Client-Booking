@@ -9,7 +9,6 @@ angular.module('sbAdminApp').directive('erpHotelDetail',function($compile){
 
     }
     function controller($scope){
-        console.log('data',$scope.data);
     }
 
     function link($scope,element,attr){
@@ -19,24 +18,23 @@ angular.module('sbAdminApp').directive('erpHotelDetail',function($compile){
     function renderHTML(){
         var html =  '';
             html += '<div ng-class="{\'borbottm\' : !$last}" ng-repeat = "item in data">'+
-                            '<div class="row mt30">'+
-                               ' <div class="col-md-6 splook m-t20">'+
-                                    '<b>{{item.erp_hotelName}}</b>'+
-                                    '<span>     ,Star -- {{item.erp_hotelCategory}}</span>'+
-                                    '<p>{{item.erp_roomType}}</p>'+
-                                    '<div class="col-md-12" >'+
-                                       '<div class="col-md-6 tripcol">'+
-                                              '<h5>Checkin</h5> <h3>{{item.erp_checkinDate}}</h3>'+
+                            '<div class="row item">'+
+
+                                    '<div class="col-md-12"><h3>{{item.erp_hotelName}}</h3>'+
+                                    '</div>'+
+                                    '<div class="col-md-4">'+
+                                    '<h5 class="col-md-4">{{item.erp_roomType}}</h5> <h4 class="col-md-8">{{item.erp_hotelCategory}}</h4>'+
+                                    '</div>'+
+                                      '<div class="col-md-4">'+
+                                              '<h5 class="col-md-4">Check in</h5> <h4 class="col-md-8">{{item.erp_checkinDate}}</h4>'+
                                          '</div>'+
-                                          '<div class="col-md-6 tripcol">'+
-                                              '<h5>Checkout</h5> <h3>{{item.erp_checkoutDate}}</h3>'+
+                                          '<div class="col-md-4">'+
+                                              '<h5 class="col-md-4">Check out</h5> <h4 class="col-md-8">{{item.erp_checkoutDate}}</h4>'+
                                            '</div>'+
                                     '</div>'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                   '<textarea  readonly class="m-t20 txtArea forside" rows="6">Inclusions \n {{item.erp_inclusions}} </textarea>'+
+                                '<div class="col-md-12">'+
+                                   '<textarea  readonly class="form-control" rows="4">Inclusions \n {{item.erp_inclusions}} </textarea>'+
                                '</div>'+
-                            '</div>'+
                         '</div>'
              return html;
     }

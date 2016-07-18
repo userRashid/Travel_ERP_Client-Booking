@@ -4,10 +4,8 @@ angular.module('sbAdminApp').directive('erpDateRangePicker',function($compile){
     ,scope : {
       data : '=erpDateRangePicker'
     }
-    //,replace :true
     ,link : link
     ,controller : controller
-    //,controllerAs : 'rashid'
   }
 
   function controller($scope){

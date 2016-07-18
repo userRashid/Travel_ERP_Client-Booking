@@ -25,10 +25,10 @@ angular.module('sbAdminApp').directive('erpBookingStatus',function($compile){
         obj.erp_bookingStatus = '';
     }
 
-    if(data.hasOwnProperty('erp_bookingAmount') && data.erp_bookingAmount != ''){
-        obj.erp_bookingAmount = data.erp_bookingAmount;
+    if(data.hasOwnProperty('erp_tokenAmount') && data.erp_tokenAmount != ''){
+        obj.erp_tokenAmount = data.erp_tokenAmount;
     } else {
-        obj.erp_bookingAmount = '';
+        obj.erp_tokenAmount = '';
     }
     return obj;
   }
@@ -53,6 +53,8 @@ angular.module('sbAdminApp').directive('erpBookingStatus',function($compile){
       });
     }
     $scope.isBookingAmount = false;
+    if($scope.data.erpBookingStatus)$scope.Model.erp_bookingStatus = $scope.data.erpBookingStatus;
+    if($scope.data.erpTokenAmount)$scope.Model.erp_tokenAmount = $scope.data.erpTokenAmount;
     $scope.$watch('Model',function(model){
         if(model == undefined) return;
         if(model.erp_bookingStatus == 'Token Amount Received'){
@@ -73,7 +75,7 @@ angular.module('sbAdminApp').directive('erpBookingStatus',function($compile){
                 '</div>' +
                 '<div ng-if="isBookingAmount" class="form-group">' +
                     '<label>{{Model.erp_bookingStatus}}</label>' +
-                    '<input class="form-control" type="text" ng-model="Model.erp_bookingAmount" />' +
+                    '<input class="form-control" type="number" ng-model="Model.erp_tokenAmount" />' +
                 '</div>';
         return html;
   }

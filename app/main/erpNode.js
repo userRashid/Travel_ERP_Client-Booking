@@ -79,7 +79,6 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
         }
       }
       function Set(data,model){
-        //console.log('data,model ',data,model);
         if(data.type == 'erpText'){
           data.model = model;
         } else if(data.type == 'erpMultiSelect') {
@@ -95,14 +94,19 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
                 ,_date = temp[2]+'-'+temp[1]+'-'+temp[0]
                 ,date = new Date(_date);
             data.model = date;
-        } else {
+         } else if(data.type == 'erpBookingStatus') {
+              data.erpBookingStatus = model;
+         } else if(data.type == 'erpHotel'){
+            data.setModel = model;
+         } else {
             data.model = model;
-        }
+         }
       };
       var len = this.data.length;
       for(key in model){
         if(key == 'erp_adultCount' || key == 'erp_kidsCount')  setErpPeople(key,data,model[key]);
         for(var i=0;i<len;i++){
+          if(key == 'erp_tokenAmount' && data[i].name=='erp_bookingStatus') data[i].erpTokenAmount =  model[key];
           if(key == data[i].name){
             Set(data[i],model[key]);
           }

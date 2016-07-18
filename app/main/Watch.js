@@ -55,10 +55,11 @@ angular.module('sbAdminApp').service('Watch',function(){
                 if(typeof(cost[j].model) == 'string'){
                     actualCost = actualCost + Number(cost[j].model);
                 } else {
+                if(cost[j].model != null)
                     var _data = cost[j].model
                         ,_len = _data.length;
                     for(var z=0; z<_len;z++){
-                        if(_data[z].hasOwnProperty('erp_roomCost') && _data[z].erp_roomCost != ''){
+                        if(_data[z].hasOwnProperty('erp_roomCost') && _data[z].erp_roomCost != '' && _data[z].erp_roomCost !=null){
                             actualCost = actualCost + Number(getHotelCost(_data[z]));
                         } else if(_data[z].hasOwnProperty('erp_travelCost') && _data[z].erp_travelCost != ''){
                             actualCost = actualCost + Number(_data[z].erp_travelCost);

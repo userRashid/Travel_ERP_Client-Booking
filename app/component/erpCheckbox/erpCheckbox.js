@@ -21,7 +21,7 @@ angular.module('sbAdminApp').directive('erpCheckbox',function($compile){
           temp.push(_d[i].value);
         }
       }
-      $scope.data.model = temp;
+      if(temp.length >0) $scope.data.model = temp;
     },true);
   }
   function link($scope,element,attr){
@@ -32,7 +32,7 @@ angular.module('sbAdminApp').directive('erpCheckbox',function($compile){
     html +='<div class="clearfix">';
       html +='<div class="col-lg-4" ng-repeat="item in Data">';
         html +='<label class="checkbox"><div class="checker">';
-        html +='<span><input type="checkbox" ng-model="item.model" class="checkbox" value="{{item.value}}"></span></div>';
+        html +='<span><input type="checkbox" ng-model="item.model" ng-checked ="data.model"  class="checkbox" value="{{item.value}}"></span></div>';
         html += '{{item.label}}';
         html +='</label>';
       html +='</div>';
