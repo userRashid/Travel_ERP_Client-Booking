@@ -49,10 +49,9 @@ angular.module('sbAdminApp').service('Watch',function(){
             var cost =  roomCost*roomCount*nightsOfStay;
             return cost;
         }
-
         for(var j=0;j<cost.length;j++){
             if(cost[j].hasOwnProperty('model')){
-                if(typeof(cost[j].model) == 'string'){
+                if(typeof(cost[j].model) == 'string' ||typeof(cost[j].model) == 'number'  ){
                     actualCost = actualCost + Number(cost[j].model);
                 } else {
                 if(cost[j].model != null)
