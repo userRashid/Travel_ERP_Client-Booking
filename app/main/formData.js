@@ -249,8 +249,8 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
            ,model : 'Confirmed by Traveler'
          },{
             label : 'Miscellaneous cost'
-            ,name : 'erp_miscellaneousCost'
-            ,type : 'erpText'
+            ,name : 'erp_additionalCost'
+            ,type : 'erpNumber'
          }];
         return editBookingData;
     }
