@@ -42,7 +42,7 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
         if(superAdminIds.indexOf(userId) !== -1){
             url = API.get('bookings');
         } else {
-            url = API.get('bookings?assignTo='+userId);
+            url = API.get('bookings?salesPersonId='+userId);
         }
         url.then(function(response){
             q.resolve(createIsShow(response.data));
