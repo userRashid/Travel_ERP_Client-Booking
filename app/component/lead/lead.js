@@ -33,6 +33,11 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
     $scope.editLead = function(){
         $scope.isEdit = true;
         $scope.Form.promise.then(function(data){
+        var _data = data.data,
+            _len = _data.length;
+        for(var i=0;i<_len;i++){
+          if(_data[i].type=="erpEmail") _data[i].isDisable = true;
+        }
             data.setModel(model);
         });
     }

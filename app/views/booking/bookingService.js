@@ -8,23 +8,23 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
 
     ////////////////////////////////////////////////
     // Locals
+    function checkUser(userId){
+        return superAdminIds.indexOf(userId) !== -1;
+    }
 
     function createIsShow(data){
         var len = data.length
             ,userId = Authenticate.user().id
             ,temp = new Array();
         for(var i=0;i<len;i++){
-            if(data[i].erp_salesPersonId == userId){
-                data[i].isShow = true;
-                data[i].bookingStatus = {
-                                            name : 'erp_bookingStatus'
-                                            ,values : GlobalData.getBookingStatus('cancel')
-                                            ,model : data[i].erp_bookingStatus
-                                        };
-                data[i].editStatusValue = false;
-                temp.push(data[i]);
-            };
-
+            data[i].isShow = true;
+            data[i].bookingStatus = {
+                                        name : 'erp_bookingStatus'
+                                        ,values : GlobalData.getBookingStatus('cancel')
+                                        ,model : data[i].erp_bookingStatus
+                                    };
+            data[i].editStatusValue = false;
+            temp.push(data[i]);
         }
         return temp;
     }
@@ -36,8 +36,15 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
     /////////////////////////////////////////////////
 
     function getAllBookings(){
-        var q = $q.defer();
-        API.get('bookings').then(function(response){
+        var q = $q.defer()
+            ,url = ''
+            ,userId = Authenticate.user().id;
+        if(superAdminIds.indexOf(userId) !== -1){
+            url = API.get('bookings');
+        } else {
+            url = API.get('bookings?salesPersonId='+userId);
+        }
+        url.then(function(response){
             q.resolve(createIsShow(response.data));
         });
         return q.promise;
@@ -63,8 +70,10 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
     function fillerBooking(model){
         var q = $q.defer()
             ,startDate  =    dateFormat(model.startDate._d)
-            ,endDate    =    dateFormat(model.endDate._d);
-        API.get('bookings?fromDate='+startDate+'&toDate='+endDate+'&salesPersonId='+Authenticate.user().id).then(function(response){
+            ,endDate    =    dateFormat(model.endDate._d)
+            ,_url = Authenticate.isAdmin() ? '' : '&salesPersonId='+Authenticate.user().id;
+        console.log(_url);
+        API.get('bookings?fromDate='+startDate+'&toDate='+endDate+_url).then(function(response){
             q.resolve(createIsShow(response.data));
         });
         return q.promise;

@@ -27,7 +27,7 @@ angular.module('sbAdminApp').directive('erpMultiSelect',function($compile,$q){
   }
   function renderHTML(){
     var html = '';
-      html +='<tags-input class="tags-input-override-not" ng-model="data.model" allow-leftover-text="false" placeholder="{{data.label}}" add-on-blur="false" replace-spaces-with-dashes="false">';
+      html +='<tags-input class="tags-input-override-not" ng-model="data.model" allow-leftover-text="false" placeholder="{{data.label}}" add-on-blur="false" add-on-enter="true" replace-spaces-with-dashes="false">';
         html +='<auto-complete source="getDropDown($query)"min-length="0" debounce-delay="0" load-on-focus="true"></auto-complete>';
       html +='</tags-input>';
     return html;

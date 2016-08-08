@@ -1,7 +1,8 @@
-angular.module('sbAdminApp').factory('ErpNodeServices',function($q,FormData,ErpNode,API){
+angular.module('sbAdminApp').factory('ErpNodeServices',function($q,FormData,ErpNode,API,Session){
   return {
     createForm : createForm
     ,Search : Search
+    ,getName : getName
   }
 
   function createForm(data){
@@ -18,5 +19,15 @@ angular.module('sbAdminApp').factory('ErpNodeServices',function($q,FormData,ErpN
     }
     _d = _d.slice(0, -1);
     return API.get('lead'+_d);
+  }
+
+  function getName(id){
+    var data = JSON.parse(Session.get('employee'))
+        ,len = data.length;
+    for(var i=0;i<len;i++){
+        if(data[i].erp_emp_id == id){
+             return data[i].erp_emp_name;
+        };
+    }
   }
 })

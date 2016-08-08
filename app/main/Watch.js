@@ -49,16 +49,16 @@ angular.module('sbAdminApp').service('Watch',function(){
             var cost =  roomCost*roomCount*nightsOfStay;
             return cost;
         }
-
         for(var j=0;j<cost.length;j++){
             if(cost[j].hasOwnProperty('model')){
-                if(typeof(cost[j].model) == 'string'){
+                if(typeof(cost[j].model) == 'string' ||typeof(cost[j].model) == 'number'  ){
                     actualCost = actualCost + Number(cost[j].model);
                 } else {
+                if(cost[j].model != null)
                     var _data = cost[j].model
                         ,_len = _data.length;
                     for(var z=0; z<_len;z++){
-                        if(_data[z].hasOwnProperty('erp_roomCost') && _data[z].erp_roomCost != ''){
+                        if(_data[z].hasOwnProperty('erp_roomCost') && _data[z].erp_roomCost != '' && _data[z].erp_roomCost !=null){
                             actualCost = actualCost + Number(getHotelCost(_data[z]));
                         } else if(_data[z].hasOwnProperty('erp_travelCost') && _data[z].erp_travelCost != ''){
                             actualCost = actualCost + Number(_data[z].erp_travelCost);

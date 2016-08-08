@@ -6,30 +6,30 @@
         <div data-form-builder="BookingDetail.promise" mode="half" class="clearfix"></div>
     </div>
     <div class="text-center modal-body">
-        <button class="btn btn-icon btn-success buttonBg" ng-disabled="!bookingButton" ng-click="addBooking();">
-            <h2 class="f30 buttonM"><i></i>Submit</h2>
+        <button class="btn btn-icon btn-success buttonBg" ng-disabled="!bookingButton" ng-click="updateBooking()">
+            <h2 class="f30 buttonM"><i></i>Update</h2>
         </button>
     </div>
 </script>
 <div>
     <div class="row black-bor">
         <div class="col-md-8 m-t20 fontcol">
-            <h2>{{conversionData.erp_destinations}} of {{conversionData.erp_customer.erp_name}} from {{conversionData.erp_customer.erp_city}}</h2>
+            <h2>{{conversionData.erp_destinations}} Of {{conversionData.erp_customer.erp_name}} From {{conversionData.erp_customer.erp_city}}</h2>
         </div>
-        <div class="col-md-4 m-t40 text-right">
+        <div ng-if="isAdmin()" class="col-md-4 m-t40 text-right">
             <button class="btn-success btn" ng-click="editBooking(conversionData)">Edit Booking</button>
         </div>
     </div>
     <div class="row item" >
-        <div class="col-md-6 bor-r">
-            <div class="col-md-4 bg-info">
-                <h5>Arrival</h5><h4>{{conversionData.erp_departureDate}}</h4>
+        <div class="col-md-6 m-t20 bor-r">
+            <div class="col-md-4">
+                <h5>Arrival</h5><h3>{{conversionData.erp_departureDate}}</h3>
             </div>
-            <div class="col-md-4 bg-info">
-                <h5>Duration</h5><h4>{{conversionData.erp_nights}} Nights</h4>
+            <div class="col-md-4">
+                <h5>Duration</h5><h3>{{conversionData.erp_nights}} Nights</h3>
             </div>
-            <div class="col-md-4 bg-info">
-                <h5>Rooms</h5><h4>{{conversionData.erp_roomCount}}</h4>
+            <div class="col-md-4">
+                <h5>Rooms</h5><h3>{{conversionData.erp_roomCount}}</h3>
             </div>
             <div class="book m-t40 col-md-12">
                 <h5>People: <b>{{conversionData.erp_adultCount}} Adults, {{conversionData.erp_kidsCount}} kid</b></h5>
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" ng-if="isAdmin()">
             <div  class="sold text-right">
 
             </div>
