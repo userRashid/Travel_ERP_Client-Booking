@@ -15,6 +15,7 @@ angular.module('sbAdminApp')
             controller  :    controller
     	}
     	function controller($scope,$state){
+    	$scope.userName = sessionStorage.name;
     	    $scope.logout = function(){
     	        Authenticate.doLogout();
     	        $state.go('leads.home');
