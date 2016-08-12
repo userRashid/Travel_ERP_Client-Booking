@@ -16,6 +16,7 @@ angular.module('sbAdminApp').directive('erpCheckbox',function($compile){
       if(_d == undefined) return;
       var len = _d.length
         ,temp = new Array();
+        $scope.data.model = "";
       for(var i=0;i<len;i++){
         if(_d[i].model){
           temp.push(_d[i].value);
