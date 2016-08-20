@@ -136,3 +136,7 @@ body{background:#fff;}
 /* new style*/
 
 .form-control{background:#fff !important}
+
+.form-control{background:#fff !important}
+.table-striped>tbody>tr:nth-of-type(odd){background:#d1e0ec}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{border-color:#bbc9d5;padding:5px;vertical-align:middle}
