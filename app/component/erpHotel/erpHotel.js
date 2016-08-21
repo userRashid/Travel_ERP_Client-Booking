@@ -111,6 +111,7 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
         return model;
     }
     function setModel(data){
+       if(data!=undefined)
         var len = data.length;
         for(var i=0;i<len;i++){
             if(i) $scope.HotelData.push(getHotelRow());
