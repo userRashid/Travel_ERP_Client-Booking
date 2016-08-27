@@ -7,7 +7,7 @@
  * # adminPosHeader
  */
 angular.module('sbAdminApp')
-	.directive('headerNotification',function(Authenticate){
+	.directive('headerNotification',function(Authenticate,Session){
 		return {
             templateUrl:'scripts/directives/header/header-notification/header-notification.html',
             restrict: 'E',
@@ -15,7 +15,7 @@ angular.module('sbAdminApp')
             controller  :    controller
     	}
     	function controller($scope,$state){
-    	$scope.userName = sessionStorage.name;
+            $scope.userName = Session.get('name');
     	    $scope.logout = function(){
     	        Authenticate.doLogout();
     	        $state.go('leads.home');

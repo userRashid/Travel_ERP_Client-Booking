@@ -17,21 +17,18 @@
                     <table class="table table-striped" st-table="displayedCollection" st-safe-src="allLeads">
                         <thead>
                         <tr>
-                            <th st-sort="erp_id" width="60">S.No</th>
-                            <th st-sort="erp_id" width="60">Lead Id</th>
+                            <th width="200" st-sort="erp_customer.erp_name">Customer</th>
                             <th st-sort="erp_creationDate">Added on</th>
                             <th st-sort="erp_leavingFrom">Leaving From</th>
                             <th st-sort="erp_leadStatus">Lead Status</th>
                             <th st-sort="erp_leadSource">Lead Source</th>
                             <th st-sort="erp_destinations">Destinations</th>
-                            <th st-sort="erp_customer.erp_name">Customer</th>
                             <th st-sort="erp_assignedToEmployee.erp_emp_name">Assign to</th>
-                            <th></th>
+                            <th><span ng-click="toggleFilter()" class="glyphicon glyphicon-filter"></span></th>
                         </tr>
-                        <tr>
-                            <th></th>
+                        <tr id="filters" ng-show="showFilter">
                             <th>
-                                <input st-search="erp_id" placeholder="" class="input-sm form-control" type="search"/>
+                                <input st-search="erp_customer.erp_name" placeholder="" class="input-sm form-control" type="search"/>
                             </th>
                             <th>
                                 <input st-search="erp_creationDate" placeholder="" class="input-sm form-control" type="search"/>
@@ -48,28 +45,20 @@
                             <th>
                                 <input st-search="erp_destinations" placeholder="" class="input-sm form-control" type="search"/>
                             </th>
-                            <th>
-                                <input st-search="erp_customer.erp_name" placeholder="" class="input-sm form-control" type="search"/>
-                            </th>
-                            <th>
+                            <th colspan="2">
                                 <input st-search="erp_assignedToEmployee.erp_emp_name" placeholder="" class="input-sm form-control" type="search"/>
-                            </th>
-                            <th>
                             </th>
                         </tr>
                         </thead>
                         <tbody ng-show="!mc.isLoading">
-                        <tr ng-repeat="item in displayedCollection">
-                            <td>{{$index+1}}</td>
-                            <td>{{item.erp_id}}</td>
-                            <td>{{item.erp_creationDate}}</td>
-                            <td>{{item.erp_leavingFrom}}</td>
-                            <td>{{item.erp_leadStatus}}</td>
-                            <td>{{item.erp_leadSource}}</td>
-                            <td>{{item.erp_destinations}}</td>
-                            <td>{{item.erp_customer.erp_name}}</td>
-                            <td>{{item.erp_assignedToEmployee.erp_emp_name}}</td>
-                            <td><a class="btn btn-success btn-sm" href="#/leads/manage-leads/{{item.erp_id}}">View</a></td>
+                        <tr ng-repeat="item in displayedCollection" ng-click="goToLeadDetail(item.erp_id)">
+                            <td><div style="border-radius:100px;border:solid 1px #ccc;background:#fff;margin:0 10px 0 0;float:left;width:35px;height:35px"></div>{{item.erp_customer.erp_name}} <br><span>+91-7042860388</span></span></td>
+                            <td valign="middle">{{item.erp_creationDate}}</td>
+                            <td valign="middle">{{item.erp_leavingFrom}}</td>
+                            <td valign="middle">{{item.erp_leadStatus}}</td>
+                            <td valign="middle">{{item.erp_leadSource}}</td>
+                            <td valign="middle">{{item.erp_destinations}}</td>
+                            <td colspan="2" width="150" valign="middle">{{item.erp_assignedToEmployee.erp_emp_name}}</td>
                         </tr>
                         </tbody>
                         <tbody ng-show="mc.isLoading">

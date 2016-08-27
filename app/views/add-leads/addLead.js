@@ -40,5 +40,5 @@ angular.module('sbAdminApp').controller('addLead',function ($scope,ErpNodeServic
     };
     $scope.$watch('CustomerDetail.data',function(data){
         Watch.setcustomerCountry(data);
-      },true)
+    },true)
   });

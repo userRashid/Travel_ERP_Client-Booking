@@ -70,7 +70,8 @@ angular.module('sbAdminApp').factory('ErpNode',function(){
     }
     function setModel(model){
       function setErpPeople(key,data,value){
-        var len = data.length;
+        var len = 0;
+        if(data != undefined) len = data.length;
         for(var i=0; i<len;i++){
             if(data[i].type == 'erpPeople'){
                 if(key == 'erp_adultCount') data[i].adults = value;
