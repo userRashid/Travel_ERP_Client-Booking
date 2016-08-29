@@ -33,6 +33,7 @@ angular.module('sbAdminApp').controller('bookingDetailCtrl', function($scope,$st
              $scope.Model = data.getModel();
              $scope.Model.erp_createdById   = Authenticate.user().id;
              if($scope.Model.erp_salesPersonId)$scope.Model.erp_salesPersonId = GlobalData.getEmployeeId($scope.Model.erp_salesPersonId);
+             if($scope.Model.erp_taxIncluded)$scope.Model.erp_taxIncluded = true;
              API.put('booking/'+modelData.erp_bookingId,$scope.Model).then(function(response){
                Notify.add('success','Success',response.data.message);
                //LeadsServices.saveLead(leadId,LeadStatus);
