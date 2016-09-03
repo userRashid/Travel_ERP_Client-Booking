@@ -7,13 +7,8 @@
  * Controller of the sbAdminApp
  */
 angular.module('sbAdminApp')
-  .controller('MainCtrl', function($scope,API) {
-    API.get('customers').then(function(response){
-        $scope.customers = response.data.length;
-    });
-    API.get('lead').then(function(response){
-        $scope.leads =   response.data.length
-    });
-
-
+  .controller('MainCtrl', function($scope, Session) {
+    $scope.customers = Session.get('customerCount');
+    $scope.leads =   Session.get('leadCount');
+    $scope.bookings =   Session.get('bookingCount');
   });

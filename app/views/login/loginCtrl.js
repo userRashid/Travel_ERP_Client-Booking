@@ -2,8 +2,12 @@ angular.module('sbAdminApp').controller('Login', function ($scope,Navigation,Aut
     $scope.Login = function(data){
         var promise = [API.post('employee/login',data),API.get('employee')];
         $q.all(promise).then(function(response){
+            var loginData = response[0].data;
             Session.set('employee',JSON.stringify(response[1].data))
-            Authenticate.doLogin('',response[0].data.erp_emp_id,response[0].data.erp_emp_name);
+            Session.set('bookingCount',loginData.erp_bookingCount);
+            Session.set('customerCount',loginData.erp_customerCount);
+            Session.set('leadCount',loginData.erp_leadCount);
+            Authenticate.doLogin('',loginData.erp_employee.erp_emp_id,loginData.erp_employee.erp_emp_name);
             $state.go('leads.all', { objId: 479 });
         });
         //Authenticate.doLogin('',9,'Rashid');
