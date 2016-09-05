@@ -54,14 +54,14 @@
                         </thead>
                         <tbody ng-show="!mc.isLoading">
                         <tr ng-repeat="item in displayedCollection" >
-                            <td><img style="border-radius:100px;border:solid 1px #ccc;background:#fff;margin:0 10px 0 0;float:left;width:35px;height:35px" src="images/default.jpg"></img>{{item.erp_customer.erp_name}} <br>
-                                <span>{{item.erp_customer.erp_phoneNo}}</span></span></td>
+                            <td><img style="border-radius:100px;border:solid 1px #ccc;background:#fff;margin:0 10px 0 0;float:left;width:35px;height:35px" src="images/default.jpg" />{{item.erp_customerName}} <br>
+                                <span>{{item.erp_phoneNo}}</span></span></td>
                             <td valign="middle">{{item.erp_creationDate}}</td>
                             <td valign="middle">{{item.erp_leavingFrom}}</td>
                             <td valign="middle">{{item.erp_leadStatus}}</td>
                             <td valign="middle">{{item.erp_leadSource}}</td>
                             <td valign="middle">{{item.erp_destinations}}</td>
-                            <td colspan="2" width="150" valign="middle">{{item.erp_assignedToEmployee.erp_emp_name}}</td>
+                            <td colspan="2" width="150" valign="middle">{{item.erp_assignedTo}}</td>
                             <td valign="middle"><i class="fa fa-external-link" ng-click="goToLeadDetail(item.erp_id)"></i></td>
                             <td><i class="fa fa-quote-right" ng-click="goToLeadDetail(item.erp_id)"></i></td>
                         </tr>
