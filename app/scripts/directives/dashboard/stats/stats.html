@@ -1,18 +1,18 @@
 <div class="col-lg-3 col-md-6">
-    <div class="panel panel-{{colour}}">
-        <div class="panel-heading">
+    <div class="card">
+        <div class="card-header bg-{{colour}}">
             <div class="row">
-                <div class="col-xs-3">
+                <div class="col-sm-5">
                     <i class="fa fa-{{type}} fa-5x"></i>
                 </div>
-                <div class="col-xs-9 text-right">
+                <div class="col-sm-7 text-right">
                     <div class="huge">{{number}}</div>
                     <div>{{comments}}</div>
                 </div>
             </div>
         </div>
         <a ui-sref="{{goto}}">
-            <div class="panel-footer dashboard-link">
+            <div class="card-footer dashboard-link text-{{colour}}">
                 <span class="pull-left">View Details</span>
                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                 <div class="clearfix"></div>

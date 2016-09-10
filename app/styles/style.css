@@ -1,3 +1,11 @@
+@font-face{
+	font-family:"Segoe";
+	src:url("../fonts/SEGOEUI.TTF");
+}
+body,html {
+    height:100%;
+}
+._font-Segoe{font-family: Segoe;}
 .right-inner-addon{position: relative;}
 .right-inner-addon i{   position: absolute;
     right: 0px;
@@ -33,7 +41,7 @@
 .m-t25{margin-top:25px;}
 .m-b25{margin-bottom:25px;}
 .f30{ font-size:30px}
-.buttonM{ margin:20px 30px}
+.buttonM{ margin:10px 20px}
 .md-button.md-primary.md-raised{ background:#5cb85c}
 .addMore{}
 .addMore > button{ border-radius : 50%;
@@ -68,9 +76,8 @@
 .lr-drop-target-after{
   border-right: 2px solid orange;
 }
-#page-wrapper{ margin-top:50px;}
+#page-wrapper{ margin-top:75px; padding:10px}
 body{background:#fff;}
-.sidebar{height:650px;border-right: 1px solid #ccc;}
 #page-wrapper{ border:0px;}
 .add-hotel{border:1px solid #ccc}
 .add-hotel label{font-weight:normal !important; font-size:12px}
@@ -132,7 +139,32 @@ body{background:#fff;}
 .pZero {padding : 0px}
 .txtArea {width : 100% ;resize:none}
 .p5{ padding:5px;}
+.nav-pills .nav-link{ border-radius:0px !important}
+.nav-stacked .nav-item+.nav-item{ margin-top:0px}
+.tag{ font-weight:normal}
 
+
+.header {
+height:40px;
+    width:100%;
+}
+.footer {
+    height:60px;
+    width:250px;
+    position:absolute;
+    bottom:0;
+    font-size:12px;
+    padding:5px;
+    text-align:center;
+}
+.content {
+    position:absolute;
+    width:250px;
+    top:20px;
+    bottom:60px;
+    overflow-y:auto;
+}
+.s13{ font-size:13px}
 /* new style*/
 
 .form-control{background:#fff !important}

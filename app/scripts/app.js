@@ -24,6 +24,12 @@ angular
       //,'ngResource'
       //,'toggle-switch'
       //,'chart.js'
+
+      ,'erp_navigation'
+      ,'erp_leads'
+      ,'erp_login'
+      ,'erp_booking'
+      ,'erp_customer'
   ])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
     
@@ -85,7 +91,7 @@ angular
     }).state('leads.x',{
         templateUrl:'views/ui-elements/grid.html',
         url:'/x'
-    })
+    });
   }]);
 
     

@@ -82,16 +82,16 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
   function renderHTML(){
     var html = '';
     html = '<div>' +
-                '<div ng-if="!isEdit" class="panel panel-default" ng-switch on="options.type">' +
-                    '<div class="panel-heading leads">' +
+                '<div ng-if="!isEdit" class="card" ng-switch on="options.type">' +
+                    '<div class="card-header leads">' +
                         '<div class="row">' +
                             '<div class="col-lg-10 cursor-p" ng-click="showInfo()" >' +
                                 '<div ng-switch-when="customer">' +
-                                    '<h3 class="m0">{{data.erp_customer.erp_name}}</h3>' +
+                                    '<h5 class="m0">{{data.erp_customer.erp_name}}</h5>' +
                                     '<p class="m0">{{data.erp_customer.erp_emailId}}</p>' +
                                 '</div>' +
                                 '<div ng-switch-when="lead">' +
-                                    '<h3 class="m0">{{data.erp_destinations}}</h3>' +
+                                    '<h5 class="m0">{{data.erp_destinations}}</h5>' +
                                     '<p class="m0">{{data.erp_departureDate}}</p>' +
                                 '</div>' +
                             '</div>' +
@@ -99,7 +99,7 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
                             //'<div ng-switch-when="customer" ng-click="leadEmail()"tooltip="{{data.erp_customer.erp_emailId}}" tooltip-placement="top" class="col-lg-1 cursor-p" title="{{data.erp_customer.erp_emailId}}"><i class="fa fa-envelope"></i></div>' +
                         '</div>' +
                     '</div>' +
-                    '<div ng-show="info" class="panel-body">' +
+                    '<div ng-show="info" class="card-block">' +
                         '<div ng-switch-when="customer">' +
                             '<b>Phone : </b> {{data.erp_customer.erp_phoneNo}}<br />' +
                             '<b>City : </b> {{data.erp_customer.erp_city}}<br />' +
@@ -115,9 +115,9 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
                         '</div>' +
                     '</div>' +
                 '</div>'+
-                '<div ng-if="isEdit" class="panel panel-default panel-body">' +
+                '<div ng-if="isEdit" class="card clearfix">' +
                     '<div data-form-builder="Form.promise"></div>' +
-                    '<div class="text-right col-sm-12">' +
+                    '<div class="text-right col-sm-12 m-b-1">' +
                         '<button class="btn btn-sm btn-success" ng-click="update()">Update</button>&nbsp;&nbsp;' +
                         '<button class="btn btn-sm" ng-click="cancelLead()">Cancel</button>' +
                     '</div>' +

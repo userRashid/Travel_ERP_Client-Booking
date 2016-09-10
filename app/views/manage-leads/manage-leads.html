@@ -1,112 +1,109 @@
-<div class="row">
-    <div class="col-lg-12">
-        <div class="row m-t20">
-            <div class="col-lg-6" data-form-builder="Search.promise" mode="inline"></div>
-            <div class="col-lg-2 m-t25">
-                <button class="btn btn-success" ng-click="makeSearch()">Search</button>
-            </div>
-            <!--<div class="col-lg-4" data-erp-date-range="dateSearch"></div>-->
+<div>
+    <div class="clearfix">
+        <div class="pull-sm-left" data-form-builder="Search.promise" mode="inline"></div>
+        <div class="pull-sm-left m-t25">
+            <button class="btn btn-success" ng-click="makeSearch()">Search</button>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <i class="fa fa-bell fa-fw"></i> Lead Panel
-                <i class="glyphicon glyphicon-export" style="float:right;" ng-click="export()">&nbsp;Export</i>
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped" st-table="displayedCollection" st-safe-src="allLeads">
-                        <thead>
-                        <tr>
-                            <th width="200" st-sort="erp_customer.erp_name">Customer</th>
-                            <th st-sort="erp_creationDate">Added on</th>
-                            <th st-sort="erp_leavingFrom">Leaving From</th>
-                            <th st-sort="erp_leadStatus">Lead Status</th>
-                            <th st-sort="erp_leadSource">Lead Source</th>
-                            <th st-sort="erp_destinations">Destinations</th>
-                            <th st-sort="erp_assignedToEmployee.erp_emp_name">Assign to</th>
-                            <th><span ng-click="toggleFilter()" class="glyphicon glyphicon-filter"></span></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr id="filters" ng-show="showFilter">
-                            <th>
-                                <input st-search="erp_customer.erp_name" placeholder="" class="input-sm form-control" type="search"/>
-                            </th>
-                            <th>
-                                <input st-search="erp_creationDate" placeholder="" class="input-sm form-control" type="search"/>
-                            </th>
-                            <th>
-                                <input st-search="erp_leavingFrom" placeholder="" class="input-sm form-control" type="search"/>
-                            </th>
-                            <th>
-                                <input st-search="erp_leadStatus" placeholder="" class="input-sm form-control" type="search"/>
-                            </th>
-                            <th>
-                                <input st-search="erp_leadSource" placeholder="" class="input-sm form-control" type="search"/>
-                            </th>
-                            <th>
-                                <input st-search="erp_destinations" placeholder="" class="input-sm form-control" type="search"/>
-                            </th>
-                            <th colspan="2">
-                                <input st-search="erp_assignedToEmployee.erp_emp_name" placeholder="" class="input-sm form-control" type="search"/>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody ng-show="!mc.isLoading">
-                        <tr ng-repeat="item in displayedCollection" >
-                            <td><img style="border-radius:100px;border:solid 1px #ccc;background:#fff;margin:0 10px 0 0;float:left;width:35px;height:35px" src="images/default.jpg" />{{item.erp_customerName}} <br>
-                                <span>{{item.erp_phoneNo}}</span></span></td>
-                            <td valign="middle">{{item.erp_creationDate}}</td>
-                            <td valign="middle">{{item.erp_leavingFrom}}</td>
-                            <td valign="middle">{{item.erp_leadStatus}}</td>
-                            <td valign="middle">{{item.erp_leadSource}}</td>
-                            <td valign="middle">{{item.erp_destinations}}</td>
-                            <td colspan="2" width="150" valign="middle">{{item.erp_assignedTo}}</td>
-                            <td valign="middle"><i class="fa fa-external-link" ng-click="goToLeadDetail(item.erp_id)"></i></td>
-                            <td><i class="fa fa-quote-right" ng-click="goToLeadDetail(item.erp_id)"></i></td>
-                        </tr>
-                        </tbody>
-                        <tbody ng-show="mc.isLoading">
-                        <tr>
-                            <td colspan="9" class="text-center">Loading ... </td>
-                        </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td class="text-center" st-pagination="" st-items-by-page="10" colspan="9"></td>
-                        </tr>
-                        </tfoot>
-                    </table>
+    </div>
+    <div class="panel panel-default col-sm-12">
+        <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i> Lead Panel
+            <i class="glyphicon glyphicon-export" style="float:right;" ng-click="export()">&nbsp;Export</i>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped" st-table="displayedCollection" st-safe-src="allLeads">
+                    <thead>
+                    <tr>
+                        <th width="200" st-sort="erp_customer.erp_name">Customer</th>
+                        <th st-sort="erp_creationDate">Added on</th>
+                        <th st-sort="erp_leavingFrom">Leaving From</th>
+                        <th st-sort="erp_leadStatus">Lead Status</th>
+                        <th st-sort="erp_leadSource">Lead Source</th>
+                        <th st-sort="erp_destinations">Destinations</th>
+                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Assign to</th>
+                        <th><span ng-click="toggleFilter()" class="glyphicon glyphicon-filter"></span></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr id="filters" ng-show="showFilter">
+                        <th>
+                            <input st-search="erp_customer.erp_name" placeholder="" class="input-sm form-control" type="search"/>
+                        </th>
+                        <th>
+                            <input st-search="erp_creationDate" placeholder="" class="input-sm form-control" type="search"/>
+                        </th>
+                        <th>
+                            <input st-search="erp_leavingFrom" placeholder="" class="input-sm form-control" type="search"/>
+                        </th>
+                        <th>
+                            <input st-search="erp_leadStatus" placeholder="" class="input-sm form-control" type="search"/>
+                        </th>
+                        <th>
+                            <input st-search="erp_leadSource" placeholder="" class="input-sm form-control" type="search"/>
+                        </th>
+                        <th>
+                            <input st-search="erp_destinations" placeholder="" class="input-sm form-control" type="search"/>
+                        </th>
+                        <th colspan="2">
+                            <input st-search="erp_assignedToEmployee.erp_emp_name" placeholder="" class="input-sm form-control" type="search"/>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody ng-show="!mc.isLoading">
+                    <tr ng-repeat="item in displayedCollection" >
+                        <td><img style="border-radius:100px;border:solid 1px #ccc;background:#fff;margin:0 10px 0 0;float:left;width:35px;height:35px" src="images/default.jpg" />{{item.erp_customerName}} <br>
+                            <span>{{item.erp_phoneNo}}</span></span></td>
+                        <td valign="middle">{{item.erp_creationDate}}</td>
+                        <td valign="middle">{{item.erp_leavingFrom}}</td>
+                        <td valign="middle">{{item.erp_leadStatus}}</td>
+                        <td valign="middle">{{item.erp_leadSource}}</td>
+                        <td valign="middle">{{item.erp_destinations}}</td>
+                        <td colspan="2" width="150" valign="middle">{{item.erp_assignedTo}}</td>
+                        <td valign="middle"><i class="fa fa-external-link" ng-click="goToLeadDetail(item.erp_id)"></i></td>
+                        <td><i class="fa fa-quote-right" ng-click="goToLeadDetail(item.erp_id)"></i></td>
+                    </tr>
+                    </tbody>
+                    <tbody ng-show="mc.isLoading">
+                    <tr>
+                        <td colspan="9" class="text-center">Loading ... </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td class="text-center" st-pagination="" st-items-by-page="10" colspan="9"></td>
+                    </tr>
+                    </tfoot>
+                </table>
 
-                    <!--<table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Lead Id</th>
-                                <th>Added on</th>
-                                <th>Leaving From</th>
-                                <th>Lead Status</th>
-                                <th>Lead Source</th>
-                                <th>Destinations</th>
-                                <th>Customer</th>
-                                <th>Assign to</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in allLeads">
-                                <td>{{item.erp_id}}</td>
-                                <td>{{item.erp_creationDate}}</td>
-                                <td>{{item.erp_leavingFrom}}</td>
-                                <td>{{item.erp_leadStatus}}</td>
-                                <td>{{item.erp_leadSource}}</td>
-                                <td>{{item.erp_destinations}}</td>
-                                <td>{{item.erp_customer.erp_name}}</td>
-                                <td>{{item.erp_assignedToEmployee.erp_emp_name}}</td>
-                                <td><a class="btn btn-success btn-sm" href="#/leads/manage-leads/{{item.erp_id}}">View</a></td>
-                            </tr>
-                        </tbody>
-                    </table>-->
-                </div>
+                <!--<table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Lead Id</th>
+                            <th>Added on</th>
+                            <th>Leaving From</th>
+                            <th>Lead Status</th>
+                            <th>Lead Source</th>
+                            <th>Destinations</th>
+                            <th>Customer</th>
+                            <th>Assign to</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in allLeads">
+                            <td>{{item.erp_id}}</td>
+                            <td>{{item.erp_creationDate}}</td>
+                            <td>{{item.erp_leavingFrom}}</td>
+                            <td>{{item.erp_leadStatus}}</td>
+                            <td>{{item.erp_leadSource}}</td>
+                            <td>{{item.erp_destinations}}</td>
+                            <td>{{item.erp_customer.erp_name}}</td>
+                            <td>{{item.erp_assignedToEmployee.erp_emp_name}}</td>
+                            <td><a class="btn btn-success btn-sm" href="#/leads/manage-leads/{{item.erp_id}}">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>-->
             </div>
         </div>
     </div>

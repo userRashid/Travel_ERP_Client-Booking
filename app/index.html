@@ -1,141 +1,162 @@
 <!doctype html>
 <html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <title>ERP</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
 
-    <!-- endbower -->
-    <!-- endbuild -->
-    
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/sb-admin-2.css">
-    <link rel="stylesheet" href="styles/timeline.css">
-    <link rel="stylesheet" href="bower_components/metisMenu/dist/metisMenu.min.css">
-    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="bower_components/ngTagsInput/ng-tags-input.css">
-    <link rel="stylesheet" href="bower_components/ngDatepicker/src/css/ngDatepicker.css">
-    <link rel="stylesheet" href="bower_components/angular-toggle-switch/angular-toggle-switch.css">
-    <link rel="stylesheet" href="bower_components/toastr/toastr.css">
-    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
-    <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css">
-    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css"/>
-    <link rel="stylesheet" href="styles/style.css">
-    <!-- endbuild -->
+<head>
+  <meta charset="utf-8">
+  <title>ERP</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" href="images/logo.png" type="image/x-icon" />
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
-    <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls-1.2.4.js"></script>
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-    <script src="bower_components/Chart.js/Chart.min.js"></script>
-    <script src="bower_components/underscore/underscore-min.js"></script>
-    <script src="bower_components/ngTagsInput/ng-tags-input.js"></script>
-    <script src="bower_components/ngDatepicker/src/js/ngDatepicker.js"></script>
-    <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-toggle-switch/angular-toggle-switch.min.js"></script>
-    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
-    <script src="bower_components/toastr/toastr.js"></script>
-    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
-    <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
-    <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
-    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <script src="config/config.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/sb-admin-2.css">
+  <link rel="stylesheet" href="styles/timeline.css">
+  <link rel="stylesheet" href="bower_components/metisMenu/dist/metisMenu.min.css">
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="bower_components/ngTagsInput/ng-tags-input.css">
+  <link rel="stylesheet" href="bower_components/ngDatepicker/src/css/ngDatepicker.css">
+  <link rel="stylesheet" href="bower_components/angular-toggle-switch/angular-toggle-switch.css">
+  <link rel="stylesheet" href="bower_components/toastr/toastr.css">
+  <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+  <link rel="stylesheet" href="bower_components/angular-bootstrap-datetimepicker/src/css/datetimepicker.css">
+  <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css" />
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- endbuild -->
 
-    <script src="scripts/app.js"></script>
-    <script src="scripts/directives/notifications/notifications.js"></script>
-    <script src="js/sb-admin-2.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/directives/chat/chat.js"></script>
-    <script src="scripts/directives/dashboard/stats/stats.js"></script>
-    <script src="scripts/controllers/chartContoller.js"></script>
-    <script src="component/formBuilder/formBuilder.js"></script>
-    <script src="component/erpPeople/erpPeople.js"></script>
-    <script src="component/erpSelect/erpSelect.js"></script>
-    <script src="component/erpText/erpText.js"></script>
-    <script src="component/erpMultiSelect/erpMultiSelect.js"></script>
-    <script src="component/erpCalender/erpCalender.js"></script>
-    <script src="component/erpCheckbox/erpCheckbox.js"></script>
-    <script src="component/sideMenu/sideMenu.js"></script>
-    <script src="component/lead/lead.js"></script>
-    <script src="component/erpDateRange/erpDateRange.js"></script>
-    <script src="component/erpPhone/erpPhone.js"></script>
-    <script src="component/erpNote/erpNote.js"></script>
-    <script src="component/erpAttach/erpAttach.js"></script>
-    <script src="component/erpUpload/erpUpload.js"></script>
-    <script src="component/erpAddMore/erpAddMore.js"></script>
-    <script src="component/erpEmail/erpEmail.js"></script>
-    <script src="component/erpTimeline/erpTimeline.js"></script>
-    <script src="component/erpHotel/erpHotel.js"></script>
-    <script src="component/erpTravelBookings/erpTravelBookings.js"></script>
-    <script src="component/erpBookingStatus/erpBookingStatus.js"></script>
-    <script src="component/erpTextArea/erpTextArea.js"></script>
-    <script src="component/erpAlert/erpAlert.js"></script>
-    <script src="component/erpHotelDetail/erpHotelDetail.js"></script>
-    <script src="component/erpDateTime/erpDateTime.js"></script>
-    <script src="component/erpDateRangePicker/erpDateRangePicker.js"></script>
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/json3/lib/json3.min.js"></script>
+  <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+  <script src="bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls-1.2.4.js"></script>
+  <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+  <script src="bower_components/Chart.js/Chart.min.js"></script>
+  <script src="bower_components/underscore/underscore-min.js"></script>
+  <script src="bower_components/ngTagsInput/ng-tags-input.js"></script>
+  <script src="bower_components/ngDatepicker/src/js/ngDatepicker.js"></script>
+  <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-toggle-switch/angular-toggle-switch.min.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+  <script src="bower_components/toastr/toastr.js"></script>
+  <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+  <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+  <script src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+  <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <script src="bower_components/angular-daterangepicker/js/angular-daterangepicker.js"></script>
 
-    <script src="main/erpGlobalData.js"></script>
-    <script src="main/formData.js"></script>
-    <script src="main/navigation.js"></script>
-    <script src="main/erpNode.js"></script>
-    <script src="main/erpNodeServices.js"></script>
-    <script src="main/API.js"></script>
-    <script src="main/authenticate.js"></script>
-    <script src="main/Actions.js"></script>
-    <script src="main/Notify.js"></script>
-    <script src="main/Watch.js"></script>
-    <script src="scripts/controllers/RootCtrl.js"></script>
-    <script src="views/add-leads/addLead.js"></script>
-    <script src="views/login/loginCtrl.js"></script>
-    <script src="views/customers/customersCtrl.js"></script>
-    <script src="views/manage-leads/manageLeadsCtrl.js"></script>
-    <script src="views/leads/leadsCtrl.js"></script>
-    <script src="views/leads/leadsServices.js"></script>
-    <script src="views/booking/bookingCtrl.js"></script>
-    <script src="views/booking/bookingService.js"></script>
-    <script src="scripts/directives/header/header.js"></script>
-    <script src="scripts/directives/header/header-notification/header-notification.js"></script>
-    <script src="scripts/directives/sidebar/sidebar.js"></script>
-    <script src="scripts/directives/sidebar/sidebar-search/sidebar-search.js"></script>
-    <script src="views/bookingDetail/bookingDetailCtrl.js"></script>
-    <script src="views/bookingDetail/bookingDetailService.js"></script>
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <!-- endbuild -->
-    <!-- Custom CSS -->
+  <script src="config/config.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <!-- Custom Fonts -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/directives/notifications/notifications.js"></script>
+  <script src="js/sb-admin-2.js"></script>
+  <script src="scripts/controllers/main.js"></script>
+  <script src="scripts/directives/chat/chat.js"></script>
+  <script src="scripts/directives/dashboard/stats/stats.js"></script>
+  <script src="scripts/controllers/chartContoller.js"></script>
 
-    <!-- Morris Charts CSS -->
-    <!-- <link href="styles/morrisjs/morris.css" rel="stylesheet"> -->
-    </head>
-    <body>
-      <div ng-app="sbAdminApp">
-          <div ui-view></div>
-      </div>
-    </body>
+  <script src="component/formBuilder/formBuilder.js"></script>
+  <script src="component/erpPeople/erpPeople.js"></script>
+  <script src="component/erpSelect/erpSelect.js"></script>
+  <script src="component/erpText/erpText.js"></script>
+  <script src="component/erpMultiSelect/erpMultiSelect.js"></script>
+  <script src="component/erpCalender/erpCalender.js"></script>
+  <script src="component/erpCheckbox/erpCheckbox.js"></script>
+  <script src="component/sideMenu/sideMenu.js"></script>
+  <script src="component/lead/lead.js"></script>
+  <script src="component/erpDateRange/erpDateRange.js"></script>
+  <script src="component/erpPhone/erpPhone.js"></script>
+  <script src="component/erpNote/erpNote.js"></script>
+  <script src="component/erpAttach/erpAttach.js"></script>
+  <script src="component/erpUpload/erpUpload.js"></script>
+  <script src="component/erpAddMore/erpAddMore.js"></script>
+  <script src="component/erpEmail/erpEmail.js"></script>
+  <script src="component/erpTimeline/erpTimeline.js"></script>
+  <script src="component/erpHotel/erpHotel.js"></script>
+  <script src="component/erpTravelBookings/erpTravelBookings.js"></script>
+  <script src="component/erpBookingStatus/erpBookingStatus.js"></script>
+  <script src="component/erpTextArea/erpTextArea.js"></script>
+  <script src="component/erpAlert/erpAlert.js"></script>
+  <script src="component/erpHotelDetail/erpHotelDetail.js"></script>
+  <script src="component/erpDateTime/erpDateTime.js"></script>
+  <script src="component/erpDateRangePicker/erpDateRangePicker.js"></script>
+
+  <script src="main/erpGlobalData.js"></script>
+  <script src="main/formData.js"></script>
+  <script src="main/navigation.js"></script>
+  <script src="main/erpNode.js"></script>
+  <script src="main/erpNodeServices.js"></script>
+  <script src="main/API.js"></script>
+  <script src="main/authenticate.js"></script>
+  <script src="main/Actions.js"></script>
+  <script src="main/Notify.js"></script>
+  <script src="main/Watch.js"></script>
+
+  <script src="scripts/controllers/RootCtrl.js"></script>
+
+  <script src="views/login/login.module.js"></script>
+  <script src="views/login/loginCtrl.js"></script>
+
+  <script src="views/customers/customer.module.js"></script>
+  <script src="views/customers/customersCtrl.js"></script>
+
+  <script src="views/add-leads/lead.module.js"></script>
+  <script src="views/manage-leads/manageLeadsCtrl.js"></script>
+  <script src="views/add-leads/addLead.js"></script>
+  <script src="views/leads/leadsCtrl.js"></script>
+  <script src="views/leads/leadsServices.js"></script>
+
+  <script src="views/booking/booking.module.js"></script>
+  <script src="views/booking/bookingCtrl.js"></script>
+  <script src="views/booking/bookingService.js"></script>
+  <script src="views/bookingDetail/bookingDetailCtrl.js"></script>
+  <script src="views/bookingDetail/bookingDetailService.js"></script>
+
+  <script src="scripts/directives/header/header.js"></script>
+  <script src="scripts/directives/header/header-notification/header-notification.js"></script>
+  <script src="scripts/directives/sidebar/sidebar.js"></script>
+  <script src="scripts/directives/sidebar/sidebar-search/sidebar-search.js"></script>
+
+
+
+  <!-- Navigation -->
+  <script src="navigation/navigation.module.js"></script>
+  <script src="navigation/sidebar/sidebar.js"></script>
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <!-- endbuild -->
+  <!-- Custom CSS -->
+
+  <!-- Custom Fonts -->
+
+  <!-- Morris Charts CSS -->
+  <!-- <link href="styles/morrisjs/morris.css" rel="stylesheet"> -->
+</head>
+
+<body>
+  <div ng-app="sbAdminApp">
+    <div ui-view></div>
+  </div>
+</body>
+
 </html>
