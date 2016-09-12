@@ -112,6 +112,7 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
                             '<b>Lead Source : </b> {{data.erp_leadSource}}<br />' +
                             '<b>Additional Info : </b> {{data.erp_additionalInfo}}<br />' +
                             '<b>Lead added on : </b> {{data.erp_creationDate}}<br />' +
+                            '<b>Assign to : </b> {{data.erp_assignedToEmployee.erp_emp_name}}<br />' +
                         '</div>' +
                     '</div>' +
                 '</div>'+

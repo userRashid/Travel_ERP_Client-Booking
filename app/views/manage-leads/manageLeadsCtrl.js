@@ -4,8 +4,8 @@
     angular
         .module('erp_leads')
         .controller('ManageLeadsCtrl', ManageLeadsCtrl)
-    function ManageLeadsCtrl($scope, API, ErpNodeServices, FormData, Session, $location) {
-
+    function ManageLeadsCtrl($scope, API, ErpNodeServices, FormData, Session, $location, $sce) {
+        var vm = this;
         API.get('leadSummary?assignedTo=' + Session.get('id')).then(function (response) {
             $scope.allLeads = response.data;
         });
@@ -17,6 +17,11 @@
                     $scope.allLeads = _data.data;
                 });
             });
+        }
+        $scope.showMoreInformation = $sce.trustAsHtml('<b>Email </b> <br /><b>Creation Date</b>');
+        $scope.showMore = function(item,event){
+            console.log(item,event);
+            $scope.showMoreInformation = $sce.trustAsHtml('<b>Name </b>'+ item.erp_customerName +'<br /><b>Email </b>'+ item.erp_emailId +'<br /><b>Creation Date </b>'+ item.erp_creationDate);
         }
         $scope.dateSearch = '';
         $scope.export = function () {

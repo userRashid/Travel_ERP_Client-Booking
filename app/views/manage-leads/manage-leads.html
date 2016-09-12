@@ -15,7 +15,7 @@
                 <table class="table table-striped" st-table="displayedCollection" st-safe-src="allLeads">
                     <thead>
                     <tr>
-                        <th width="200" st-sort="erp_customer.erp_name">Customer</th>
+                        <th colspan="2" width="200" st-sort="erp_customer.erp_name">Customer</th>
                         <th st-sort="erp_creationDate">Added on</th>
                         <th st-sort="erp_leavingFrom">Leaving From</th>
                         <th st-sort="erp_leadStatus">Lead Status</th>
@@ -52,8 +52,11 @@
                     </thead>
                     <tbody ng-show="!mc.isLoading">
                     <tr ng-repeat="item in displayedCollection" >
-                        <td><img style="border-radius:100px;border:solid 1px #ccc;background:#fff;margin:0 10px 0 0;float:left;width:35px;height:35px" src="images/default.jpg" />{{item.erp_customerName}} <br>
-                            <span>{{item.erp_phoneNo}}</span></span></td>
+                        <td>
+                            <img style="border-radius:100px;border:solid 1px #ccc;background:#fff;margin:0 10px 0 0;float:left;width:35px;height:35px" src="images/default.jpg" />{{item.erp_customerName}} <br>
+                            <span>{{item.erp_phoneNo}}</span>
+                        </td>
+                        <td valign="middle"><i ng-click="showMore(item,$event)" uib-popover-html="showMoreInformation"  popover-placement="right" class="fa fa-info-circle"></i></td>
                         <td valign="middle">{{item.erp_creationDate}}</td>
                         <td valign="middle">{{item.erp_leavingFrom}}</td>
                         <td valign="middle">{{item.erp_leadStatus}}</td>
