@@ -53,7 +53,7 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
     function updateBooking(item,model){
         var q = $q.defer();
         var url = '';
-        if(item.hasOwnProperty('erp_bookingAmount') && item.erp_bookingAmount != ''){
+        if(item.hasOwnProperty('erp_bookingAmount') && item.erp_bookingAmount != ''&& item.erp_bookingAmount != undefined){
             url = API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.erp_bookingStatus+'&tokenAmount='+item.erp_bookingAmount,model);
         } else {
 
