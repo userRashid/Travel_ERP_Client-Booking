@@ -55,23 +55,19 @@ angular.module('sbAdminApp').controller('BookingCtrl', function($scope,BookingSe
     $scope.cancelStatus = function(item){
         item.editStatusValue = false;
     }
-    $scope.doneStatus = function(item){
+    $scope.doneStatus = function(item,model){
         var temp = {};
-        if(item.bookingStatus.model.hasOwnProperty('erp_bookingStatus') && item.bookingStatus.model.erp_bookingStatus != ''){
-            if(item.bookingStatus.model.erp_bookingStatus == 'Cancelled'){
-                $scope.open(item);
-            } else {
-                temp.erp_bookingId      = item.erp_bookingId;
-                temp.erp_bookingStatus  = item.bookingStatus.model.erp_bookingStatus;
-                temp.erp_bookingAmount  = item.bookingStatus.model.erp_bookingAmount;
-                BookingService.updateBooking(temp).then(function(data){
-                    item.editStatusValue = false;
-                    item.erp_bookingStatus = temp.erp_bookingStatus;
-                    Notify.add('success','Success',data.message);
-                },function(error){
-                    Notify.add('error','Error',error.data.errorMessgae);
-                });
-            }
+        if(model.erp_bookingStatus == 'Cancelled'){
+            $scope.open(item);
+        } else {
+            model.erp_bookingId      = item.erp_bookingId;
+            BookingService.updateBooking(model).then(function(data){
+                item.editStatusValue = false;
+                item.erp_bookingStatus = model.erp_bookingStatus;
+                Notify.add('success','Success',data.message);
+            },function(error){
+                Notify.add('error','Error',error.data.errorMessgae);
+            });
         }
     }
     $scope.open = function (item) {

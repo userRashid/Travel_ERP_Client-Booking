@@ -75,8 +75,8 @@
                 </div>
                 <div class="_bookingStatus row" ng-if="item.editStatusValue">
                     <span data-erp-booking-status="item.bookingStatus" class="col-sm-9"></span>
-                    <i ng-click="doneStatus(item)"class="fa fa-check"></i>
-                    <i ng-click="cancelStatus(item)"class="fa fa-times"></i>
+                    <button ng-click="doneStatus(item,item.bookingStatus.model)" ng-diabled="item.bookingStatus.model" class="fa fa-check"></button>
+                    <button ng-click="cancelStatus(item)"class="fa fa-times"></button>
                 </div>
                 <div>
                     <b class="s13">Lead ID </b>
