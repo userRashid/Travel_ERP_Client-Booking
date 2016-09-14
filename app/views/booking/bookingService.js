@@ -49,12 +49,12 @@ angular.module('sbAdminApp').factory('BookingService', function(API,Session,$q,G
         });
         return q.promise;
     }
-    //http://104.236.94.240:8080/Travel_ERP/booking/{bookingId}/status?bookingStatus={status}
+
     function updateBooking(item,model){
-        var q = $q.defer();
-        var url = '';
-        if(item.hasOwnProperty('erp_bookingAmount') && item.erp_bookingAmount != ''&& item.erp_bookingAmount != undefined){
-            url = API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.erp_bookingStatus+'&tokenAmount='+item.erp_bookingAmount,model);
+        var q = $q.defer()
+            ,url = '';
+        if(item.hasOwnProperty('erp_tokenAmount')){
+            url = API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.erp_bookingStatus+'&tokenAmount='+item.erp_tokenAmount,model);
         } else {
 
             url = API.put('booking/'+item.erp_bookingId+'/status?bookingStatus='+item.erp_bookingStatus,model);
