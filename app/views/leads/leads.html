@@ -41,7 +41,7 @@
                 <i class="fa fa-clock-o fa-fw"></i> Activities Timeline
             </div>
             <div style="padding-bottom: 0px;" class="card-block text-center">
-                <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('note')">
+              <!--  <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('note')">
                     <h5 class="m0"><i class="fa fa-file-o"></i>&nbsp;&nbsp;Note</h5>
                 </button>
                 <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('email')">
@@ -49,6 +49,9 @@
                 </button>
                 <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('phone')">
                     <h5 class="m0"><i class="fa fa-phone"></i>&nbsp;&nbsp;Call</h5>
+                </button>-->
+                <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('activity')">
+                    <h5 class="m0"><i class="fa fa-file-o"></i>&nbsp;&nbsp;Activity</h5>
                 </button>
                 <button class="btn btn-default btn-sm" type="button" ng-click="openPanel('attach')">
                     <h5 class="m0"><i class="fa fa-paperclip"></i>&nbsp;&nbsp;Attach</h5>
@@ -57,7 +60,7 @@
                     <h5 class="m0"><i class="fa fa-bell-o"></i>&nbsp;&nbsp;Alert</h5>
                 </button>
             </div>
-            <div style="padding:0 18px;">
+           <!-- <div style="padding:0 18px;">
                 <div ng-if="item.note" style="border:1px solid #ccc; margin-top:10px;">
                     <div data-erp-note="Note"></div>
                     <div style="margin:0 18px 20px;">
@@ -76,6 +79,16 @@
                     <div data-erp-note="Note"></div>
                     <div style="margin:0 18px 20px;">
                         <button class="btn btn-success" ng-click="addNote()">Add Call</button>
+                        <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+                    </div>
+                </div>-->
+                <div ng-if="item.activity" style="border:1px solid #ccc; margin-top:10px;">
+                    <div data-erp-note="Activity"></div>
+                    <div ng-if="isActivityType">
+                        <div data-erp-note="Note"></div>
+                    </div>
+                    <div style="margin:0 18px 20px;">
+                        <button class="btn btn-success" ng-click="addNote()">Add Activity</button>
                         <button class="btn btn-default" ng-click="cancel()">Cancel</button>
                     </div>
                 </div>

@@ -9,8 +9,20 @@ angular.module('sbAdminApp').factory('FormData',function($q,GlobalData,Authentic
         ,addAttach  :   addAttach
         ,getCity    :   getCity
         ,erpAlert   :   erpAlert
+        ,erpActivity    :   erpActivity
         ,editBookingData :  editBookingData
     }
+
+    function erpActivity(){
+    var erpActivity = [{
+        label : 'Activity Type'
+        ,name : 'erp_activity'
+        ,type : 'erpSelect'
+        ,values : $q.when(['Email','Note','Phone'])
+        }];
+    return erpActivity;
+    }
+
     function erpAlert(){
        var erpAlert =[{
                       label :''

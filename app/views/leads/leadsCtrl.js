@@ -4,7 +4,7 @@
     angular
         .module('erp_leads')
         .controller('LeadsCtrl', LeadsCtrl);
-    function LeadsCtrl($scope, API, $stateParams, Notify, Session, $state, Actions, $q, LeadsServices, $uibModal, Authenticate, $http) {
+    function LeadsCtrl($scope, API, $stateParams, Notify, Session, $state, Actions, $q, LeadsServices, $uibModal, Authenticate, $http,ErpNodeServices,FormData) {
         $scope.Lead = {};
         $scope.Customer = {};
         $scope.Note = {};
@@ -12,6 +12,7 @@
         $scope.Attach = {};
         $scope.Alert = {};
         $scope.Email = {};
+        $scope.Activity = {};
         $scope.leadId = $stateParams.id;
         if (!$scope.leadId) $state.go('leads.all');
         $scope.promise = API.get('lead/' + $scope.leadId);
@@ -22,12 +23,22 @@
         $scope.Lead.isShow = true;
         $scope.Customer.type = 'customer';
         $scope.Customer.isShow = true;
+        $scope.isActivityType = false;
         $scope.LeadStatus = { name: 'erp_leadStatus', values: LeadsServices.getLeadStatus() };
         $scope.promise.then(function (response) {
             $scope.LeadStatus.model = response.data.erp_leadStatus;
             if (response.data.erp_leadStatus == 'Matured') $scope.LeadStatus.isDisable = true;
         });
 
+        $scope.$watch('Activity',function(data){
+         if(!data.data)return;
+            $scope.isActivityType = false;
+            if(data.data[0].model){
+                $scope.isActivityType = true;
+                $scope.Note = ErpNodeServices.createForm(FormData.addNote());
+                $scope.activityType = data.data[0].model;
+            }
+        },true)
         $scope.open = function (size) {
             var leadId = $scope.leadId,
                 LeadStatus = $scope.LeadStatus,
@@ -106,10 +117,14 @@
             email: false,
             phone: false,
             attach: false,
-            alert: false
+            alert: false,
+            activity:false
         };
+
+
+
         $scope.openPanel = function (name) {
-            console.log(name, $scope.item);
+          // console.log(name, $scope.item);
             for (var key in $scope.item) {
                 if (key == name) {
                     if ($scope.item[key]) {
@@ -121,7 +136,9 @@
                 } else {
                     $scope.item[key] = false;
                 }
+
             }
+            if($scope.item['activity']) $scope.Activity = ErpNodeServices.createForm(FormData.erpActivity());
         };
         $scope.closeAllPanel = function () {
             for (var key in $scope.item) {
@@ -159,11 +176,11 @@
             $scope.Note.promise.then(function (data) {
                 var model = data.getModel()
                     , leadId = $scope.leadId;
-                model.erp_source = $scope.noteType;
+                model.erp_source = $scope.activityType;
                 model.erp_createdBy = Session.get('id');
                 API.post('lead/' + leadId + '/note', model).then(function (response) {
                     $scope.closeAllPanel();
-                    $scope.Timeline.addNew(addNew(response.data.id, leadId, $scope.noteType, model.erp_notes, model));
+                    $scope.Timeline.addNew(addNew(response.data.id, leadId, $scope.activityType, model.erp_notes, model));
                     Notify.add('success', 'Success', response.data.message);
                 }, function (error) {
                     console.log('Error  ', error)
@@ -171,5 +188,6 @@
             });
         };
     };
+
 
 })();
