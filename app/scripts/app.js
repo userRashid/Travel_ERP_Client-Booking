@@ -30,6 +30,7 @@ angular
       ,'erp_login'
       ,'erp_booking'
       ,'erp_customer'
+      ,'erp_component'
   ])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
     

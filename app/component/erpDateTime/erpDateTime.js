@@ -33,8 +33,8 @@ angular.module('sbAdminApp').directive('erpDateTime',function($compile){
   function renderHTML(){
     var html = '';
    html +='<div class="dropdown">'+
-              '<a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" >'+
-                '<div class="input-group"><input type="text" class="form-control" data-ng-model=data.model><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>'+
+              '<a id="dropdown2" role="button" data-toggle="dropdown" data-target="#" >'+
+                '<div class="input-group"><input type="text" class="form-control" data-ng-model=data.model><span class="input-group-addon"><i class="fa fa-calendar"></i></span>'+
                 '</div>'+
               '</a>'+
               '<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">'+

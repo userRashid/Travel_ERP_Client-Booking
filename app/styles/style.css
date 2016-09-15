@@ -4,6 +4,7 @@
 }
 body,html {
     height:100%;
+    background:#eee;
 }
 ._font-Segoe{font-family: Segoe;}
 .right-inner-addon{position: relative;}
@@ -76,8 +77,7 @@ body,html {
 .lr-drop-target-after{
   border-right: 2px solid orange;
 }
-#page-wrapper{ margin-top:75px; padding:10px}
-body{background:#fff;}
+#page-wrapper{ margin-top:45px; padding:10px}
 #page-wrapper{ border:0px;}
 .add-hotel{border:1px solid #ccc}
 .add-hotel label{font-weight:normal !important; font-size:12px}
@@ -165,6 +165,7 @@ height:40px;
     overflow-y:auto;
 }
 .s13{ font-size:13px}
+.sidebar { margin-top: 23px}
 /* new style*/
 
 .form-control{background:#fff !important}
