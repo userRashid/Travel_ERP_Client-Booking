@@ -18,7 +18,7 @@ angular.module('sbAdminApp').factory('ErpNodeServices',function($q,FormData,ErpN
       _d +=key+'='+model[key]+'&';
     }
     _d = _d.slice(0, -1);
-    return API.get('lead'+_d);
+    return API.get('leadSummary'+_d);
   }
 
   function getName(id){
