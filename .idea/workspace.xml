@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="db8dc752-c610-44b2-ae56-065f0305ecc7" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/employee/add-employee/add-employee.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/employee/add-employee/addEmployeeCtrl.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/employee/assign-leads/assign-leads.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/employee/assign-leads/assignLeadsCtrl.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/employee/manage-employee/manage-employee.html" />
@@ -17,7 +18,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/main/formData.js" afterPath="$PROJECT_DIR$/app/main/formData.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/app.js" afterPath="$PROJECT_DIR$/app/scripts/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/directives/sidebar/sidebar.html" afterPath="$PROJECT_DIR$/app/scripts/directives/sidebar/sidebar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/login/loginCtrl.js" afterPath="$PROJECT_DIR$/app/views/login/loginCtrl.js" />
     </list>
     <ignored path="Travel_ERP_Client-Booking.iws" />
     <ignored path=".idea/workspace.xml" />
