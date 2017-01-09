@@ -4,5 +4,49 @@
 </div>
 <div>
     <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-striped" st-table="displayedCollection" st-safe-src="allLeads">
+                <thead>
+                    <tr>
+                        <th st-sort="erp_customer.erp_name">Name</th>
+                        <th st-sort="erp_creationDate">Email</th>
+                        <th st-sort="erp_leavingFrom">User Name</th>
+                        <th st-sort="erp_leadStatus">Roles</th>
+                        <th st-sort="erp_leadSource">Teams</th>
+                        <th st-sort="erp_destinations">Leads</th>
+                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Bookings</th>
+                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Edit Link</th>
+                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Delete Link</th>
+                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Reset Password Link</th>
+                    </tr>
+                </thead>
+                <tbody ng-show="!mc.isLoading">
+                    <tr ng-repeat="item in displayedCollection" >
+                        <td>
+                            <span>{{item.erp_phoneNo}}</span>
+                        </td>
+                        <td valign="middle"><i ng-click="showMore(item,$event)" uib-popover-html="showMoreInformation"  popover-placement="right" class="fa fa-info-circle"></i></td>
+                        <td valign="middle">{{item.erp_creationDate}}</td>
+                        <td valign="middle">{{item.erp_leavingFrom}}</td>
+                        <td valign="middle">{{item.erp_leadStatus}}</td>
+                        <td valign="middle">{{item.erp_leadSource}}</td>
+                        <td valign="middle">{{item.erp_destinations}}</td>
+                        <td colspan="2" width="150" valign="middle">{{item.erp_assignedTo}}</td>
+                        <td valign="middle"><i class="fa fa-external-link" ng-click="goToLeadDetail(item.erp_id)"></i></td>
+                        <td><i class="fa fa-quote-right" ng-click="goToLeadDetail(item.erp_id)"></i></td>
+                    </tr>
+                </tbody>
+                <tbody ng-show="mc.isLoading">
+                    <tr>
+                        <td colspan="10" class="text-center">Loading ... </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="text-center" st-pagination="" st-items-by-page="30" st-displayed-pages="3" colspan="9"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
  </div>
