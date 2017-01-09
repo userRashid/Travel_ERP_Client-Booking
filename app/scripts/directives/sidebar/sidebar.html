@@ -5,7 +5,7 @@
                 <li class="nav-item">
                     <a class="nav-link" ng-class="{active: collapseVar==1}" ng-click="check(1)" ui-sref="leads.home"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
-                <li class="nav-item">{{dropDown}}
+                <li class="nav-item">
                     <a class="nav-link" ng-class="{active: collapseVar==2}" ng-click="check(2)">
                         <i class="fa fa-wrench fa-fw"></i>
                         Leads<span class="fa arrow"></span></a>
@@ -21,12 +21,27 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">{{dropDown}}
+                <li class="nav-item">
                     <a class="nav-link" ng-class="{active: collapseVar==3}"  ng-click="check(3)"><i class="fa fa-check-square-o fa-fw"></i> Bookings<span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level" ng-show="collapseVar == 3">
                         <li ui-sref-active="active">
                             <a class="nav-link" ui-sref="booking.manage-booking">Bookings List</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" ng-class="{active: collapseVar==4}"  ng-click="check(4)"><i class="fa fa-check-square-o fa-fw"></i> Employee<span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level" ng-show="collapseVar == 4">
+                        <li ui-sref-active="active">
+                            <a class="nav-link" ui-sref="employee.add-employee">Add Employee</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a class="nav-link" ui-sref="employee.manage-employee">Manage Employees</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a class="nav-link" ui-sref="employee.assign-leads">Assign Leads</a>
                         </li>
                     </ul>
                 </li>

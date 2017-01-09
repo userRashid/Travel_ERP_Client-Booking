@@ -93,9 +93,21 @@ angular
             }).state('leads.x', {
                 templateUrl: 'views/ui-elements/grid.html',
                 url: '/x'
-            }).state('/employee', {
-                templateUrl: 'views/employee/employee.html',
+            }).state('employee', {
+                templateUrl: 'views/dashboard/main.html',
                 url: '/employee'
+            }).state('employee.add-employee', {
+                templateUrl: 'views/employee/add-employee/add-employee.html',
+                controller: 'AddEmployeeCtrl',
+                url: '/add-employee'
+            }).state('employee.manage-employee', {
+                templateUrl: 'views/employee/manage-employee/manage-employee.html',
+                controller: 'ManageEmployeeCtrl',
+                url: '/manage-employee'
+            }).state('employee.assign-leads', {
+                templateUrl: 'views/employee/assign-leads/assign-leads.html',
+                controller: 'AssignLeadsCtrl',
+                url: '/assign-leads'
             });
     }]);
 

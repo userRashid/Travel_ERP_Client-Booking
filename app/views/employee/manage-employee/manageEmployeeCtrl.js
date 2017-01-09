@@ -1,9 +1,9 @@
 (function () {
     angular
         .module('erp_employee')
-        .controller('Employee', Employee);
+        .controller('ManageEmployeeCtrl', ManageEmployee);
 
-    function Employee() {
+    function ManageEmployee() {
         var vm = this;
 
     }

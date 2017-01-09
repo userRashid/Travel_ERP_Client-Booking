@@ -24,7 +24,7 @@ angular.module('sbAdminApp').directive('formBuilder',function($compile){
     $scope.$watch('data',function(promise){
       promise.then(function(obj){
         $scope.options = obj.data;
-      })
+      });
     });
     if($scope.mode == undefined){
       $scope.mode = 'full';
