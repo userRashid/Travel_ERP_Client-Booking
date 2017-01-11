@@ -11,6 +11,7 @@
                 Session.set('bookingCount', loginData.erp_bookingCount);
                 Session.set('customerCount', loginData.erp_customerCount);
                 Session.set('leadCount', loginData.erp_leadCount);
+                Session.set('authToken', loginData.authToken);
                 Authenticate.doLogin('', loginData.erp_employee.erp_emp_id, loginData.erp_employee.erp_emp_name);
                 $state.go('leads.all', { objId: 479 });
             });

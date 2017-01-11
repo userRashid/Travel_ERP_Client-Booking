@@ -115,7 +115,7 @@ angular.module('sbAdminApp').factory('API', function($http, $q, Session) {
       url: baseUrl() + apiPath,
       headers: headers
     };
-    //console.log('request --- ',request);
+    console.log('request --- ',request);
     if(typeof(data) !== 'undefined') {
       request.data = data;
     }
