@@ -116,25 +116,26 @@ angular.module('sbAdminApp').factory('FormData', function ($q, GlobalData, Authe
   function employee() {
     var employee = [{
       label: 'Name'
-      , name: 'erp_name'
+      , name: 'erp_emp_name'
       , type: 'erpText'
     }, {
       label: ''
       , innerLabel: 'Email'
-      , name: 'erp_emailId'
+      , name: 'erp_emailAddress'
       , type: 'erpEmail'
     }, {
       label: 'Username'
-      , name: 'erp_userName'
+      , name: 'erp_userId'
       , type: 'erpText'
     }, {
       label: 'Roles'
-      , name: 'erp_roles'
-      , type: 'erpText'
+      , name: 'erp_roles', type: 'erpMultiSelect'
+      , dropDown: getCity()
     }, {
       label: 'Teams'
       , name: 'erp_teams'
-      , type: 'erpText'
+      , type: 'erpMultiSelect'
+      , dropDown: getCity()
     }];
     return employee;
   }

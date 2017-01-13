@@ -104,12 +104,12 @@ angular.module('sbAdminApp').factory('API', function ($http, $q, Session) {
     return headers;
   }
 
-  function addToke(uri) {
-    console.log('uri', uri);
-    if (uri.indexOf('?') !== -1) {
-      uri = uri+'&token='+Session.get('authToken');
+  function addToken(uri) {
+    if(Session.get('id') === null && Session.get('authToken')) return uri;
+      if (uri.indexOf('?') !== -1) {
+      uri = uri+'&token='+Session.get('authToken')+'&id='+Session.get('id');
     } else {
-      uri = '?token='+Session.get('authToken');
+      uri = uri+'?token='+Session.get('authToken')+'&id='+Session.get('id');
     }
     return uri;
 
@@ -119,7 +119,7 @@ angular.module('sbAdminApp').factory('API', function ($http, $q, Session) {
       headers = {};
     }
 
-    apiPath = addToke(apiPath);
+    apiPath = addToken(apiPath);
 
     //headers = injectHeader(headers);
     var request = {
@@ -127,7 +127,6 @@ angular.module('sbAdminApp').factory('API', function ($http, $q, Session) {
       url: baseUrl() + apiPath,
       headers: headers
     };
-    console.log('request --- ', request);
     if (typeof (data) !== 'undefined') {
       request.data = data;
     }
@@ -161,7 +160,7 @@ angular.module('sbAdminApp').config(function ($httpProvider) {
     function responseInterceptor(response) {
       if (response.hasOwnProperty('data') && response.data.hasOwnProperty('errorCode')) {
         return $q.reject(response);
-        console.log('In');
+        //console.log('In');
       } else {
         return response;
       }
