@@ -105,8 +105,9 @@ angular.module('sbAdminApp').factory('API', function ($http, $q, Session) {
   }
 
   function addToken(uri) {
-    if(Session.get('id') === null && Session.get('authToken')) return uri;
-      if (uri.indexOf('?') !== -1) {
+    console.log(Session.get('id') === null,Session.get('authToken') === null);
+      if(Session.get('id') === null && Session.get('authToken') === null) return uri;
+    if (uri.indexOf('?') !== -1) {
       uri = uri+'&token='+Session.get('authToken')+'&id='+Session.get('id');
     } else {
       uri = uri+'?token='+Session.get('authToken')+'&id='+Session.get('id');
@@ -119,8 +120,9 @@ angular.module('sbAdminApp').factory('API', function ($http, $q, Session) {
       headers = {};
     }
 
-    apiPath = addToken(apiPath);
 
+    apiPath = addToken(apiPath);
+      console.log(' ---- ',apiPath);
     //headers = injectHeader(headers);
     var request = {
       method: method,

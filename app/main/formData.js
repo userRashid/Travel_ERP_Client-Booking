@@ -129,13 +129,20 @@ angular.module('sbAdminApp').factory('FormData', function ($q, GlobalData, Authe
       , type: 'erpText'
     }, {
       label: 'Roles'
-      , name: 'erp_roles', type: 'erpMultiSelect'
-      , dropDown: getCity()
+      , name: 'erp_roles'
+      , type: 'erpAssign'
+      , available: $q.when([{id: 1, label: "Administrator"},
+          {id: 2, label: "Super User"},{id: 3, label: "Hello"},
+          {id: 4, label: " Hello Super User"}])
+      , assign : $q.when([{label:'Two',id:5}])
     }, {
       label: 'Teams'
       , name: 'erp_teams'
-      , type: 'erpMultiSelect'
-      , dropDown: getCity()
+      , type: 'erpAssign'
+      , available: $q.when([{id: 1, label: "Administrator"},
+            {id: 2, label: "Super User"},{id: 3, label: "Hello"},
+            {id: 4, label: " Hello Super User"}])
+      , assign : $q.when([{label:'Two',id:5}])
     }];
     return employee;
   }
@@ -150,7 +157,7 @@ angular.module('sbAdminApp').factory('FormData', function ($q, GlobalData, Authe
       label: 'Social Network'
       , name: 'erp_social_network'
       , type: 'erpCheckbox'
-      , values: GlobalData.getSocial()
+      , model: GlobalData.getSocial()
     }];
     return additionalInformation;
   }
