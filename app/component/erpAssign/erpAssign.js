@@ -108,22 +108,24 @@
 
         function _renderHTML(){
             var html = '';
-            html = '<div class="row">' +
-                '<div class="col-sm-5">{{available.length}}' +
-                    '<ul class="list-group">' +
-                        '<li ng-repeat="item in available" class="list-group-item checkbox">' +
+            html = '<div class="clearfix">' +
+                '<div class="assign">' +
+                    '<b>Available ({{available.length}})</b>' +
+                    '<ul>' +
+                        '<li ng-repeat="item in available" class="checkbox">' +
                             '<label><input type="checkbox" ng-model="item.isSelected" value="">&nbsp;{{item.label}}</label>' +
                         '</li>' +
                     '</ul>' +
                 '</div>' +
-                '<div class="col-sm-1">' +
+                '<div class="assign-button">' +
                     '<button class="btn btn-danger" ng-click="assignValues()" ng-disabled="!makeButtonDisabled(available).length"><i class="fa fa-chevron-right"></i></button>' +
                     '<br />' +
                     '<button class="btn btn-danger" ng-click="removeValues()" ng-disabled="!makeButtonDisabled(model).length"><i class="fa fa-chevron-left"></i></button>' +
                 '</div>' +
-                '<div class="col-sm-5">{{model.length}}' +
+                '<div class="assign">' +
+                    '<b>Assign ({{model.length}})</b>' +
                     '<ul class="list-group">' +
-                        '<li ng-repeat="item in model" class="list-group-item">' +
+                        '<li ng-repeat="item in model">' +
                             '<label><input type="checkbox" ng-model="item.isSelected" value="">&nbsp;{{item.label}}</label>' +
                         '</li>' +
                     '</ul>' +

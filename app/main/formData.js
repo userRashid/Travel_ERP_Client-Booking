@@ -119,21 +119,22 @@ angular.module('sbAdminApp').factory('FormData', function ($q, GlobalData, Authe
       , name: 'erp_emp_name'
       , type: 'erpText'
     }, {
-      label: ''
-      , innerLabel: 'Email'
-      , name: 'erp_emailAddress'
-      , type: 'erpEmail'
-    }, {
       label: 'Username'
       , name: 'erp_userId'
       , type: 'erpText'
+    }, {
+        label: ''
+        , innerLabel: 'Email'
+        , name: 'erp_emailAddress'
+        , type: 'erpEmail'
+        , mode: 'full'
     }, {
       label: 'Roles'
       , name: 'erp_roles'
       , type: 'erpAssign'
       , available: $q.when([{id: 1, label: "Administrator"},
           {id: 2, label: "Super User"},{id: 3, label: "Hello"},
-          {id: 4, label: " Hello Super User"}])
+          {id: 4, label: " Hello Super User"},{id: 5, label: " Hello Super User"}])
       , assign : $q.when([{label:'Two',id:5}])
     }, {
       label: 'Teams'
