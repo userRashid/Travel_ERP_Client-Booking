@@ -1,8 +1,10 @@
 (function () {
   'use strict';
+
   angular
     .module('erp_booking')
     .controller('bookingDetailCtrl', BookingDetailCtrl);
+
   function BookingDetailCtrl($scope, $stateParams, BookingDetailService, $uibModal, Watch, API, Notify, Authenticate, GlobalData) {
     $scope.bookingId = $stateParams.id;
     BookingDetailService.getBooking($stateParams.id).then(function (data) {

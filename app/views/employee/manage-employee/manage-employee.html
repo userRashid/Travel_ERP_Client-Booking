@@ -1,6 +1,5 @@
-
 <div class="clearfix m-b-1 col-sm-12">
-        <h3>Manage Employee</h3>
+    <h3>Manage Employee</h3>
 </div>
 <div>
     <div class="col-lg-12">
@@ -15,25 +14,26 @@
                         <th st-sort="erp_leadSource">Teams</th>
                         <th st-sort="erp_destinations">Leads</th>
                         <th st-sort="erp_assignedToEmployee.erp_emp_name">Bookings</th>
-                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Edit Link</th>
-                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Delete Link</th>
-                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Reset Password Link</th>
+                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Action</th>
                     </tr>
                 </thead>
                 <tbody ng-show="!mc.isLoading">
-                    <tr ng-repeat="item in displayedCollection" >
+                    <tr ng-repeat="item in employeeData">
                         <td>
-                            <span>{{item.erp_phoneNo}}</span>
+                            <span>{{item.erp_emp_name}}</span>
                         </td>
-                        <td valign="middle"><i ng-click="showMore(item,$event)" uib-popover-html="showMoreInformation"  popover-placement="right" class="fa fa-info-circle"></i></td>
-                        <td valign="middle">{{item.erp_creationDate}}</td>
-                        <td valign="middle">{{item.erp_leavingFrom}}</td>
-                        <td valign="middle">{{item.erp_leadStatus}}</td>
-                        <td valign="middle">{{item.erp_leadSource}}</td>
-                        <td valign="middle">{{item.erp_destinations}}</td>
-                        <td colspan="2" width="150" valign="middle">{{item.erp_assignedTo}}</td>
-                        <td valign="middle"><i class="fa fa-external-link" ng-click="goToLeadDetail(item.erp_id)"></i></td>
-                        <td><i class="fa fa-quote-right" ng-click="goToLeadDetail(item.erp_id)"></i></td>
+                        <td valign="middle">{{item.erp_emailAddress}}</td>
+                        <td valign="middle">{{item.erp_emp_id}}</td>
+                        <td valign="middle">{{item.erp_emp_name}}</td>
+                        <td valign="middle">{{item.erp_emp_id}}</td>
+                        <td valign="middle">{{item.erp_emp_name}}</td>
+                        <td valign="middle">{{item.erp_emp_id}}</td>
+                        <td valign="middle">
+                            <i class="fa fa-edit" ng-click="editEmployee(item.erp_emp_id)"></i>
+                            <i class="fa fa-lock" ng-click="deleteEmployee(item.erp_emp_id)"></i>
+                            <i ng-show="$odd" class="fa fa-user" ng-click="reSetPassword(item.erp_emp_id)"></i>
+                            <i ng-hide="$odd" class="fa fa-user-times" style="color: red" ng-click="reSetPassword(item.erp_emp_id)"></i>
+                        </td>
                     </tr>
                 </tbody>
                 <tbody ng-show="mc.isLoading">
@@ -49,4 +49,4 @@
             </table>
         </div>
     </div>
- </div>
+</div>

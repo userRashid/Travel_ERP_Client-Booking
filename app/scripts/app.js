@@ -64,7 +64,7 @@ angular
                 templateUrl: 'views/table.html',
                 url: '/table'
             }).state('leads.add-leads', {
-                templateUrl: 'views/add-leads/add-leads.html',
+                templateUrl: 'views/leads/add-leads/add-leads.html',
                 url: '/add-leads',
                 controller: 'addLead'
             }).state('leads.all', {

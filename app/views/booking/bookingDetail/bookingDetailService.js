@@ -3,7 +3,8 @@
     'use strict';
     angular
         .module('erp_booking')
-        .factory('BookingDetailService', BookingDetailService)
+        .factory('BookingDetailService', BookingDetailService);
+
     function BookingDetailService(API, $q) {
         return {
             getBooking: getBooking
@@ -26,4 +27,4 @@
 
     };
 
-})()
+})();
