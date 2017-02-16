@@ -1,4 +1,6 @@
 (function () {
+    
+    'use strict';
     angular
         .module('erp_login')
         .controller('Login', Login);
@@ -7,7 +9,7 @@
             var promise = [API.post('employee/login', data), API.get('employee')];
             $q.all(promise).then(function (response) {
                 var loginData = response[0].data;
-                Session.set('employee', JSON.stringify(response[1].data))
+                Session.set('employee', JSON.stringify(response[1].data));
                 Session.set('bookingCount', loginData.erp_bookingCount);
                 Session.set('customerCount', loginData.erp_customerCount);
                 Session.set('leadCount', loginData.erp_leadCount);
@@ -19,5 +21,5 @@
         };
         $scope.Navigation = Navigation;
         $scope.Authenticate = Authenticate;
-    };
+    }
 })();

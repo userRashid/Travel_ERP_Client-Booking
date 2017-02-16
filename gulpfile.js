@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
+var watch = require('gulp-watch');
 gulp.task('component', function () {
     return gulp.src('./app/component/**/*.js')
         .pipe(concat('component.js'))
@@ -47,3 +48,15 @@ gulp.task('build', [
 ], function () {
 
 });
+
+gulp.task('watch',['component','login'],function(){
+    gulp.watch('./app/component/**/*.js', function() {
+      // run styles upon changes
+      gulp.run('component');
+    });
+    
+    gulp.watch('./app/views/login/**/*.js', function() {
+      // run styles upon changes
+      gulp.run('login');
+    });
+})

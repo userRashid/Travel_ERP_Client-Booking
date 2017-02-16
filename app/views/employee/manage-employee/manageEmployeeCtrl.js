@@ -4,6 +4,7 @@
         .controller('ManageEmployeeCtrl', ManageEmployee);
 
     function ManageEmployee(Session, $scope, EmployeeServices) {
+        
         var vm = this;
         EmployeeServices.getEmployees().then(function (employees) {
             $scope.employeeData = employees;

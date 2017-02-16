@@ -23,13 +23,17 @@
                             <span>{{item.erp_emp_name}}</span>
                         </td>
                         <td valign="middle">{{item.erp_emailAddress}}</td>
-                        <td valign="middle">{{item.erp_emp_userName}}</td>
-                        <td valign="middle">{{item.erp_emp_roles}}</td>
-                        <td valign="middle">{{item.erp_emp_teams}}</td>
+                        <td valign="middle">{{item.erp_userId}}</td>
+                        <td valign="middle">
+                            <label class="label label-primary" data-ng-repeat="_item in item.erp_roles">{{_item.erp_role_name}}</label>
+                        </td>
+                        <td valign="middle">
+                            <label data-ng-repeat="_item in item.erp_teams">{{_item.erp_team_name}}</label>
+                        </td>
                         <td valign="middle">{{item.erp_emp_leads}}</td>
                         <td valign="middle">{{item.erp_emp_bookings}}</td>
                         <td valign="middle">
-                            <i class="fa fa-edit" ng-click="editEmployee(item.erp_emp_id)"></i>
+                            <i class="fa fa-edit" ng-click="editEmployee(item)"></i>
                             <i class="fa fa-lock" ng-click="deleteEmployee(item.erp_emp_id)"></i>
                             <i ng-show="$odd" class="fa fa-user" ng-click="reSetPassword(item.erp_emp_id)"></i>
                             <i ng-hide="$odd" class="fa fa-user-times" style="color: red" ng-click="reSetPassword(item.erp_emp_id)"></i>
