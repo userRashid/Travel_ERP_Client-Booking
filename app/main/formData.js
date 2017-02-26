@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('FormData', function ($q, GlobalData, Authenticate, Watch, $http) {
+angular.module('sbAdminApp').factory('FormData', function ($q, GlobalData, Authenticate, Watch, $http, Session) {
   return {
     addLeadData: addLeadData
     , customer: customer
@@ -123,31 +123,27 @@ angular.module('sbAdminApp').factory('FormData', function ($q, GlobalData, Authe
       , name: 'erp_userId'
       , type: 'erpText'
     }, {
-        label: ''
-        , innerLabel: 'Email'
-        , name: 'erp_emailAddress'
-        , type: 'erpEmail'
-        , mode: 'full'
+      label: ''
+      , innerLabel: 'Email'
+      , name: 'erp_emailAddress'
+      , type: 'erpEmail'
+      , mode: 'full'
     }, {
       label: 'Roles'
       , name: 'erp_roles'
       , type: 'erpAssign'
-      , available: $q.when([{id: 1, label: "Administrator"},
-          {id: 2, label: "Super User"},{id: 3, label: "Hello"},
-          {id: 4, label: " Hello Super User"},{id: 5, label: " Hello Super User"}])
-      , assign : $q.when([{label:'Two',id:5}])
+      , available: $q.when(JSON.parse(Session.get('roles')))
+      , assign: $q.when([])
     }, {
       label: 'Teams'
       , name: 'erp_teams'
       , type: 'erpAssign'
-      , available: $q.when([{id: 1, label: "Administrator"},
-            {id: 2, label: "Super User"},{id: 3, label: "Hello"},
-            {id: 4, label: " Hello Super User"}])
-      , assign : $q.when([{label:'Two',id:5}])
+      , available: $q.when(JSON.parse(Session.get('teams')))
+      , assign: $q.when([])
     }];
     return employee;
   }
-
+  console.log(' **** ', employee());
   function additionalInformation() {
     var additionalInformation = [{
       label: 'Date of Birth'

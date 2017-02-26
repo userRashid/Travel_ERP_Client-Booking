@@ -33,10 +33,12 @@
                         <!-- <td valign="middle">{{item.erp_emp_leads}}</td>
                         <td valign="middle">{{item.erp_emp_bookings}}</td> -->
                         <td valign="middle">
-                            <i class="fa fa-edit" ng-click="editEmployee(item)" title="Edit"></i>
-                            <i class="fa fa-lock" ng-click="resetPassword(item)"></i>
-                            <i ng-show="$odd" class="fa fa-user" ng-click="deleteEmployee(item.erp_emp_id)"></i>
-                            <i ng-hide="$odd" class="fa fa-user-times" style="color: red" ng-click="deleteEmployee(item.erp_emp_id)"></i>
+                            <i class="fa fa-edit" ng-click="editEmployee(item)" data-toggle="tooltip" data-placement="top" title="Edit"></i>
+                            <i class="fa fa-lock" ng-click="resetPassword(item)" data-toggle="tooltip" data-placement="top" title="Reset Password!"></i>
+                            <!-- <i  class="fa fa-user" ng-click="deleteEmployee(item.erp_emp_id)"></i>
+                            <i ng-hide="$odd" class="fa fa-user-times" style="color: red" ng-click="deleteEmployee(item.erp_emp_id)"></i> -->
+                            <span ng-show="$odd" class="btn btn-success" style="padding: 0px; font-size: 11px">Active</span>
+                            <span ng-hide="$odd" class="btn btn-warning" style="padding: 0px; font-size: 11px">Deactive</span>
                         </td>
                     </tr>
                 </tbody>
