@@ -72,7 +72,7 @@ angular
                 controller: 'ManageLeadsCtrl',
                 url: '/manage-leads'
             }).state('leads.manage-leads', {
-                templateUrl: 'views/leads/leads-detail/leads.html',
+                templateUrl: 'views/leads/lead-detail/leads.html',
                 url: '/manage-leads/:id',
                 controller: 'LeadsCtrl'
             }).state('leads.customers', {

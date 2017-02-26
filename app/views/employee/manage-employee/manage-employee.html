@@ -33,10 +33,10 @@
                         <!-- <td valign="middle">{{item.erp_emp_leads}}</td>
                         <td valign="middle">{{item.erp_emp_bookings}}</td> -->
                         <td valign="middle">
-                            <i class="fa fa-edit" ng-click="editEmployee(item)"></i>
-                            <i class="fa fa-lock" ng-click="deleteEmployee(item.erp_emp_id)"></i>
-                            <i ng-show="$odd" class="fa fa-user" ng-click="reSetPassword(item.erp_emp_id)"></i>
-                            <i ng-hide="$odd" class="fa fa-user-times" style="color: red" ng-click="reSetPassword(item.erp_emp_id)"></i>
+                            <i class="fa fa-edit" ng-click="editEmployee(item)" title="Edit"></i>
+                            <i class="fa fa-lock" ng-click="resetPassword(item)"></i>
+                            <i ng-show="$odd" class="fa fa-user" ng-click="deleteEmployee(item.erp_emp_id)"></i>
+                            <i ng-hide="$odd" class="fa fa-user-times" style="color: red" ng-click="deleteEmployee(item.erp_emp_id)"></i>
                         </td>
                     </tr>
                 </tbody>

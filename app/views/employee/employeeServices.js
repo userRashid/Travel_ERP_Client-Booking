@@ -5,12 +5,13 @@
         .module('erp_employee')
         .factory('EmployeeServices', EmployeeServices);
 
-    function EmployeeServices(Session, API, $q) {
+    function EmployeeServices(Session, API, $q, Notify) {
         return {
             getEmployees: getEmployees
             , getEmployee: getEmployee
             , getEmployeeDetail: getEmployeeDetail
             , setEmployeeDetail: setEmployeeDetail
+            , resetPassword: resetPassword
         }
         var _emp;
 
@@ -61,6 +62,12 @@
 
         function getEmployeeDetail() {
             return _emp;
+        }
+
+        function resetPassword(empId) {
+            API.put('employee/' + empId + '/password').then(function (response) {
+                Notify.add('success', 'Success', response.data.message);
+            });
         }
     }
 

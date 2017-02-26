@@ -16,11 +16,12 @@
         }
 
         $scope.deleteEmployee = function (empId) {
+
             console.log('Delete -- ', empId);
         }
 
-        $scope.reSetPassword = function (empId) {
-            console.log('Reset -- ', empId);
+        $scope.resetPassword = function (empId) {
+            EmployeeServices.resetPassword(empId.erp_emp_id);
         }
     }
 })();
