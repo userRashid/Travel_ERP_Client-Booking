@@ -28,7 +28,6 @@
                 Authenticate.doLogin('', loginData.erp_employee.erp_emp_id, loginData.erp_employee.erp_emp_name);
                 $state.go('leads.all', { objId: 479 });
             });
-            console.log('Hello');
             //Authenticate.doLogin('',9,'Rashid');
         };
         $scope.Navigation = Navigation;

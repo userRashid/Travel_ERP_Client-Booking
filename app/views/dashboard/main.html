@@ -3,8 +3,8 @@
     <div ng-if="Authenticate.isLogin()">
         <header></header>
         <div id="sidebar" ui-view="sidebar"></div>
-        <div id="page-wrapper" style="min-height: 700px;">
-            <div ui-view></div>
+        <div id="page-wrapper" style="position: fixed; height: 100%; margin-left: 20%; background: #fff; overflow: auto; width: 80%">
+            <div ui-view class="clearfix m-b-1"></div>
         </div>
     </div>
 </div>

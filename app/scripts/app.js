@@ -68,11 +68,11 @@ angular
                 url: '/add-leads',
                 controller: 'addLead'
             }).state('leads.all', {
-                templateUrl: 'views/manage-leads/manage-leads.html',
+                templateUrl: 'views/leads/manage-leads/manage-leads.html',
                 controller: 'ManageLeadsCtrl',
                 url: '/manage-leads'
             }).state('leads.manage-leads', {
-                templateUrl: 'views/leads/leads.html',
+                templateUrl: 'views/leads/leads-detail/leads.html',
                 url: '/manage-leads/:id',
                 controller: 'LeadsCtrl'
             }).state('leads.customers', {
@@ -83,11 +83,11 @@ angular
                 templateUrl: 'views/dashboard/main.html',
                 url: '/booking'
             }).state('booking.detail', {
-                templateUrl: 'views/bookingDetail/bookingDetail.html',
+                templateUrl: 'views/booking/bookingDetail/bookingDetail.html',
                 controller: 'bookingDetailCtrl',
                 url: '/manage-booking/:id'
             }).state('booking.manage-booking', {
-                templateUrl: 'views/booking/booking.html',
+                templateUrl: 'views/booking/manage-bookings/booking.html',
                 controller: 'BookingCtrl',
                 url: '/manage-booking'
             }).state('leads.x', {
@@ -104,6 +104,10 @@ angular
                 templateUrl: 'views/employee/manage-employee/manage-employee.html',
                 controller: 'ManageEmployeeCtrl',
                 url: '/manage-employee'
+            }).state('employee.manage-detail', {
+                templateUrl: 'views/employee/add-employee/add-employee.html',
+                controller: 'AddEmployeeCtrl',
+                url: '/manage-employee/:empId'
             }).state('employee.assign-leads', {
                 templateUrl: 'views/employee/assign-leads/assign-leads.html',
                 controller: 'AssignLeadsCtrl',

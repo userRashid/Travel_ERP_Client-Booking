@@ -4,37 +4,37 @@ var watch = require('gulp-watch');
 gulp.task('component', function () {
     return gulp.src('./app/component/**/*.js')
         .pipe(concat('component.js'))
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('./app/dist/'));
 });
 
 gulp.task('booking', function () {
     return gulp.src('./app/views/booking/**/*.js')
         .pipe(concat('booking.js'))
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('./app/dist/'));
 });
 
 gulp.task('leads', function () {
     return gulp.src('./app/views/leads/**/*.js')
         .pipe(concat('leads.js'))
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('./app/dist/'));
 });
 
 gulp.task('employee', function () {
     return gulp.src('./app/views/employee/**/*.js')
         .pipe(concat('employee.js'))
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('./app/dist/'));
 });
 
 gulp.task('customers', function () {
     return gulp.src('./app/views/customers/**/*.js')
         .pipe(concat('customers.js'))
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('./app/dist/'));
 });
 
 gulp.task('login', function () {
     return gulp.src('./app/views/login/**/*.js')
         .pipe(concat('login.js'))
-        .pipe(gulp.dest('./dist/'));
+        .pipe(gulp.dest('./app/dist/'));
 });
 
 

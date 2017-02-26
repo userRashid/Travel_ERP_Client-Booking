@@ -12,8 +12,8 @@
                         <th st-sort="erp_leavingFrom">User Name</th>
                         <th st-sort="erp_leadStatus">Roles</th>
                         <th st-sort="erp_leadSource">Teams</th>
-                        <th st-sort="erp_destinations">Leads</th>
-                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Bookings</th>
+                        <!-- <th st-sort="erp_destinations">Leads</th>
+                        <th st-sort="erp_assignedToEmployee.erp_emp_name">Bookings</th> -->
                         <th st-sort="erp_assignedToEmployee.erp_emp_name">Action</th>
                     </tr>
                 </thead>
@@ -30,8 +30,8 @@
                         <td valign="middle">
                             <label data-ng-repeat="_item in item.erp_teams">{{_item.erp_team_name}}</label>
                         </td>
-                        <td valign="middle">{{item.erp_emp_leads}}</td>
-                        <td valign="middle">{{item.erp_emp_bookings}}</td>
+                        <!-- <td valign="middle">{{item.erp_emp_leads}}</td>
+                        <td valign="middle">{{item.erp_emp_bookings}}</td> -->
                         <td valign="middle">
                             <i class="fa fa-edit" ng-click="editEmployee(item)"></i>
                             <i class="fa fa-lock" ng-click="deleteEmployee(item.erp_emp_id)"></i>
