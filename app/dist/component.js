@@ -147,7 +147,7 @@ angular.module('sbAdminApp').directive('erpAlert',function($compile,ErpNodeServi
             element.html('').append($compile(_renderHTML())($scope));
         }
 
-        function _controller($scope) {
+        function _controller($scope, $timeout) {
             /////////////////////////////////////////////
             // Locals
             /////////////////////////////////////////////
@@ -188,8 +188,6 @@ angular.module('sbAdminApp').directive('erpAlert',function($compile,ErpNodeServi
 
 
             /////////////////////////////////////////////
-
-            console.log($scope.options);
 
             var selected = {
                 available: [],
@@ -236,6 +234,15 @@ angular.module('sbAdminApp').directive('erpAlert',function($compile,ErpNodeServi
                 })
                 $scope.options.model = _model;
             }
+
+            //Set Up createModel
+
+            $timeout(function () {
+                if ($scope.options.model) {
+                    $scope.model = $scope.options.model;
+                    console.log($scope.options.model);
+                }
+            })
         }
 
         return {

@@ -4,6 +4,11 @@
 <div>
     <div data-form-builder="Employee.promise" mode="half" class="clearfix"></div>
     <div class="text-center m-b25 m-t-2 col-sm-12">
-        <button class="btn btn-icon btn-success buttonBg" ng-click="addEmployee();"><h2 class="f30 buttonM"><i></i>{{buttonText}}</h2></button>
+        <button class="btn btn-icon btn-success buttonBg" ng-click="updateEmployee();" ng-if="isUpdate">
+            <h2 class="f30 buttonM">Update</h2>
+        </button>
+        <button class="btn btn-icon btn-success buttonBg" ng-click="addEmployee();" ng-if="!isUpdate">
+            <h2 class="f30 buttonM">Create</h2>
+        </button>
     </div>
 </div>

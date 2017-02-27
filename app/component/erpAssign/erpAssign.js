@@ -8,7 +8,7 @@
             element.html('').append($compile(_renderHTML())($scope));
         }
 
-        function _controller($scope) {
+        function _controller($scope, $timeout) {
             /////////////////////////////////////////////
             // Locals
             /////////////////////////////////////////////
@@ -95,6 +95,15 @@
                 })
                 $scope.options.model = _model;
             }
+
+            //Set Up createModel
+
+            $timeout(function () {
+                if ($scope.options.model) {
+                    $scope.model = $scope.options.model;
+                    console.log($scope.options.model);
+                }
+            })
         }
 
         return {

@@ -12,6 +12,8 @@
             , getEmployeeDetail: getEmployeeDetail
             , setEmployeeDetail: setEmployeeDetail
             , resetPassword: resetPassword
+            , addEmployee: addEmployee
+            , updateEmployee: updateEmployee
         }
         var _emp;
 
@@ -66,6 +68,18 @@
 
         function resetPassword(empId) {
             API.put('employee/' + empId + '/password').then(function (response) {
+                Notify.add('success', 'Success', response.data.message);
+            });
+        }
+
+        function addEmployee(model) {
+            API.post('employee', model).then(function (response) {
+                Notify.add('success', 'Success', response.data.message);
+            });
+        }
+
+        function updateEmployee(model, empId) {
+            API.put('employee/' + empId, model).then(function (response) {
                 Notify.add('success', 'Success', response.data.message);
             });
         }

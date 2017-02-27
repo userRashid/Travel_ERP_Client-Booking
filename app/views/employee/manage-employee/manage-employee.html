@@ -25,10 +25,17 @@
                         <td valign="middle">{{item.erp_emailAddress}}</td>
                         <td valign="middle">{{item.erp_userId}}</td>
                         <td valign="middle">
-                            <label class="label label-primary" data-ng-repeat="_item in item.erp_roles">{{_item.erp_role_name}}</label>
+                            <label class="label label-primary" data-ng-repeat="_item in item.erp_roles">
+                                {{_item.erp_role_name}}
+                                <span ng-show="!$last" style="padding-right:5px">,</span>
+                            </label>
                         </td>
                         <td valign="middle">
-                            <label data-ng-repeat="_item in item.erp_teams">{{_item.erp_team_name}}</label>
+                            <label data-ng-repeat="_item in item.erp_teams">
+                                {{_item.erp_team_name}}
+                                <span ng-show="!$last" style="padding-right:5px">,</span>
+                            </label>
+
                         </td>
                         <!-- <td valign="middle">{{item.erp_emp_leads}}</td>
                         <td valign="middle">{{item.erp_emp_bookings}}</td> -->

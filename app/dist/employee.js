@@ -23,6 +23,8 @@
             , getEmployeeDetail: getEmployeeDetail
             , setEmployeeDetail: setEmployeeDetail
             , resetPassword: resetPassword
+            , addEmployee: addEmployee
+            , updateEmployee: updateEmployee
         }
         var _emp;
 
@@ -80,6 +82,18 @@
                 Notify.add('success', 'Success', response.data.message);
             });
         }
+
+        function addEmployee(model) {
+            API.post('employee', model).then(function (response) {
+                Notify.add('success', 'Success', response.data.message);
+            });
+        }
+
+        function updateEmployee(model, empId) {
+            API.put('employee/' + empId, model).then(function (response) {
+                Notify.add('success', 'Success', response.data.message);
+            });
+        }
     }
 
 })();
@@ -88,24 +102,28 @@
         .module('erp_employee')
         .controller('AddEmployeeCtrl', AddEmployee);
 
-    function AddEmployee($scope, ErpNodeServices, FormData, API, Notify, $stateParams, EmployeeServices) {
+    function AddEmployee($scope, ErpNodeServices, FormData, $stateParams, EmployeeServices) {
         $scope.Employee = ErpNodeServices.createForm(FormData.employee());
-        console.log($stateParams.empId);
+
         if ($stateParams.empId) {
-            $scope.buttonText = 'Update';
+            $scope.isUpdate = true;
             $scope.Employee.promise.then(function (data) {
-                var model = EmployeeServices.getEmployeeDetail();
-                data.setModel(model);
+                data.setModel(EmployeeServices.getEmployeeDetail());
             });
         } else {
-            $scope.buttonText = 'Create';
+            $scope.isUpdate = false;
         }
+
         $scope.addEmployee = function () {
             $scope.Employee.promise.then(function (data) {
-                var model = data.getModel();
-                API.post('employee', model).then(function (response) {
-                    Notify.add('success', 'Success', response.data.message);
-                });
+                EmployeeServices.addEmployee(data.getModel());
+            });
+        }
+
+        $scope.updateEmployee = function () {
+            $scope.Employee.promise.then(function (data) {
+
+                EmployeeServices.updateEmployee(data.getModel(), empId);
             });
         }
     }
