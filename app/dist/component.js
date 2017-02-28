@@ -237,10 +237,21 @@ angular.module('sbAdminApp').directive('erpAlert',function($compile,ErpNodeServi
 
             //Set Up createModel
 
+            function _setModel(model) {
+                $scope.available.map(function (avItem) {
+                    model.forEach(function (item) {
+                        if (avItem.id === item) {
+                            avItem.isSelected = true;
+                        }
+                    });
+                    return avItem;
+                });
+            }
+
             $timeout(function () {
                 if ($scope.options.model) {
-                    $scope.model = $scope.options.model;
-                    console.log($scope.options.model);
+                    _setModel($scope.options.model);
+                    $scope.assignValues();
                 }
             })
         }

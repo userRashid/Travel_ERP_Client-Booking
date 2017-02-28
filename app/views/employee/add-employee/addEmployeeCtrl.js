@@ -23,8 +23,7 @@
 
         $scope.updateEmployee = function () {
             $scope.Employee.promise.then(function (data) {
-
-                EmployeeServices.updateEmployee(data.getModel(), empId);
+                EmployeeServices.updateEmployee(data.getModel(), $stateParams.empId);
             });
         }
     }

@@ -16,7 +16,7 @@
         .module('erp_employee')
         .factory('EmployeeServices', EmployeeServices);
 
-    function EmployeeServices(Session, API, $q, Notify) {
+    function EmployeeServices(Session, API, $q, Notify, $state) {
         return {
             getEmployees: getEmployees
             , getEmployee: getEmployee
@@ -86,12 +86,14 @@
         function addEmployee(model) {
             API.post('employee', model).then(function (response) {
                 Notify.add('success', 'Success', response.data.message);
+                $state.go('employee.manage-employee');
             });
         }
 
         function updateEmployee(model, empId) {
             API.put('employee/' + empId, model).then(function (response) {
                 Notify.add('success', 'Success', response.data.message);
+                $state.go('employee.manage-employee');
             });
         }
     }
@@ -122,8 +124,7 @@
 
         $scope.updateEmployee = function () {
             $scope.Employee.promise.then(function (data) {
-
-                EmployeeServices.updateEmployee(data.getModel(), empId);
+                EmployeeServices.updateEmployee(data.getModel(), $stateParams.empId);
             });
         }
     }

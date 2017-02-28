@@ -5,7 +5,7 @@
         .module('erp_employee')
         .factory('EmployeeServices', EmployeeServices);
 
-    function EmployeeServices(Session, API, $q, Notify) {
+    function EmployeeServices(Session, API, $q, Notify, $state) {
         return {
             getEmployees: getEmployees
             , getEmployee: getEmployee
@@ -75,12 +75,14 @@
         function addEmployee(model) {
             API.post('employee', model).then(function (response) {
                 Notify.add('success', 'Success', response.data.message);
+                $state.go('employee.manage-employee');
             });
         }
 
         function updateEmployee(model, empId) {
             API.put('employee/' + empId, model).then(function (response) {
                 Notify.add('success', 'Success', response.data.message);
+                $state.go('employee.manage-employee');
             });
         }
     }
