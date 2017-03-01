@@ -25,8 +25,9 @@
             , resetPassword: resetPassword
             , addEmployee: addEmployee
             , updateEmployee: updateEmployee
+            , getEmployeeFromSession: getEmployeeFromSession
         }
-        var _emp;
+        var _emp = null;
 
         //////////////////////////////////
         //Locals
@@ -43,6 +44,16 @@
 
         /////////////////////////////////
 
+        function getEmployeeFromSession(id) {
+            var employees = JSON.parse(Session.get('employee'));
+            var _data = null;
+            employees.forEach(function (item) {
+                if (item.erp_emp_id == id) {
+                    _data = item;
+                }
+            });
+            return _data;
+        }
 
         function getEmployee(employee) {
             var empId = employee.erp_emp_id;
@@ -106,11 +117,19 @@
 
     function AddEmployee($scope, ErpNodeServices, FormData, $stateParams, EmployeeServices) {
         $scope.Employee = ErpNodeServices.createForm(FormData.employee());
-
-        if ($stateParams.empId) {
+        var empId = $stateParams.empId || null;
+        if (empId) {
             $scope.isUpdate = true;
+            var model = EmployeeServices.getEmployeeDetail();
             $scope.Employee.promise.then(function (data) {
-                data.setModel(EmployeeServices.getEmployeeDetail());
+                if (model) {
+                    data.setModel(model);
+                } else {
+                    var employee = EmployeeServices.getEmployeeFromSession(empId);
+                    EmployeeServices.getEmployee(employee).then(function (response) {
+                        data.setModel(response);
+                    });
+                }
             });
         } else {
             $scope.isUpdate = false;
@@ -124,7 +143,7 @@
 
         $scope.updateEmployee = function () {
             $scope.Employee.promise.then(function (data) {
-                EmployeeServices.updateEmployee(data.getModel(), $stateParams.empId);
+                EmployeeServices.updateEmployee(data.getModel(), empId);
             });
         }
     }

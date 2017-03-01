@@ -14,8 +14,9 @@
             , resetPassword: resetPassword
             , addEmployee: addEmployee
             , updateEmployee: updateEmployee
+            , getEmployeeFromSession: getEmployeeFromSession
         }
-        var _emp;
+        var _emp = null;
 
         //////////////////////////////////
         //Locals
@@ -32,6 +33,16 @@
 
         /////////////////////////////////
 
+        function getEmployeeFromSession(id) {
+            var employees = JSON.parse(Session.get('employee'));
+            var _data = null;
+            employees.forEach(function (item) {
+                if (item.erp_emp_id == id) {
+                    _data = item;
+                }
+            });
+            return _data;
+        }
 
         function getEmployee(employee) {
             var empId = employee.erp_emp_id;
