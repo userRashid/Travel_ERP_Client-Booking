@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('FormData', function ($q, GlobalData, Authenticate, Watch, $http, Session) {
+angular.module('erp_core').factory('FormData', function ($q, GlobalData, Authenticate, Watch, $http, Session) {
   return {
     addLeadData: addLeadData
     , customer: customer

@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('Actions', function() {
+angular.module('erp_core').factory('Actions', function() {
   return {
     isLeadShow  :  isLeadShow
   };

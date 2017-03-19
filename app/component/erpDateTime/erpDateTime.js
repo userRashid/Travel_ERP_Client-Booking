@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('erpDateTime',function($compile){
+angular.module('erp_component').directive('erpDateTime',function($compile){
   return {
     restrict : 'A'
     ,scope : {

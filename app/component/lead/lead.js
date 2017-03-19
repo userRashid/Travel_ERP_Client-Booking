@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,API,Notify,FormData,Authenticate){
+angular.module('erp_component').directive('lead',function($compile,ErpNodeServices,API,Notify,FormData,Authenticate){
   return {
     restrict : 'A'
     ,scope : {
@@ -9,7 +9,8 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
     ,controller : controller
   }
   function link($scope,element,attr){
-    element.html('').append($compile(renderHTML())($scope));
+    var _html = $compile(renderHTML())($scope);
+    element.html('').append($compile(_html)($scope));
   };
 
   function controller($scope){
@@ -95,7 +96,8 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
                                     '<p class="m0">{{data.erp_departureDate}}</p>' +
                                 '</div>' +
                             '</div>' +
-                            '<div class="col-lg-1 cursor-p edit-lead" ng-click="editLead()"><i class="fa fa-pencil"></i></div>' +
+                            '<erp-action name="Edit_Lead" label="<i class=\'fa fa-pencil\'></i>" css="col-lg-1 cursor-p edit-lead" action="editLead()" type="button"></erp-action>'+
+                            //'<div class="col-lg-1 cursor-p edit-lead" ng-click="editLead()"><i class="fa fa-pencil"></i></div>' +
                             //'<div ng-switch-when="customer" ng-click="leadEmail()"tooltip="{{data.erp_customer.erp_emailId}}" tooltip-placement="top" class="col-lg-1 cursor-p" title="{{data.erp_customer.erp_emailId}}"><i class="fa fa-envelope"></i></div>' +
                         '</div>' +
                     '</div>' +

@@ -3,7 +3,7 @@
         .module('erp_component')
         .directive('erpAction', erpAction);
 
-    function erpAction($compile) {
+    function erpAction($compile, Session) {
 
         return {
             restrict: 'E'
@@ -19,18 +19,27 @@
             , link: link
             , controller: controller
         }
+
+        function checkPermission(permissionName) {
+            var permissions = JSON.parse(Session.get('permission'));
+            var isShow = permissions.indexOf(permissionName) != -1;
+            return isShow;
+        }
+
         function link($scope, element, attr) {
-            element.replaceWith($compile(renderHTML($scope.type, $scope.label))($scope));
+            var permission = checkPermission($scope.name);
+            element.replaceWith($compile(renderHTML($scope.type, $scope.label, permission))($scope));
         };
 
         function controller() {
 
         }
 
-        function renderHTML(type, label) {
+        function renderHTML(type, label, permission) {
             var html = '';
-            if (type === 'button') html += '<button class="{{css}}" ng-click="action()">' + label + '</button>';
-            if (type === 'link') html += '<a href="{{link}}" class="{{css}}">' + label + '</a>';
+            if (permission && type === 'button') html += '<button class="{{css}}" ng-click="action(data)">' + label + '</button>';
+            if (permission && type === 'link') html += '<a href="{{link}}" class="{{css}}">' + label + '</a>';
+            if (permission && type === 'nav') html += '<a class="{{css}}" ui-sref="{{link}}">' + label + '</a>';
             return html;
         }
     }

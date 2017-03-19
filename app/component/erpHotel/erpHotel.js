@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('erpHotel',function($compile){
+angular.module('erp_component').directive('erpHotel',function($compile){
   return {
     restrict : 'A'
     ,scope : {

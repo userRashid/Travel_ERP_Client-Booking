@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('erpTextarea',function($compile){
+angular.module('erp_component').directive('erpTextarea',function($compile){
   return {
     restrict : 'A'
     ,scope : {

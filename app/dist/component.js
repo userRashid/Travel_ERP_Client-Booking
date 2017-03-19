@@ -14,7 +14,7 @@
         .module('erp_component')
         .directive('erpAction', erpAction);
 
-    function erpAction($compile) {
+    function erpAction($compile, Session) {
 
         return {
             restrict: 'E'
@@ -30,58 +30,67 @@
             , link: link
             , controller: controller
         }
+
+        function checkPermission(permissionName) {
+            var permissions = JSON.parse(Session.get('permission'));
+            var isShow = permissions.indexOf(permissionName) != -1;
+            return isShow;
+        }
+
         function link($scope, element, attr) {
-            element.replaceWith($compile(renderHTML($scope.type, $scope.label))($scope));
+            var permission = checkPermission($scope.name);
+            element.replaceWith($compile(renderHTML($scope.type, $scope.label, permission))($scope));
         };
 
         function controller() {
 
         }
 
-        function renderHTML(type, label) {
+        function renderHTML(type, label, permission) {
             var html = '';
-            if (type === 'button') html += '<button class="{{css}}" ng-click="action()">' + label + '</button>';
-            if (type === 'link') html += '<a href="{{link}}" class="{{css}}">' + label + '</a>';
+            if (permission && type === 'button') html += '<button class="{{css}}" ng-click="action(data)">' + label + '</button>';
+            if (permission && type === 'link') html += '<a href="{{link}}" class="{{css}}">' + label + '</a>';
+            if (permission && type === 'nav') html += '<a class="{{css}}" ui-sref="{{link}}">' + label + '</a>';
             return html;
         }
     }
 })();
 'use strict';
-angular.module('sbAdminApp').directive('erpAddMore',function($compile,ErpNodeServices,API,Notify,Session,FormData){
+angular.module('erp_component').directive('erpAddMore', function ($compile, ErpNodeServices, API, Notify, Session, FormData) {
   return {
-    restrict : 'A'
-    ,scope : {
-      options : '=erpAddMore'
+    restrict: 'A'
+    , scope: {
+      options: '=erpAddMore'
     }
-    ,link : link
-    ,controller : controller
+    , link: link
+    , controller: controller
   }
-  function link($scope,element,attr){
+  function link($scope, element, attr) {
     element.html('').append($compile(renderHTML())($scope));
   };
 
-  function controller($scope){
-    if($scope.options.model == undefined) $scope.model = 0;
+  function controller($scope) {
+    if ($scope.options.model == undefined) $scope.model = 0;
     else $scope.model = $scope.options.model;
-    $scope.$watch('model',function(d){
-        if(d == undefined) return;
-        $scope.options.model = d;
-        if($scope.options.watch != undefined) $scope.options.watch.setRooms(d);
+    $scope.$watch('model', function (d) {
+      if (d == undefined) return;
+      $scope.options.model = d;
+      if ($scope.options.watch != undefined) $scope.options.watch.setRooms(d);
     });
-    $scope.add = function(){
-        $scope.model++;
+    $scope.add = function () {
+      $scope.model++;
     }
-    $scope.remove = function(){
-        $scope.model--;
+    $scope.remove = function () {
+      $scope.model--;
     }
   }
-  function renderHTML(){
+  function renderHTML() {
     var html = '';
     html = '<div class="addMore">' +
-                '<button ng-click="remove()" ng-disabled="model == 0" class="fa fa-minus btn-info"></button>' +
-                '<input class="form-control" type="input" ng-model="model" />' +
-                '<button ng-click="add()" class="fa fa-plus btn-success"></button>' +
-            '</div>';
+      '<button ng-click="remove()" ng-disabled="model == 0" class="fa fa-minus btn-info"></button>' +
+      '<input class="form-control" type="input" ng-model="model" />' +
+      '<button ng-click="add()" class="fa fa-plus btn-success"></button>' +
+      '</div>';
     return html;
   }
 });
@@ -99,28 +108,28 @@ angular.module('sbAdminApp').directive('erpAddMore',function($compile,ErpNodeSer
 
 
 'use strict';
-angular.module('sbAdminApp').directive('erpAlert',function($compile,ErpNodeServices,API,Notify,Session,FormData){
+angular.module('erp_component').directive('erpAlert', function ($compile, ErpNodeServices, API, Notify, Session, FormData) {
   return {
-    restrict : 'A'
-    ,scope : {
-      options : '=erpAlert'
+    restrict: 'A'
+    , scope: {
+      options: '=erpAlert'
     }
-    ,link : link
-    ,controller : controller
+    , link: link
+    , controller: controller
   }
-  function link($scope,element,attr){
+  function link($scope, element, attr) {
     element.html('').append($compile(renderHTML())($scope));
   };
 
-  function controller($scope){
+  function controller($scope) {
     $scope.data = ErpNodeServices.createForm(FormData.erpAlert());
     $scope.options.promise = $scope.data.promise;
   }
-  function renderHTML(){
+  function renderHTML() {
     var html = '';
     html = '<div>' +
-                '<div class="clearfix" style="margin-top:10px;" data-form-builder="options.promise"></div>' +
-            '</div>';
+      '<div class="clearfix" style="margin-top:10px;" data-form-builder="options.promise"></div>' +
+      '</div>';
     return html;
   }
 });
@@ -295,7 +304,7 @@ angular.module('sbAdminApp').directive('erpAlert',function($compile,ErpNodeServi
     }
 })();
 'use strict';
-angular.module('sbAdminApp').directive('erpAttach',function($compile,ErpNodeServices,API,Notify,Session,FormData){
+angular.module('erp_component').directive('erpAttach',function($compile,ErpNodeServices,API,Notify,Session,FormData){
   return {
     restrict : 'A'
     ,scope : {
@@ -333,7 +342,7 @@ angular.module('sbAdminApp').directive('erpAttach',function($compile,ErpNodeServ
 
 
 
-angular.module('sbAdminApp').directive('erpBookingStatus',function($compile){
+angular.module('erp_component').directive('erpBookingStatus',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -416,7 +425,7 @@ angular.module('sbAdminApp').directive('erpBookingStatus',function($compile){
   }
 });
 
-angular.module('sbAdminApp').directive('erpCalender',function($compile){
+angular.module('erp_component').directive('erpCalender',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -470,7 +479,7 @@ angular.module('sbAdminApp').directive('erpCalender',function($compile){
   }
 });
 
-angular.module('sbAdminApp').directive('erpCheckbox',function($compile){
+angular.module('erp_component').directive('erpCheckbox',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -514,7 +523,7 @@ angular.module('sbAdminApp').directive('erpCheckbox',function($compile){
   }
 });
 
-angular.module('sbAdminApp').directive('erpDateRange',function($compile,$filter){
+angular.module('erp_component').directive('erpDateRange',function($compile,$filter){
   return {
     restrict : 'A'
     ,scope : {
@@ -590,7 +599,7 @@ angular.module('sbAdminApp').directive('erpDateRange',function($compile,$filter)
   }
 });
 
-angular.module('sbAdminApp').directive('erpDateRangePicker',function($compile){
+angular.module('erp_component').directive('erpDateRangePicker',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -614,7 +623,7 @@ angular.module('sbAdminApp').directive('erpDateRangePicker',function($compile){
 });
 
 
-angular.module('sbAdminApp').directive('erpDateTime',function($compile){
+angular.module('erp_component').directive('erpDateTime',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -661,7 +670,7 @@ angular.module('sbAdminApp').directive('erpDateTime',function($compile){
   }
 });
 
-angular.module('sbAdminApp').directive('erpEmail',function($compile){
+angular.module('erp_component').directive('erpEmail',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -684,7 +693,7 @@ angular.module('sbAdminApp').directive('erpEmail',function($compile){
   }
 });
 
-angular.module('sbAdminApp').directive('erpHotel',function($compile){
+angular.module('erp_component').directive('erpHotel',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -911,7 +920,7 @@ angular.module('sbAdminApp').directive('erpHotel',function($compile){
         }
     };
 });
-angular.module('sbAdminApp').directive('erpHotelDetail', function ($compile) {
+angular.module('erp_component').directive('erpHotelDetail', function ($compile) {
     return {
         restrict: 'A'
         , scope: {
@@ -949,7 +958,7 @@ angular.module('sbAdminApp').directive('erpHotelDetail', function ($compile) {
     }
 
 })
-angular.module('sbAdminApp').directive('erpMultiSelect',function($compile,$q){
+angular.module('erp_component').directive('erpMultiSelect',function($compile,$q){
   return {
     restrict : 'A'
     ,scope : {
@@ -986,7 +995,7 @@ angular.module('sbAdminApp').directive('erpMultiSelect',function($compile,$q){
 });
 
 'use strict';
-angular.module('sbAdminApp').directive('erpNote',function($compile,ErpNodeServices,API,Notify,Session,FormData){
+angular.module('erp_component').directive('erpNote',function($compile,ErpNodeServices,API,Notify,Session,FormData){
   return {
     restrict : 'A'
     ,scope : {
@@ -1024,7 +1033,7 @@ angular.module('sbAdminApp').directive('erpNote',function($compile,ErpNodeServic
 
 
 
-angular.module('sbAdminApp').directive('erpPeople',function($compile){
+angular.module('erp_component').directive('erpPeople',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -1072,7 +1081,7 @@ angular.module('sbAdminApp').directive('erpPeople',function($compile){
   }
 });
 
-angular.module('sbAdminApp').directive('erpPhone',function($compile){
+angular.module('erp_component').directive('erpPhone',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -1105,7 +1114,7 @@ angular.module('sbAdminApp').directive('erpPhone',function($compile){
   }
 });
 
-angular.module('sbAdminApp').directive('erpSelect',function($compile){
+angular.module('erp_component').directive('erpSelect',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -1149,7 +1158,30 @@ angular.module('sbAdminApp').directive('erpSelect',function($compile){
   }
 });
 
-angular.module('sbAdminApp').directive('erpTextarea',function($compile){
+angular.module('erp_component').directive('erpText',function($compile){
+  return {
+    restrict : 'A'
+    ,scope : {
+      data : '=erpText'
+    }
+    ,link : link
+    ,controller : controller
+  }
+  function link($scope,element,attr){
+    element.html('').append($compile(renderHTML())($scope));
+  }
+  function controller($scope){
+    if($scope.data.isDisable == undefined) $scope.data.isDisable = false;
+    if($scope.data.watch == undefined) $scope.data.isShow = true;
+  }
+  function renderHTML(){
+    var html = '';
+    html +='<input type="text" ng-if="data.isShow" ng-model="data.model" ng-disabled="data.isDisable" class="form-control">';
+    return html;
+  }
+});
+
+angular.module('erp_component').directive('erpTextarea',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -1182,29 +1214,6 @@ angular.module('sbAdminApp').directive('erpTextarea',function($compile){
     return html;
   }
 });
-angular.module('sbAdminApp').directive('erpText',function($compile){
-  return {
-    restrict : 'A'
-    ,scope : {
-      data : '=erpText'
-    }
-    ,link : link
-    ,controller : controller
-  }
-  function link($scope,element,attr){
-    element.html('').append($compile(renderHTML())($scope));
-  }
-  function controller($scope){
-    if($scope.data.isDisable == undefined) $scope.data.isDisable = false;
-    if($scope.data.watch == undefined) $scope.data.isShow = true;
-  }
-  function renderHTML(){
-    var html = '';
-    html +='<input type="text" ng-if="data.isShow" ng-model="data.model" ng-disabled="data.isDisable" class="form-control">';
-    return html;
-  }
-});
-
 (function () {
 
     'use strict';
@@ -1366,7 +1375,7 @@ angular.module('sbAdminApp').directive('erpText',function($compile){
 })()
 
 
-angular.module('sbAdminApp').directive('erpTravelBookings',function($compile){
+angular.module('erp_component').directive('erpTravelBookings',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -1413,7 +1422,7 @@ angular.module('sbAdminApp').directive('erpTravelBookings',function($compile){
 });
 
 'use strict';
-angular.module('sbAdminApp').directive('erpUpload',function($compile,ErpNodeServices,API,Notify,Session,FormData){
+angular.module('erp_component').directive('erpUpload',function($compile,ErpNodeServices,API,Notify,Session,FormData){
   return {
     restrict : 'A'
     ,scope : {
@@ -1436,7 +1445,7 @@ angular.module('sbAdminApp').directive('erpUpload',function($compile,ErpNodeServ
   }
 });
 
-angular.module('sbAdminApp').directive('fileModel', ['$parse', function ($parse) {
+angular.module('erp_component').directive('fileModel', ['$parse', function ($parse) {
             return {
                restrict: 'A',
                link: function(scope, element, attrs) {
@@ -1460,7 +1469,7 @@ angular.module('sbAdminApp').directive('fileModel', ['$parse', function ($parse)
  * @description
  * # adminPosHeader
  */
-angular.module('sbAdminApp').directive('formBuilder',function($compile){
+angular.module('erp_component').directive('formBuilder',function($compile){
   return {
     restrict : 'A'
     ,scope : {
@@ -1526,7 +1535,7 @@ angular.module('sbAdminApp').directive('formBuilder',function($compile){
 });
 
 'use strict';
-angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,API,Notify,FormData,Authenticate){
+angular.module('erp_component').directive('lead',function($compile,ErpNodeServices,API,Notify,FormData,Authenticate){
   return {
     restrict : 'A'
     ,scope : {
@@ -1536,7 +1545,8 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
     ,controller : controller
   }
   function link($scope,element,attr){
-    element.html('').append($compile(renderHTML())($scope));
+    var _html = $compile(renderHTML())($scope);
+    element.html('').append($compile(_html)($scope));
   };
 
   function controller($scope){
@@ -1622,7 +1632,8 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
                                     '<p class="m0">{{data.erp_departureDate}}</p>' +
                                 '</div>' +
                             '</div>' +
-                            '<div class="col-lg-1 cursor-p edit-lead" ng-click="editLead()"><i class="fa fa-pencil"></i></div>' +
+                            '<erp-action name="Edit_Lead" label="<i class=\'fa fa-pencil\'></i>" css="col-lg-1 cursor-p edit-lead" action="editLead()" type="button"></erp-action>'+
+                            //'<div class="col-lg-1 cursor-p edit-lead" ng-click="editLead()"><i class="fa fa-pencil"></i></div>' +
                             //'<div ng-switch-when="customer" ng-click="leadEmail()"tooltip="{{data.erp_customer.erp_emailId}}" tooltip-placement="top" class="col-lg-1 cursor-p" title="{{data.erp_customer.erp_emailId}}"><i class="fa fa-envelope"></i></div>' +
                         '</div>' +
                     '</div>' +
@@ -1667,7 +1678,7 @@ angular.module('sbAdminApp').directive('lead',function($compile,ErpNodeServices,
 
 
 
-angular.module('sbAdminApp').directive('sideMenu',[function(){
+angular.module('erp_component').directive('sideMenu',[function(){
   return {
     link: function(scope, element, attrs){
       // $timeout(function(){

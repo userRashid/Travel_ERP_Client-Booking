@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('erpCalender',function($compile){
+angular.module('erp_component').directive('erpCalender',function($compile){
   return {
     restrict : 'A'
     ,scope : {

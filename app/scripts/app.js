@@ -1,14 +1,12 @@
 'use strict';
 /**
  * @ngdoc overview
- * @name sbAdminApp
  * @description
- * # sbAdminApp
  *
  * Main module of the application.
  */
 angular
-    .module('sbAdminApp', [
+    .module('erp', [
         'oc.lazyLoad',
         'ui.router',
         'ui.bootstrap',
@@ -32,87 +30,73 @@ angular
         , 'erp_customer'
         , 'erp_component'
         , 'erp_employee'
+        , 'erp_core'
+        , 'erp_utility'
     ])
-    .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
-        $ocLazyLoadProvider.config({
-            debug: false,
-            events: true,
-        });
 
         $urlRouterProvider.otherwise('/leads/home');
 
-        $stateProvider
-            .state('leads', {
-                url: '/leads',
-                templateUrl: 'views/dashboard/main.html'
-            }).state('leads.home', {
-                url: '/home',
-                controller: 'MainCtrl',
-                templateUrl: 'views/dashboard/home.html'
-            }).state('leads.form', {
-                templateUrl: 'views/form.html',
-                url: '/form'
-            }).state('leads.blank', {
-                templateUrl: 'views/pages/blank.html',
-                url: '/blank'
-            }).state('leads.chart', {
-                templateUrl: 'views/chart.html',
-                url: '/chart',
-                controller: 'ChartCtrl'
-            }).state('leads.table', {
-                templateUrl: 'views/table.html',
-                url: '/table'
-            }).state('leads.add-leads', {
-                templateUrl: 'views/leads/add-leads/add-leads.html',
-                url: '/add-leads',
-                controller: 'addLead'
-            }).state('leads.all', {
-                templateUrl: 'views/leads/manage-leads/manage-leads.html',
-                controller: 'ManageLeadsCtrl',
-                url: '/manage-leads'
-            }).state('leads.manage-leads', {
-                templateUrl: 'views/leads/lead-detail/leads.html',
-                url: '/manage-leads/:id',
-                controller: 'LeadsCtrl'
-            }).state('leads.customers', {
-                templateUrl: 'views/customers/customers.html',
-                controller: 'CustomersCtrl',
-                url: '/customers'
-            }).state('booking', {
-                templateUrl: 'views/dashboard/main.html',
-                url: '/booking'
-            }).state('booking.detail', {
-                templateUrl: 'views/booking/bookingDetail/bookingDetail.html',
-                controller: 'bookingDetailCtrl',
-                url: '/manage-booking/:id'
-            }).state('booking.manage-booking', {
-                templateUrl: 'views/booking/manage-bookings/booking.html',
-                controller: 'BookingCtrl',
-                url: '/manage-booking'
-            }).state('leads.x', {
-                templateUrl: 'views/ui-elements/grid.html',
-                url: '/x'
-            }).state('employee', {
-                templateUrl: 'views/dashboard/main.html',
-                url: '/employee'
-            }).state('employee.add-employee', {
-                templateUrl: 'views/employee/add-employee/add-employee.html',
-                controller: 'AddEmployeeCtrl',
-                url: '/add-employee'
-            }).state('employee.manage-employee', {
-                templateUrl: 'views/employee/manage-employee/manage-employee.html',
-                controller: 'ManageEmployeeCtrl',
-                url: '/manage-employee'
-            }).state('employee.manage-detail', {
-                templateUrl: 'views/employee/add-employee/add-employee.html',
-                controller: 'AddEmployeeCtrl',
-                url: '/manage-employee/:empId'
-            }).state('employee.assign-leads', {
-                templateUrl: 'views/employee/assign-leads/assign-leads.html',
-                controller: 'AssignLeadsCtrl',
-                url: '/assign-leads'
-            });
+        $stateProvider.state('leads', {
+            url: '/leads',
+            templateUrl: 'views/dashboard/main.html'
+        }).state('leads.home', {
+            url: '/home',
+            controller: 'MainCtrl',
+            templateUrl: 'views/dashboard/home.html'
+        }).state('leads.form', {
+            templateUrl: 'views/form.html',
+            url: '/form'
+        }).state('leads.blank', {
+            templateUrl: 'views/pages/blank.html',
+            url: '/blank'
+        }).state('leads.chart', {
+            templateUrl: 'views/chart.html',
+            url: '/chart',
+            controller: 'ChartCtrl'
+        }).state('leads.table', {
+            templateUrl: 'views/table.html',
+            url: '/table'
+        });
+
+
     }]);
 
+
+(function () {
+
+    'use strict';
+    angular
+        .module('erp_navigation', [])
+        .config(config);
+
+    function config() {
+        //
+    }
+})();
+
+(function () {
+
+    'use strict';
+    angular
+        .module('erp_core', [])
+        .config(config);
+
+    function config() {
+        //
+    }
+})();
+
+(function () {
+
+    'use strict';
+    angular
+        .module('erp_utility', [])
+        .config(config);
+
+    function config() {
+        //
+    }
+})();
 

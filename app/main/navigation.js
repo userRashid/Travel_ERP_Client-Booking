@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('Navigation',function($location){
+angular.module('erp_core').factory('Navigation',function($location){
   return {
     go  : go
   }

@@ -6,13 +6,14 @@
  * @description
  * # adminPosHeader
  */
-angular.module('sbAdminApp')
-	.directive('header',function(){
+angular.module('erp')
+	.directive('header', function () {
 		return {
-        templateUrl:'scripts/directives/header/header.html',
-        restrict: 'E',
-        replace: true,
-    	}
+			templateUrl: 'scripts/directives/header/header.html',
+			restrict: 'E',
+			replace: true
+		}
+
 	});
 
 

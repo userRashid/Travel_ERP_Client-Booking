@@ -22,7 +22,15 @@
             return temp;
         }
 
-        ////////////////////////
+        function _makePermissionData(_data) {
+            var permission = new Array();
+            for (var item in _data) {
+                permission.push(item);
+            }
+            return permission;
+        }
+
+        /////////////////////////////////////////////////////////////////////////////
         $scope.Login = function (data) {
             var promise = [API.post('employee/login', data), API.get('employee')];
             $q.all(promise).then(function (response) {
@@ -32,6 +40,8 @@
                 Session.set('customerCount', loginData.erp_customerCount);
                 Session.set('leadCount', loginData.erp_leadCount);
                 Session.set('authToken', loginData.authToken);
+                var permission = _makePermissionData(loginData.permissionAndModule);
+                Session.set('permission', JSON.stringify(permission));
                 Authenticate.doLogin('', loginData.erp_employee.erp_emp_id, loginData.erp_employee.erp_emp_name);
                 $state.go('leads.all', { objId: 479 });
                 var authPromise = [API.get('roles'), API.get('teams')];
@@ -40,7 +50,7 @@
                     Session.set('teams', JSON.stringify(_makeTeamData(authResponse[1].data)));
                 })
             });
-            //Authenticate.doLogin('',9,'Rashid');
+            //Authenticate.doLogin('', 9, 'Rashid');
         };
         $scope.Navigation = Navigation;
         $scope.Authenticate = Authenticate;

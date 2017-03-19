@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').directive('erpAttach',function($compile,ErpNodeServices,API,Notify,Session,FormData){
+angular.module('erp_component').directive('erpAttach',function($compile,ErpNodeServices,API,Notify,Session,FormData){
   return {
     restrict : 'A'
     ,scope : {

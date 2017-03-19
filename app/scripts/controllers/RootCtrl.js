@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').controller('RootCtrl', function ($scope,Navigation,Authenticate) {
+angular.module('erp_core').controller('RootCtrl', function ($scope,Navigation,Authenticate) {
     $scope.Navigation = Navigation;
     $scope.Authenticate = Authenticate;
     $scope.isAdmin = function(){

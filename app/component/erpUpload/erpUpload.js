@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').directive('erpUpload',function($compile,ErpNodeServices,API,Notify,Session,FormData){
+angular.module('erp_component').directive('erpUpload',function($compile,ErpNodeServices,API,Notify,Session,FormData){
   return {
     restrict : 'A'
     ,scope : {
@@ -22,7 +22,7 @@ angular.module('sbAdminApp').directive('erpUpload',function($compile,ErpNodeServ
   }
 });
 
-angular.module('sbAdminApp').directive('fileModel', ['$parse', function ($parse) {
+angular.module('erp_component').directive('fileModel', ['$parse', function ($parse) {
             return {
                restrict: 'A',
                link: function(scope, element, attrs) {

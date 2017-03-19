@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').service('Watch',function(){
+angular.module('erp_core').service('Watch',function(){
     return {
         validation    :   validation
         ,makeActualCost : makeActualCost

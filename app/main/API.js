@@ -2,7 +2,7 @@
 // Session
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-angular.module('sbAdminApp').factory('Session', function () {
+angular.module('erp_core').factory('Session', function () {
   return {
     get: get
     , set: set
@@ -29,7 +29,7 @@ angular.module('sbAdminApp').factory('Session', function () {
 // WebServices
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-angular.module('sbAdminApp').factory('API', function ($http, $q, Session) {
+angular.module('erp_core').factory('API', function ($http, $q, Session) {
 
   return {
     get: get
@@ -152,7 +152,7 @@ angular.module('sbAdminApp').factory('API', function ($http, $q, Session) {
 // interceptors
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-angular.module('sbAdminApp').config(function ($httpProvider) {
+angular.module('erp_core').config(function ($httpProvider) {
   $httpProvider.interceptors.push(function ($q) {
     return {
       'response': responseInterceptor

@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('erpDateRangePicker',function($compile){
+angular.module('erp_component').directive('erpDateRangePicker',function($compile){
   return {
     restrict : 'A'
     ,scope : {

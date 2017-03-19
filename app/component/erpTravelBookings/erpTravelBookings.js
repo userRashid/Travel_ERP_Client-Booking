@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('erpTravelBookings',function($compile){
+angular.module('erp_component').directive('erpTravelBookings',function($compile){
   return {
     restrict : 'A'
     ,scope : {

@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('erpCheckbox',function($compile){
+angular.module('erp_component').directive('erpCheckbox',function($compile){
   return {
     restrict : 'A'
     ,scope : {

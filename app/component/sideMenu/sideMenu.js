@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('sideMenu',[function(){
+angular.module('erp_component').directive('sideMenu',[function(){
   return {
     link: function(scope, element, attrs){
       // $timeout(function(){

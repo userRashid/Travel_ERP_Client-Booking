@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('ErpNodeServices',function($q,FormData,ErpNode,API,Session){
+angular.module('erp_core').factory('ErpNodeServices',function($q,FormData,ErpNode,API,Session){
   return {
     createForm : createForm
     ,Search : Search

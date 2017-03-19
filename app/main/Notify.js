@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sbAdminApp').factory('Notify', function() {
+angular.module('erp_core').factory('Notify', function() {
   var me = {
     add: add
     ,watch: watch

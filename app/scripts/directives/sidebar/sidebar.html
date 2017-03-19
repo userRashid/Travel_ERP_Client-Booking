@@ -35,10 +35,10 @@
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level" ng-show="collapseVar == 4">
                         <li ui-sref-active="active">
-                            <a class="nav-link" ui-sref="employee.add-employee">Add Employee</a>
+                            <erp-action name="Create_User" label="Add Employee" css="nav-link" link="employee.add-employee" type="nav"></erp-action>
                         </li>
                         <li ui-sref-active="active">
-                            <a class="nav-link" ui-sref="employee.manage-employee">Manage Employees</a>
+                            <erp-action name="Edit_User" label="Manage Employees" css="nav-link" link="employee.manage-employee" type="nav"></erp-action>
                         </li>
                         <!--<li ui-sref-active="active">
                             <a class="nav-link" ui-sref="employee.assign-leads">Assign Leads</a>

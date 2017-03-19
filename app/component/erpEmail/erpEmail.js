@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').directive('erpEmail',function($compile){
+angular.module('erp_component').directive('erpEmail',function($compile){
   return {
     restrict : 'A'
     ,scope : {

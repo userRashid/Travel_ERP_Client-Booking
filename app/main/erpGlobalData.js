@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('GlobalData',function($q,API,Session){
+angular.module('erp_core').factory('GlobalData',function($q,API,Session){
   return {
     getNight        :   getNight
     ,getSocial      :   getSocial

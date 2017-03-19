@@ -1,4 +1,4 @@
-angular.module('sbAdminApp').factory('ErpNode', function () {
+angular.module('erp_core').factory('ErpNode', function () {
   return {
     Form: Form
   }

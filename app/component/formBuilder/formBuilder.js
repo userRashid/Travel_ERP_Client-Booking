@@ -6,7 +6,7 @@
  * @description
  * # adminPosHeader
  */
-angular.module('sbAdminApp').directive('formBuilder',function($compile){
+angular.module('erp_component').directive('formBuilder',function($compile){
   return {
     restrict : 'A'
     ,scope : {
