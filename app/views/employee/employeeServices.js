@@ -94,6 +94,8 @@
             API.put('employee/' + empId, model).then(function (response) {
                 Notify.add('success', 'Success', response.data.message);
                 $state.go('employee.manage-employee');
+            }, function (error) {
+                Notify.add('error', 'Error', error.data.errorMessgae);
             });
         }
     }

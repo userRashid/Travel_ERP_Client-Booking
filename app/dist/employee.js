@@ -125,6 +125,8 @@
             API.put('employee/' + empId, model).then(function (response) {
                 Notify.add('success', 'Success', response.data.message);
                 $state.go('employee.manage-employee');
+            }, function (error) {
+                Notify.add('error', 'Error', error.data.errorMessgae);
             });
         }
     }
@@ -192,7 +194,7 @@
 
         $scope.editEmployee = function (employee) {
             EmployeeServices.setEmployeeDetail(employee);
-            $state.go('employee.manage-detail', { empId: 8 });
+            $state.go('employee.manage-detail', { empId: employee.erp_emp_id });
         }
 
         $scope.deleteEmployee = function (empId) {

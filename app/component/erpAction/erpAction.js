@@ -27,6 +27,7 @@
         }
 
         function link($scope, element, attr) {
+            console.log(' ---- ', $scope);
             var permission = checkPermission($scope.name);
             element.replaceWith($compile(renderHTML($scope.type, $scope.label, permission))($scope));
         };
@@ -37,7 +38,7 @@
 
         function renderHTML(type, label, permission) {
             var html = '';
-            if (permission && type === 'button') html += '<button class="{{css}}" ng-click="action(data)">' + label + '</button>';
+            if (permission && type === 'button') html += '<button class="{{css}}" ng-click="action({data:data})">' + label + '</button>';
             if (permission && type === 'link') html += '<a href="{{link}}" class="{{css}}">' + label + '</a>';
             if (permission && type === 'nav') html += '<a class="{{css}}" ui-sref="{{link}}">' + label + '</a>';
             return html;

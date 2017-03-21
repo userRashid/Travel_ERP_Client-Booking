@@ -106,11 +106,11 @@ angular.module('erp_core').factory('API', function ($http, $q, Session) {
 
   function addToken(uri) {
     //console.log(Session.get('id') === null,Session.get('authToken') === null);
-    if(Session.get('id') === null && Session.get('authToken') === null) return uri;
+    if (Session.get('id') === null && Session.get('authToken') === null) return uri;
     if (uri.indexOf('?') !== -1) {
-      uri = uri+'&token='+Session.get('authToken')+'&id='+Session.get('id');
+      uri = uri + '&token=' + Session.get('authToken') + '&id=' + Session.get('id');
     } else {
-      uri = uri+'?token='+Session.get('authToken')+'&id='+Session.get('id');
+      uri = uri + '?token=' + Session.get('authToken') + '&id=' + Session.get('id');
     }
     return uri;
 
@@ -132,78 +132,26 @@ angular.module('erp_core').factory('API', function ($http, $q, Session) {
       request.data = data;
     }
 
-    return $http(request).
-      error(function (data, status, headers, config) {
-        // handle session timeout
-        if (status == 408) {
-          Session.remove('repository');
-          Session.remove('ticket');
-          Session.remove('username');
-          Session.remove('user_name');
-        }
-      });
-  }
+    var _h = $q.defer();
 
-});
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// interceptors
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-angular.module('erp_core').config(function ($httpProvider) {
-  $httpProvider.interceptors.push(function ($q) {
-    return {
-      'response': responseInterceptor
-    };
-
-    function responseInterceptor(response) {
+    $http(request).then(function (response) {
       if (response.hasOwnProperty('data') && response.data.hasOwnProperty('errorCode')) {
-        return $q.reject(response);
-        //console.log('In');
+        _h.reject(response);
       } else {
-        return response;
+        _h.resolve(response);
       }
-      /*
-      // ticket handling
-     *//* if(response.headers().hasOwnProperty('ticket')) {
-             Session.set('ticket',response.headers()['ticket']);
-           };*//*
-
-// error handling: check returncode in header
-if(response.hasOwnProperty('data') && response.data.hasOwnProperty('errorCode')){
-var error = response.data.errorCode != undefined;
-if(error) {
-return $q.reject(getErrorMessage(response,error));
-} else {
-// delayed response handling
-if(response.status == 202) {
-var delayedKey = response.data;
-//console.log('DELAYED Message '+ delayedKey);
-//return DelayedResponseQueue.register(delayedKey);
-} else {
-  return response;
-}
-}
-}*/
-    }
-
-    function getErrorMessage(response, error) {
-      var message = 'Error Code ' + error;
-
-      if (typeof (response) === 'object'
-        && response.hasOwnProperty('data')
-        && typeof (response.data) === 'object'
-        && response.data.hasOwnProperty('Message'))
-        message = response.data.Message;
-
-      var temp = { code: error, msg: message };
-
-      return temp;
-    }
-
-  });
+    }, function (data, status, headers, config) {
+      if (status == 408) {
+        Session.remove('repository');
+        Session.remove('ticket');
+        Session.remove('username');
+        Session.remove('user_name');
+      }
+    });
+    return _h.promise;
+  }
 });
+
+
 
 

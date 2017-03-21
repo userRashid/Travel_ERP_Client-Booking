@@ -12,7 +12,7 @@
 
         $scope.editEmployee = function (employee) {
             EmployeeServices.setEmployeeDetail(employee);
-            $state.go('employee.manage-detail', { empId: 8 });
+            $state.go('employee.manage-detail', { empId: employee.erp_emp_id });
         }
 
         $scope.deleteEmployee = function (empId) {
