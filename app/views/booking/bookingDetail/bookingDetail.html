@@ -16,11 +16,14 @@
         <div class="col-md-8">
             <h5 class="text-primary">{{conversionData.erp_destinations}} Of {{conversionData.erp_customer.erp_name}} From {{conversionData.erp_customer.erp_city}}</h5>
         </div>
-        <div ng-if="isAdmin()" class="col-md-4 m-t40 text-right">
-            <button class="btn-success btn" ng-click="editBooking(conversionData)">Edit Booking</button>
+        <!--<div ng-if="isAdmin()" class="col-md-4 m-t40 text-right">
+            <button class="btn-success btn" ng-click="editBooking(conversionData)">Edit Booking</button>-->
+        <div class="col-md-4 m-t40 text-right">
+            <erp-action name="Edit_Booking" label="Edit Booking" css="btn-success btn" action="editBooking(conversionData)" type="button"></erp-action>
         </div>
+
     </div>
-    <div class="row item" >
+    <div class="row item">
         <div class="col-md-6 bor-r">
             <div class="row">
                 <div class="col-md-4">
@@ -50,28 +53,28 @@
                     <h5 class="text-warning">---------- {{conversionData.erp_dropLocation}}</h5>
                 </div>
                 <div class="col-md-12 pZero">
-                    <textarea  readonly class="m-t20 d-block w-100" rows="4">inclusions {{conversionData.erp_inclusions}}</textarea>
+                    <textarea readonly class="m-t20 d-block w-100" rows="4">inclusions {{conversionData.erp_inclusions}}</textarea>
                 </div>
             </div>
         </div>
         <div class="col-md-6" ng-if="isAdmin()">
-            <div  class="sold text-right"></div>
-            <div class="col-md-12 black-bor pZero" >
-                <div ng-repeat ="(key, value) in conversionData.erp_costBreakup">
+            <div class="sold text-right"></div>
+            <div class="col-md-12 black-bor pZero">
+                <div ng-repeat="(key, value) in conversionData.erp_costBreakup">
                     <div ng-if="key == 'Sold Cost'">
                         <b>Sold Cost</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>{{value}}&nbsp;/-</b>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 black-bor pZero" >
-                <div ng-repeat ="(key, value) in conversionData.erp_costBreakup">
+            <div class="col-md-12 black-bor pZero">
+                <div ng-repeat="(key, value) in conversionData.erp_costBreakup">
                     <div class="col-md-6 text-left m-t10">{{key}}</div>
                     <div class="col-md-6 text-right m-t10 pZero">{{value}}&nbsp;/-</div>
                 </div>
             </div>
             <div class="col-md-12 pZero">
-                <div class="col-md-12 black-bor pZero" >
-                    <div ng-repeat ="(key, value) in conversionData.erp_costBreakup">
+                <div class="col-md-12 black-bor pZero">
+                    <div ng-repeat="(key, value) in conversionData.erp_costBreakup">
                         <div ng-if="key == 'Total Cost Price'">
                             <div class="col-md-6 text-left m-t10 book">
                                 <b>Total Cost Price</b>
@@ -91,7 +94,7 @@
         <h5 class="black-bor p-b-1">HOTEL DETAILS</h5>
     </div>
 
-    <div class="col-sm-12" data-erp-hotel-detail ="conversionData.erp_hotelBookings"></div>
+    <div class="col-sm-12" data-erp-hotel-detail="conversionData.erp_hotelBookings"></div>
 
     <div class="col-sm-12 m-t-1">
         <h5 class="black-bor p-b-1">EXCLUSIONS</h5>
