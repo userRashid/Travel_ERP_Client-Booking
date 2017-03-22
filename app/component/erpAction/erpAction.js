@@ -27,7 +27,6 @@
         }
 
         function link($scope, element, attr) {
-            console.log(' ---- ', $scope);
             var permission = checkPermission($scope.name);
             element.replaceWith($compile(renderHTML($scope.type, $scope.label, permission))($scope));
         };

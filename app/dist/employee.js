@@ -135,6 +135,16 @@
 (function () {
     angular
         .module('erp_employee')
+        .controller('AssignLeadsCtrl', AssignLeads);
+
+    function AssignLeads() {
+        var vm = this;
+
+    }
+})();
+(function () {
+    angular
+        .module('erp_employee')
         .controller('AddEmployeeCtrl', AddEmployee);
 
     function AddEmployee($scope, ErpNodeServices, FormData, $stateParams, EmployeeServices) {
@@ -168,16 +178,6 @@
                 EmployeeServices.updateEmployee(data.getModel(), empId);
             });
         }
-    }
-})();
-(function () {
-    angular
-        .module('erp_employee')
-        .controller('AssignLeadsCtrl', AssignLeads);
-
-    function AssignLeads() {
-        var vm = this;
-
     }
 })();
 (function () {

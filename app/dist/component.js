@@ -38,7 +38,6 @@
         }
 
         function link($scope, element, attr) {
-            console.log(' ---- ', $scope);
             var permission = checkPermission($scope.name);
             element.replaceWith($compile(renderHTML($scope.type, $scope.label, permission))($scope));
         };
@@ -343,60 +342,6 @@ angular.module('erp_component').directive('erpAttach',function($compile,ErpNodeS
 
 
 
-angular.module('erp_component').directive('erpCalender',function($compile){
-  return {
-    restrict : 'A'
-    ,scope : {
-      data : '=erpCalender'
-    }
-    ,link : link
-    ,controller : controller
-  }
-
-  function link($scope,element,attr){
-    element.html('').append($compile(renderHTML())($scope));
-  }
-
-  function controller($scope,GlobalData){
-    //$scope.dt = new Date();
-    $scope.format = GlobalData.getDateFormat();
-    $scope.dateOptions = {
-        formatYear: 'yy',
-        maxDate: new Date(2020, 5, 22),
-        startingDay: 1,
-        showWeeks : false
-    };
-    if($scope.data.hidePrevious){
-      $scope.dateOptions.minDate = new Date()
-    } else {
-      $scope.dateOptions.minDate = new Date(1950, 5, 22)
-    }
-    if($scope.data.model == undefined){
-      var d = new Date()
-          ,date = d.getDate()
-          ,month = d.getMonth()
-          ,year = d.getFullYear()+($scope.data.defaultDate);
-      $scope.data.model = new Date(year,month,date);
-    }
-    $scope.popup = {
-        opened: false
-    };
-    $scope.open = function() {
-        $scope.popup.opened = true;
-    };
-  }
-  function renderHTML(){
-    var html = '';
-      html +='<p class="input-group">' +
-                '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.model" is-open="popup.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
-                '<span class="input-group-btn">' +
-                  '<button type="button" class="btn btn-default" ng-click="open()"><i class="fa fa-calendar"></i></button>' +
-                '</span>' +
-              '</p>';
-    return html;
-  }
-});
-
 angular.module('erp_component').directive('erpBookingStatus',function($compile){
   return {
     restrict : 'A'
@@ -477,6 +422,60 @@ angular.module('erp_component').directive('erpBookingStatus',function($compile){
                     '<input class="form-control" type="number" ng-model="Model.erp_tokenAmount" />' +
                 '</div>';
         return html;
+  }
+});
+
+angular.module('erp_component').directive('erpCalender',function($compile){
+  return {
+    restrict : 'A'
+    ,scope : {
+      data : '=erpCalender'
+    }
+    ,link : link
+    ,controller : controller
+  }
+
+  function link($scope,element,attr){
+    element.html('').append($compile(renderHTML())($scope));
+  }
+
+  function controller($scope,GlobalData){
+    //$scope.dt = new Date();
+    $scope.format = GlobalData.getDateFormat();
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        startingDay: 1,
+        showWeeks : false
+    };
+    if($scope.data.hidePrevious){
+      $scope.dateOptions.minDate = new Date()
+    } else {
+      $scope.dateOptions.minDate = new Date(1950, 5, 22)
+    }
+    if($scope.data.model == undefined){
+      var d = new Date()
+          ,date = d.getDate()
+          ,month = d.getMonth()
+          ,year = d.getFullYear()+($scope.data.defaultDate);
+      $scope.data.model = new Date(year,month,date);
+    }
+    $scope.popup = {
+        opened: false
+    };
+    $scope.open = function() {
+        $scope.popup.opened = true;
+    };
+  }
+  function renderHTML(){
+    var html = '';
+      html +='<p class="input-group">' +
+                '<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="data.model" is-open="popup.opened" show-button-bar="false" datepicker-options="dateOptions" ng-required="true" />' +
+                '<span class="input-group-btn">' +
+                  '<button type="button" class="btn btn-default" ng-click="open()"><i class="fa fa-calendar"></i></button>' +
+                '</span>' +
+              '</p>';
+    return html;
   }
 });
 
@@ -921,6 +920,42 @@ angular.module('erp_component').directive('erpHotel',function($compile){
         }
     };
 });
+angular.module('erp_component').directive('erpMultiSelect',function($compile,$q){
+  return {
+    restrict : 'A'
+    ,scope : {
+      data : '=erpMultiSelect'
+    }
+    ,link : link
+    ,controller : controller
+  }
+
+  function link($scope,element,attr){
+    element.html('').append($compile(renderHTML())($scope));
+  }
+
+  function controller($scope){
+    $scope.getDropDown = function(query) {
+      var _d = $q.defer();
+      $scope.data.dropDown.then(function(allItems) {
+        var filteredItems = _.chain(allItems)
+          .filter(function(x) { return x.toLowerCase().indexOf(query.toLowerCase()) > -1; })
+          .take(10)
+          .value();
+        _d.resolve(filteredItems);
+      });
+      return _d.promise;
+    };
+  }
+  function renderHTML(){
+    var html = '';
+      html +='<tags-input class="tags-input-override-not" ng-model="data.model" allow-leftover-text="false" placeholder="{{data.label}}" add-on-blur="false" add-on-enter="true" replace-spaces-with-dashes="false">';
+        html +='<auto-complete source="getDropDown($query)"min-length="0" debounce-delay="0" load-on-focus="true"></auto-complete>';
+      html +='</tags-input>';
+    return html;
+  }
+});
+
 angular.module('erp_component').directive('erpHotelDetail', function ($compile) {
     return {
         restrict: 'A'
@@ -959,42 +994,6 @@ angular.module('erp_component').directive('erpHotelDetail', function ($compile) 
     }
 
 })
-angular.module('erp_component').directive('erpMultiSelect',function($compile,$q){
-  return {
-    restrict : 'A'
-    ,scope : {
-      data : '=erpMultiSelect'
-    }
-    ,link : link
-    ,controller : controller
-  }
-
-  function link($scope,element,attr){
-    element.html('').append($compile(renderHTML())($scope));
-  }
-
-  function controller($scope){
-    $scope.getDropDown = function(query) {
-      var _d = $q.defer();
-      $scope.data.dropDown.then(function(allItems) {
-        var filteredItems = _.chain(allItems)
-          .filter(function(x) { return x.toLowerCase().indexOf(query.toLowerCase()) > -1; })
-          .take(10)
-          .value();
-        _d.resolve(filteredItems);
-      });
-      return _d.promise;
-    };
-  }
-  function renderHTML(){
-    var html = '';
-      html +='<tags-input class="tags-input-override-not" ng-model="data.model" allow-leftover-text="false" placeholder="{{data.label}}" add-on-blur="false" add-on-enter="true" replace-spaces-with-dashes="false">';
-        html +='<auto-complete source="getDropDown($query)"min-length="0" debounce-delay="0" load-on-focus="true"></auto-complete>';
-      html +='</tags-input>';
-    return html;
-  }
-});
-
 'use strict';
 angular.module('erp_component').directive('erpNote',function($compile,ErpNodeServices,API,Notify,Session,FormData){
   return {
@@ -1182,6 +1181,39 @@ angular.module('erp_component').directive('erpText',function($compile){
   }
 });
 
+angular.module('erp_component').directive('erpTextarea',function($compile){
+  return {
+    restrict : 'A'
+    ,scope : {
+      data : '=erpTextarea'
+    }
+    ,link : link
+    ,controller : controller
+  }
+  function link($scope,element,attr){
+    element.html('').append($compile(renderHTML())($scope));
+  }
+  function controller($scope){
+        var _modelData ="";
+        $scope.$watch('data.checkboxModel',function(data){
+            if(!data) return;
+            if(data == true){
+                _modelData =  $scope.data.model;
+                $scope.data.model= $scope.data.checkboxData.concat(_modelData);
+            }else if(data == false){
+                _modelData =  $scope.data.model;
+                $scope.data.model= _modelData.replace($scope.data.checkboxData,"");
+            }
+        });
+  }
+  function renderHTML(){
+    var html = '';
+    html
+    html +='<span ng-if="data.isCheckbox"><input type="checkbox"  ng-model="data.checkboxModel">&nbsp;{{data.checkboxLabel}}</span>{{}}'+
+           '<textarea rows="4"  ng-model="data.model" class="form-control" placeholder="{{data.placeholder}}" value ="data.checkboxData"></textarea>'
+    return html;
+  }
+});
 (function () {
 
     'use strict';
@@ -1343,39 +1375,6 @@ angular.module('erp_component').directive('erpText',function($compile){
 })()
 
 
-angular.module('erp_component').directive('erpTextarea',function($compile){
-  return {
-    restrict : 'A'
-    ,scope : {
-      data : '=erpTextarea'
-    }
-    ,link : link
-    ,controller : controller
-  }
-  function link($scope,element,attr){
-    element.html('').append($compile(renderHTML())($scope));
-  }
-  function controller($scope){
-        var _modelData ="";
-        $scope.$watch('data.checkboxModel',function(data){
-            if(!data) return;
-            if(data == true){
-                _modelData =  $scope.data.model;
-                $scope.data.model= $scope.data.checkboxData.concat(_modelData);
-            }else if(data == false){
-                _modelData =  $scope.data.model;
-                $scope.data.model= _modelData.replace($scope.data.checkboxData,"");
-            }
-        });
-  }
-  function renderHTML(){
-    var html = '';
-    html
-    html +='<span ng-if="data.isCheckbox"><input type="checkbox"  ng-model="data.checkboxModel">&nbsp;{{data.checkboxLabel}}</span>{{}}'+
-           '<textarea rows="4"  ng-model="data.model" class="form-control" placeholder="{{data.placeholder}}" value ="data.checkboxData"></textarea>'
-    return html;
-  }
-});
 angular.module('erp_component').directive('erpTravelBookings',function($compile){
   return {
     restrict : 'A'

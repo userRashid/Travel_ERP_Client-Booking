@@ -2,6 +2,17 @@
 
     'use strict';
     angular
+        .module('erp_navigation', [])
+        .config(config);
+
+    function config() {
+        //
+    }
+})();
+(function () {
+
+    'use strict';
+    angular
         .module('erp_navigation')
         .directive('sidebar', Sidebar);
 

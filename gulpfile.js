@@ -40,10 +40,16 @@ gulp.task('customers', function () {
 gulp.task('login', function () {
     return gulp.src('./app/views/login/**/*.js')
         .pipe(concat('login.js'))
-        .pipe(minify())
+        //.pipe(minify())
         .pipe(gulp.dest('./app/dist/'));
 });
 
+gulp.task('nav', function () {
+    return gulp.src('./app/navigation/**/*.js')
+        .pipe(concat('navigation.js'))
+        //.pipe(minify())
+        .pipe(gulp.dest('./app/dist/'));
+});
 
 gulp.task('build', [
     'component'
@@ -52,6 +58,7 @@ gulp.task('build', [
     , 'employee'
     , 'customers'
     , 'login'
+    , 'nav'
 ], function () {
 
 });
