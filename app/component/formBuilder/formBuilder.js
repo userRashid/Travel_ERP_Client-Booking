@@ -6,66 +6,66 @@
  * @description
  * # adminPosHeader
  */
-angular.module('erp_component').directive('formBuilder',function($compile){
+angular.module('erp_component').directive('formBuilder', function ($compile) {
   return {
-    restrict : 'A'
-    ,scope : {
-      data : '=formBuilder'
-      ,mode : '@'
+    restrict: 'A'
+    , scope: {
+      data: '=formBuilder'
+      , mode: '@'
     }
-    ,link : link
-    ,controller : controller
+    , link: link
+    , controller: controller
   }
-  function link($scope,element,attr){
+  function link($scope, element, attr) {
     element.html('').append($compile(renderHTML())($scope));
   };
 
-  function controller($scope){
-    $scope.$watch('data',function(promise){
-      promise.then(function(obj){
+  function controller($scope) {
+    $scope.$watch('data', function (promise) {
+      promise.then(function (obj) {
         $scope.options = obj.data;
       });
     });
-    if($scope.mode == undefined){
+    if ($scope.mode == undefined) {
       $scope.mode = 'full';
     }
-    $scope.getClass = function(item){
-        if(item.mode != undefined) return 'col-lg-12';
+    $scope.getClass = function (item) {
+      if (item.mode != undefined) return 'col-lg-12';
       var c = '';
-      if($scope.mode == 'full')     c = 'col-lg-12';
-      if($scope.mode == 'inline')   c = 'col-lg-4';
-      if($scope.mode == 'half')     c = 'col-lg-6';
+      if ($scope.mode == 'full') c = 'col-lg-12';
+      if ($scope.mode == 'inline') c = 'col-lg-4';
+      if ($scope.mode == 'half') c = 'col-lg-6';
       return c;
     }
   }
-  function renderHTML(){
+  function renderHTML() {
     var html = '';
-      html +='<form name="cardForm" class="clearfix">';
-        html +='<div ng-class="getClass(item)" ng-repeat="item in options" ng-class="{\'selected\':$odd}" class="form-group" ng-switch on="item.type">';
-            html +='<label ng-if="item.label">{{item.label}}</label>';
-            html +='<div      ng-switch-when="erpText"      data-erp-text="item" ></div>';
-            html +='<input    ng-switch-when="erpNumber"    ng-model="item.model" class="form-control">';
-            html +='<div      ng-switch-when="erpEmail"     data-erp-email="item"></div>';
-            html +='<div      ng-switch-when="erpPhone"     data-erp-phone="item"></div>';
-            html +='<input    ng-switch-when="erpPassword"  ng-model="item.model" class="form-control" type="password">';
-            html +='<div      ng-switch-when="erpTextarea"  data-erp-textarea="item"></div>';
-            html +='<div      ng-switch-when="erpSelect"    data-erp-select="item"></div>';
-            html +='<div      ng-switch-when="erpUpload"    data-erp-upload="item"></div>';
-            html +='<div      ng-switch-when="erpPeople"    data-erp-people="item"></div>';
-            html +='<div      ng-switch-when="erpCheckbox"  data-erp-checkbox="item"></div>';
-            html +='<div      ng-switch-when="erpAddMore"   data-erp-add-more="item"></div>';
-            html +='<div      ng-switch-when="erpCalender"  data-erp-calender="item"></div>';
-            html +='<div      ng-switch-when="erpDateTime"  data-erp-date-time="item"></div>';
-            html +='<div      ng-switch-when="erpMultiSelect"       data-erp-multi-select="item"></div>';
-            html +='<div      ng-switch-when="erpHotel"             data-erp-hotel="item"></div>';
-            html +='<div      ng-switch-when="erpBookingStatus"     data-erp-booking-status="item"></div>';
-            html +='<div      ng-switch-when="erpTravelBookings"    data-erp-travel-bookings="item"></div>';
-            html +='<div      ng-switch-when="erpAssign"    data-erp-assign="item"></div>';
-            html +='<div      ng-switch-when="erpTextEditor" text-angular="text-angular" ng-model="item.model" ta-disabled="false"></div>';
-            html +='<div      ng-switch-default style="border: 1px solid #c9302c;">{{item.type}}</div>';
-            html +='<div class="separator"></div>';
-        html +='</div>';
-      html +='</form>';
+    html += '<form name="cardForm" class="clearfix">';
+    html += '<div ng-class="getClass(item)" ng-repeat="item in options" ng-class="{\'selected\':$odd}" class="form-group" ng-switch on="item.type">';
+    html += '<label ng-if="item.label">{{item.label}}</label>';
+    html += '<div      ng-switch-when="erpText"      data-erp-text="item" ></div>';
+    html += '<input    ng-switch-when="erpNumber"    ng-model="item.model" class="form-control">';
+    html += '<div      ng-switch-when="erpEmail"     data-erp-email="item"></div>';
+    html += '<div      ng-switch-when="erpPhone"     data-erp-phone="item"></div>';
+    html += '<input    ng-switch-when="erpPassword"  ng-model="item.model" class="form-control" type="password">';
+    html += '<div      ng-switch-when="erpTextarea"  data-erp-textarea="item"></div>';
+    html += '<div      ng-switch-when="erpSelect"    data-erp-select="item"></div>';
+    html += '<div      ng-switch-when="erpUpload"    data-erp-upload="item"></div>';
+    html += '<div      ng-switch-when="erpPeople"    data-erp-people="item"></div>';
+    html += '<div      ng-switch-when="erpCheckbox"  data-erp-checkbox="item"></div>';
+    html += '<div      ng-switch-when="erpAddMore"   data-erp-add-more="item"></div>';
+    html += '<div      ng-switch-when="erpCalender"  data-erp-calender="item"></div>';
+    html += '<div      ng-switch-when="erpDateTime"  data-erp-date-time="item"></div>';
+    html += '<div      ng-switch-when="erpMultiSelect"       data-erp-multi-select="item"></div>';
+    html += '<div      ng-switch-when="erpHotel"             data-erp-hotel="item"></div>';
+    html += '<div      ng-switch-when="erpBookingStatus"     data-erp-booking-status="item"></div>';
+    html += '<div      ng-switch-when="erpTravelBookings"    data-erp-travel-bookings="item"></div>';
+    html += '<div      ng-switch-when="erpAssign"    data-erp-assign="item"></div>';
+    html += '<div      ng-switch-when="erpTextEditor" text-angular="text-angular" ng-model="item.model" ta-disabled="false"></div>';
+    html += '<div      ng-switch-default style="border: 1px solid #c9302c;">{{item.type}}</div>';
+    html += '<div class="separator"></div>';
+    html += '</div>';
+    html += '</form>';
     return html;
   }
 

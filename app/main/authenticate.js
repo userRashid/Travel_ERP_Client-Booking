@@ -5,6 +5,7 @@ angular.module('erp_core').factory('Authenticate', function (Session) {
     , doLogout: doLogout
     , user: user
     , isAdmin: isAdmin
+    , isAuthorised: isAuthorised
   }
 
   function isLogin() {
@@ -13,6 +14,12 @@ angular.module('erp_core').factory('Authenticate', function (Session) {
   }
   function isAdmin() {
     return superAdminIds.indexOf(user().id) !== -1;
+  }
+
+  function isAuthorised(permissionName) {
+    var permissions = JSON.parse(Session.get('permission'));
+    var isShow = permissions.indexOf(permissionName) != -1;
+    return isShow;
   }
   function doLogin(ticket, userId, name) {
     // //console.log('ticket,userId -- ',ticket,userId,name);
@@ -40,7 +47,7 @@ angular.module('erp_core').factory('Authenticate', function (Session) {
     Session.set('ticket', ticket);
     Session.set('id', userId);
     Session.set('name', name);
-    
+
   }
 
   function doLogout() {

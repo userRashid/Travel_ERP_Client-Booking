@@ -96,6 +96,11 @@
                 });
 
             };
+
+            $scope.isAuthorised = function (permissionName) {
+                return Authenticate.isAuthorised(permissionName);
+            }
+
             $scope.cancelEdit = function (item) {
                 item.showItem = false;
             }

@@ -9,11 +9,10 @@
                     <div ng-if="item.erp_source == 'attachment'">
                         <a href="http://104.236.94.240:8080/Travel_ERP/lead/{{item.erp_leadId}}/leadAttachment/{{item.erp_attId}}">{{item.erp_attachmentName}}.{{item.erp_attachmentType}}</a>
                     </div>
-                    <!--<button type="button" ng-click="editTimeLine(item)" class="btn btn-default btn-circle timeline-heading-edit">
+                    <button ng-if="isAuthorised('Edit_Activity')" type="button" ng-click="editTimeLine(item)" class="btn btn-default btn-circle timeline-heading-edit">
                         <i class="fa fa-pencil-square-o"></i>
-                    </button>-->
-                    <erp-action name="Edit_Activity" label="<i class='fa fa-pencil-square-o'></i>" css="btn btn-default btn-circle timeline-heading-edit" action="editTimeLine(item)" type="button"></erp-action>
-
+                    </button>
+                    <!--<erp-action name="Edit_Activity" label="<i class='fa fa-pencil-square-o'></i>" css="btn btn-default btn-circle timeline-heading-edit" action="editTimeLine({data:item})" type="button"></erp-action>-->
                     <!--<div class="timeline-heading">
                         <h4 class="timeline-title">Lorem ipsum dolor</h4>
                     </div>-->
