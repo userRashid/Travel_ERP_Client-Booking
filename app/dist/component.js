@@ -1286,6 +1286,10 @@ angular.module('erp_component').directive('erpTextarea',function($compile){
                 return css;
             }
 
+            $scope.getRootUrl = function () {
+                return baseApiUrl;
+            }
+
             $scope.getStyleBG = function (type) {
                 var css = '';
                 if (type != undefined) type = type.toLowerCase();
