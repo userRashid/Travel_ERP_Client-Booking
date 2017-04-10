@@ -19,28 +19,31 @@
                     <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="oldPassword">Old Password</label>
-                        <input type="password" class="form-control" id="oldPassword" required ng-model="pass.oldpassword" />
-                    </div>
-                    <div class="form-group">
-                        <label for="newPassword">New Password</label>
-                        <input type="password" class="form-control" id="newPassword" required ng-model="pass.newpassword" />
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" required ng-model="pass.confirmpassword" />
-                    </div>
-                    <div ng-if="pass.newpassword && !pass.confirmpassword" class="alert alert-warning" role="alert">
-                        <strong>Warning!</strong> Confirm Password don't leave empty
-                    </div>
-                    <div ng-if="pass.newpassword && pass.confirmpassword && pass.newpassword != pass.confirmpassword" class="alert alert-danger" role="alert">
-                        <strong>Oh snap!</strong> New Password and Confirm Password should be same
-                    </div>
+                    <form name="login">
+                        <div class="form-group">
+                            <label for="oldPassword">Old Password</label>
+                            <input type="password" name="oldPassword" class="form-control" id="oldPassword" required ng-model="pass.oldpassword" />
+                            <span class="alert alert-warning" role="alert" ng-show="login.oldPassword.$error.required && login.oldPassword.$dirty">required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" class="form-control" name="newPassword" id="newPassword" ng-minlength="5" ng-maxlength="15" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required ng-model="pass.newpassword" />
+                            <span ng-show="login.newPassword.$error.required && login.newPassword.$dirty">required</span>
+                            <span class="alert alert-warning" role="alert" ng-show="!login.newPassword.$error.minLength && !login.newPassword.$error.maxLength && login.newPassword.$error.pattern && login.newPassword.$dirty">
+                                Must start with a letter, and contain letters &amp; numbers only.
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" name="confirmPassword" ng-minlength="5" ng-maxlength="15" id="confirmPassword" valid-password required ng-model="pass.confirmpassword" />
+                            <span class="alert alert-warning" role="alert" ng-show="login.confirmPassword.$error.required && login.confirmPassword.$dirty">Please confirm your password.</span>
+                            <span class="alert alert-warning" role="alert" ng-show="!login.confirmPassword.$error.required && login.confirmPassword.$error.noMatch && login.newPassword.$dirty">Passwords do not match.</span>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-sm btn-primary" ng-disabled="passwordValidate(pass)" data-dismiss="modal" ng-click="changePassword(pass)">Changed</button>
+                    <button type="button" class="btn btn-sm btn-primary" ng-disabled="passwordValidate(pass)" data-dismiss="modal" ng-disabled="!login.$valid">Change</button>
                 </div>
             </div>
         </div>
