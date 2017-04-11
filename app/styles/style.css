@@ -117,7 +117,7 @@ body,html {
 
 
 .pad button{ padding:10px 25px}
-.btn{ button-border: 0px}
+.btn{border-bottom: 0px}
 .pad{ padding: 20px}
 .bor-l{ border-left: 2px solid #ccc}
 .mar-l{ margin-left:20px}
@@ -210,4 +210,22 @@ height:40px;
 .assign-button > button{
     margin: 5px 0;
      padding: 5px 3px;
+}
+
+.error-msg{
+    position: absolute;
+    top:70px;
+    z-index: 999;
+}
+.error-msg > span{
+    padding: 2px 5px;
+}
+.dropdown-user{
+    left: -50px;
+    top: 33px;
+    padding: 7px;
+    min-width: 200px;
+}
+.dropdown-user > li{
+    padding:5px 0;
 }
